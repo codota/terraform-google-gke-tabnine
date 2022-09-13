@@ -1,12 +1,5 @@
 data "google_client_config" "default" {}
 
-terraform {
-  backend "gcs" {
-    bucket = "tabnine-tf-state"
-    prefix = "self-hosted-tests"
-  }
-}
-
 provider "helm" {
  kubernetes {
     host                   = "https://${module.gke.endpoint}"
