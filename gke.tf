@@ -21,7 +21,7 @@ module "gke" {
       name               = format("%s-default", var.prefix)
       machine_type       = "a2-highgpu-1g"
       machine_type       = "e2-medium"
-      node_locations     = "us-central1-a"
+      node_locations     = join(",", var.zones)
       min_count          = 1
       max_count          = 3
       local_ssd_count    = 0
@@ -41,7 +41,7 @@ module "gke" {
       accelerator_count  = 1
       name               = format("%s-gpu", var.prefix)
       machine_type       = "a2-highgpu-1g"
-      node_locations     = "us-central1-a"
+      node_locations     = join(",", var.zones)
       min_count          = 1
       max_count          = 1
       local_ssd_count    = 0
@@ -73,4 +73,3 @@ module "gke" {
     }
   }
 }
-
