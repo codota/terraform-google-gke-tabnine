@@ -9,6 +9,5 @@ module "service_accounts" {
     "${var.project_id}=>roles/logging.logWriter",
     "${var.project_id}=>roles/logging.bucketWriter",
     "${var.project_id}=>roles/storage.objectAdmin",
-    "train-tabnine-small=>roles/storage.objectAdmin",
   ]
 }
