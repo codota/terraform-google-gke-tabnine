@@ -1,5 +1,5 @@
 module "gke-tabnine" {
-  source                     = "../"
+  source                     = "../.."
   project_id                 = "tabnine"
   region                     = "us-central1"
   zones                      = ["us-central1-a", "us-central1-c"]
