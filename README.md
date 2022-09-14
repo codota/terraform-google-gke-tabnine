@@ -33,7 +33,7 @@ This module is meant for use with Terraform X and tested using Terraform Y.
 There are examples included in the [examples](./examples/) folder but simple usage is as follows:
 
 ```hcl
-module "gke-tabnine" {
+module "gke_tabnine" {
   source                     = "github.com/codota/terraform-google-gke-tabnine"
   project_id                 = "<PROJECT ID>"
   region                     = "<REGION>"
@@ -43,9 +43,12 @@ module "gke-tabnine" {
 }
 ```
 
-Then perform the following commands on the root folder:
+### On first use
 
 - `terraform init` to get the plugins
-- `terraform plan` to see the infrastructure plan
-- `terraform apply` to apply the infrastructure build
-- `terraform destroy` to destroy the built infrastructure
+- `tf apply -target module.gke_tabnine.module.service_accounts
+ ` to create the service account first  
+- `tf apply -var exclude_nvidia_driver=true`
+   to create infrastructure without nvidia drivers, this is a hack since kubernetes_manfest requires a live kubernetes cluster. (see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest#before-you-use-this-resource)
+-
+- `terraform apply` to apply everything

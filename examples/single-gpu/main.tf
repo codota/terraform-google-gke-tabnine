@@ -1,16 +1,24 @@
-module "gke-tabnine" {
-  source                     = "../.."
-  project_id                 = "tabnine"
-  region                     = "us-central1"
-  zones                      = ["us-central1-a", "us-central1-c"]
-  prefix                     = "your-prefix"
-  create_vpc                 = true
-  create_service_account     = true
+module "gke_tabnine" {
+  source                 = "../.."
+  project_id             = "proud-maker-166101"
+  region                 = "us-central1"
+  zones                  = ["us-central1-a", "us-central1-c"]
+  prefix                 = "bilu"
+  create_vpc             = true
+  create_service_account = true
+  exclude_nvidia_driver  = var.exclude_nvidia_driver
 }
+
+
+variable "exclude_nvidia_driver" {
+  type    = bool
+  default = false
+}
+
 terraform {
   backend "gcs" {
-    bucket = "your-bucket"
-    prefix = "your-prefix"
+    bucket = "tabnine-tf-state"
+    prefix = "bilu-self-hosted"
   }
 }
 

@@ -1,12 +1,14 @@
 resource "kubernetes_manifest" "daemonset_kube_system_nvidia_driver_installer" {
+  // a hack which can be solved by converting this to kubernetes_daemonset
+  count = var.exclude_nvidia_driver ? 0 : 1
   manifest = {
     "apiVersion" = "apps/v1"
-    "kind" = "DaemonSet"
+    "kind"       = "DaemonSet"
     "metadata" = {
       "labels" = {
         "k8s-app" = "nvidia-driver-installer"
       }
-      "name" = "nvidia-driver-installer"
+      "name"      = "nvidia-driver-installer"
       "namespace" = "kube-system"
     }
     "spec" = {
@@ -19,7 +21,7 @@ resource "kubernetes_manifest" "daemonset_kube_system_nvidia_driver_installer" {
         "metadata" = {
           "labels" = {
             "k8s-app" = "nvidia-driver-installer"
-            "name" = "nvidia-driver-installer"
+            "name"    = "nvidia-driver-installer"
           }
         }
         "spec" = {
@@ -30,7 +32,7 @@ resource "kubernetes_manifest" "daemonset_kube_system_nvidia_driver_installer" {
                   {
                     "matchExpressions" = [
                       {
-                        "key" = "cloud.google.com/gke-accelerator"
+                        "key"      = "cloud.google.com/gke-accelerator"
                         "operator" = "Exists"
                       },
                     ]
@@ -42,46 +44,46 @@ resource "kubernetes_manifest" "daemonset_kube_system_nvidia_driver_installer" {
           "containers" = [
             {
               "image" = "gcr.io/google-containers/pause:2.0"
-              "name" = "pause"
+              "name"  = "pause"
             },
           ]
           "hostNetwork" = true
-          "hostPID" = true
+          "hostPID"     = true
           "initContainers" = [
             {
               "env" = [
                 {
-                  "name" = "NVIDIA_INSTALL_DIR_HOST"
+                  "name"  = "NVIDIA_INSTALL_DIR_HOST"
                   "value" = "/home/kubernetes/bin/nvidia"
                 },
                 {
-                  "name" = "NVIDIA_INSTALL_DIR_CONTAINER"
+                  "name"  = "NVIDIA_INSTALL_DIR_CONTAINER"
                   "value" = "/usr/local/nvidia"
                 },
                 {
-                  "name" = "VULKAN_ICD_DIR_HOST"
+                  "name"  = "VULKAN_ICD_DIR_HOST"
                   "value" = "/home/kubernetes/bin/nvidia/vulkan/icd.d"
                 },
                 {
-                  "name" = "VULKAN_ICD_DIR_CONTAINER"
+                  "name"  = "VULKAN_ICD_DIR_CONTAINER"
                   "value" = "/etc/vulkan/icd.d"
                 },
                 {
-                  "name" = "ROOT_MOUNT_DIR"
+                  "name"  = "ROOT_MOUNT_DIR"
                   "value" = "/root"
                 },
                 {
-                  "name" = "COS_TOOLS_DIR_HOST"
+                  "name"  = "COS_TOOLS_DIR_HOST"
                   "value" = "/var/lib/cos-tools"
                 },
                 {
-                  "name" = "COS_TOOLS_DIR_CONTAINER"
+                  "name"  = "COS_TOOLS_DIR_CONTAINER"
                   "value" = "/build/cos-tools"
                 },
               ]
-              "image" = "cos-nvidia-installer:fixed"
+              "image"           = "cos-nvidia-installer:fixed"
               "imagePullPolicy" = "Never"
-              "name" = "nvidia-driver-installer"
+              "name"            = "nvidia-driver-installer"
               "resources" = {
                 "requests" = {
                   "cpu" = "150m"
@@ -93,23 +95,23 @@ resource "kubernetes_manifest" "daemonset_kube_system_nvidia_driver_installer" {
               "volumeMounts" = [
                 {
                   "mountPath" = "/usr/local/nvidia"
-                  "name" = "nvidia-install-dir-host"
+                  "name"      = "nvidia-install-dir-host"
                 },
                 {
                   "mountPath" = "/etc/vulkan/icd.d"
-                  "name" = "vulkan-icd-mount"
+                  "name"      = "vulkan-icd-mount"
                 },
                 {
                   "mountPath" = "/dev"
-                  "name" = "dev"
+                  "name"      = "dev"
                 },
                 {
                   "mountPath" = "/root"
-                  "name" = "root-mount"
+                  "name"      = "root-mount"
                 },
                 {
                   "mountPath" = "/build/cos-tools"
-                  "name" = "cos-tools"
+                  "name"      = "cos-tools"
                 },
               ]
             },

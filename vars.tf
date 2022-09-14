@@ -51,6 +51,10 @@ variable "service_account_email" {
   default = ""
 }
 
+variable "exclude_nvidia_driver" {
+  type    = bool
+  default = false
+}
 
 locals {
   network_name          = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
