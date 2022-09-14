@@ -1,20 +1,21 @@
 module "gke" {
-  source                     = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  project_id                 = var.project_id
-  name                       = format("%s-gke", var.prefix)
-  region                     = var.region
-  zones                      = var.zones
-  network                    = local.network_name
-  subnetwork                 = local.subnetwork
-  ip_range_pods              = local.ip_range_pods
-  ip_range_services          = local.ip_range_services
-  http_load_balancing        = false
-  network_policy             = false
-  horizontal_pod_autoscaling = true
-  filestore_csi_driver       = false
-  service_account            = local.service_account_email
-  identity_namespace         = "null"
-  node_metadata              = "UNSPECIFIED"
+  source                               = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
+  project_id                           = var.project_id
+  name                                 = format("%s-gke", var.prefix)
+  region                               = var.region
+  zones                                = var.zones
+  network                              = local.network_name
+  subnetwork                           = local.subnetwork
+  ip_range_pods                        = local.ip_range_pods
+  ip_range_services                    = local.ip_range_services
+  http_load_balancing                  = true
+  network_policy                       = false
+  horizontal_pod_autoscaling           = true
+  filestore_csi_driver                 = false
+  service_account                      = local.service_account_email
+  identity_namespace                   = "null"
+  node_metadata                        = "UNSPECIFIED"
+  # monitoring_enable_managed_prometheus = true
 
   node_pools = [
     {
