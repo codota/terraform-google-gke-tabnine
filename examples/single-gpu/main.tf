@@ -1,9 +1,9 @@
 module "gke_tabnine" {
   source                 = "../.."
-  project_id             = "proud-maker-166101"
-  region                 = "us-central1"
-  zones                  = ["us-central1-a", "us-central1-c"]
-  prefix                 = "bilu"
+  project_id             = "<PROJECT-ID>"
+  region                 = "<REGION>"
+  zones                  = ["<ZONE>"]
+  prefix                 = "<PREFIX-OF-RESOURECS>"
   create_vpc             = true
   create_service_account = true
   exclude_nvidia_driver  = var.exclude_nvidia_driver
@@ -18,8 +18,8 @@ variable "exclude_nvidia_driver" {
 
 terraform {
   backend "gcs" {
-    bucket = "tabnine-tf-state"
-    prefix = "bilu-self-hosted"
+    bucket = "<BUCKET>"
+    prefix = "<PREFIX>"
   }
 }
 
