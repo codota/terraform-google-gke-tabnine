@@ -25,6 +25,11 @@ variable "create_service_account" {
   default = false
 }
 
+variable "ingress_host" {
+  type    = string
+  default = ""
+}
+
 
 variable "network_name" {
   type    = string
@@ -62,6 +67,7 @@ locals {
   ip_range_pods         = var.create_vpc ? format("%s-gke-pods", var.prefix) : var.ip_range_pods
   ip_range_services     = var.create_vpc ? format("%s-gke-services", var.prefix) : var.ip_range_services
   service_account_email = var.create_service_account ? module.service_accounts[0].service_account.email : var.service_account_email
+  create_ingress        = var.ingress_host != ""
 }
 
 
