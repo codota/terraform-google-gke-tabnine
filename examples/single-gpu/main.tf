@@ -7,7 +7,7 @@ module "gke_tabnine" {
   create_vpc             = true
   create_service_account = true
   exclude_nvidia_driver  = var.exclude_nvidia_driver
-  ingress_host           = "demo-cloud.tabnine.com"
+  ingress                = { host = "demo-cloud.tabnine.com", internal = true }
 }
 
 
