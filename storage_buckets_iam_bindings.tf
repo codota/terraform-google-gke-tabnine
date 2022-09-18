@@ -2,7 +2,7 @@ module "storage_buckets_iam_bindings" {
   source  = "terraform-google-modules/iam/google//modules/storage_buckets_iam"
   version = "~> 6.4"
 
-  storage_buckets = ["tabnine-training-pipeline", "artifacts.tabnine-self-hosted.appspot.com"]
+  storage_buckets = ["tabnine-self-hosted-models", "artifacts.tabnine-self-hosted.appspot.com"]
 
   mode = "additive"
 
