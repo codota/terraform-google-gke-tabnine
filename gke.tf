@@ -15,7 +15,10 @@ module "gke" {
   service_account                      = local.service_account_email
   identity_namespace                   = "null"
   node_metadata                        = "UNSPECIFIED"
-  # monitoring_enable_managed_prometheus = true
+  monitoring_enable_managed_prometheus = true
+  logging_service                      = "logging.googleapis.com/kubernetes"
+  logging_enabled_components           = ["SYSTEM_COMPONENTS", "WORKLOADS"]
+
 
   node_pools = [
     {
@@ -43,7 +46,7 @@ module "gke" {
       machine_type       = "a2-highgpu-1g"
       node_locations     = join(",", var.zones)
       min_count          = 1
-      max_count          = 1
+      max_count          = 2
       local_ssd_count    = 0
       spot               = false
       disk_size_gb       = 200

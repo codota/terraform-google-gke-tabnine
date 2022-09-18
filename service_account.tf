@@ -8,7 +8,6 @@ module "service_accounts" {
   project_roles = [
     "${var.project_id}=>roles/logging.logWriter",
     "${var.project_id}=>roles/logging.bucketWriter",
-    "${var.project_id}=>roles/storage.objectAdmin",
     "${var.project_id}=>roles/monitoring.metricWriter",
   ]
 }
