@@ -7,7 +7,7 @@ module "service_accounts" {
   names      = [format("%s-gke", var.prefix)]
   project_roles = [
     "${var.project_id}=>roles/logging.logWriter",
-    "${var.project_id}=>roles/logging.bucketWriter",
+    # "${var.project_id}=>roles/logging.bucketWriter",
     "${var.project_id}=>roles/monitoring.metricWriter",
   ]
 }

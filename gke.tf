@@ -18,6 +18,7 @@ module "gke" {
   monitoring_enable_managed_prometheus = true
   logging_service                      = "logging.googleapis.com/kubernetes"
   logging_enabled_components           = ["SYSTEM_COMPONENTS", "WORKLOADS"]
+  create_service_account               = false
 
 
   node_pools = [
@@ -76,4 +77,7 @@ module "gke" {
     }
   }
 
+  depends_on = [
+    module.vpc
+  ]
 }
