@@ -7,10 +7,10 @@ Kubernetes Engine (GKE) as the computing environment.
 
 - This module uses Nvidia A100 GPU, make sure to select a [zone/region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones) where A100 is available.
 - Install [helm](https://helm.sh/)
-- Install [helm-git](https://github.com/aslafy-z/helm-git)
-- Add Tabnine helm charts repository 
+- Install [helm-gcs](https://github.com/hayorov/helm-gcs)
+- Add Tabnine helm charts repository, make sure you have read acccess to `gs://tabnine-self-hosted-helm-charts` bucket
   ```bash
-  helm repo add tabnine https://github.com/codota/helm-charts@charts\?ref=initial-commit
+  helm repo add tabnine gs://tabnine-self-hosted-helm-charts
   ```
 - Configure `gcloud` to use the right project:
 
