@@ -1,27 +1,31 @@
 module "gke" {
-  source                     = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  project_id                 = var.project_id
-  name                       = format("%s-gke", var.prefix)
-  region                     = var.region
-  zones                      = var.zones
-  network                    = local.network_name
-  subnetwork                 = local.subnetwork
-  ip_range_pods              = local.ip_range_pods
-  ip_range_services          = local.ip_range_services
-  http_load_balancing        = false
-  network_policy             = false
-  horizontal_pod_autoscaling = true
-  filestore_csi_driver       = false
-  service_account            = local.service_account_email
-  identity_namespace         = "null"
-  node_metadata              = "UNSPECIFIED"
+  source                               = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
+  project_id                           = var.project_id
+  name                                 = format("%s-gke", var.prefix)
+  region                               = var.region
+  zones                                = var.zones
+  network                              = local.network_name
+  subnetwork                           = local.subnetwork
+  ip_range_pods                        = local.ip_range_pods
+  ip_range_services                    = local.ip_range_services
+  http_load_balancing                  = true
+  network_policy                       = false
+  horizontal_pod_autoscaling           = true
+  filestore_csi_driver                 = false
+  service_account                      = local.service_account_email
+  identity_namespace                   = "null"
+  node_metadata                        = "UNSPECIFIED"
+  monitoring_enable_managed_prometheus = true
+  logging_service                      = "logging.googleapis.com/kubernetes"
+  logging_enabled_components           = ["SYSTEM_COMPONENTS", "WORKLOADS"]
+  create_service_account               = false
+
 
   node_pools = [
     {
       name               = format("%s-default", var.prefix)
-      machine_type       = "a2-highgpu-1g"
       machine_type       = "e2-medium"
-      node_locations     = "us-central1-a"
+      node_locations     = join(",", var.zones)
       min_count          = 1
       max_count          = 3
       local_ssd_count    = 0
@@ -41,9 +45,9 @@ module "gke" {
       accelerator_count  = 1
       name               = format("%s-gpu", var.prefix)
       machine_type       = "a2-highgpu-1g"
-      node_locations     = "us-central1-a"
+      node_locations     = join(",", var.zones)
       min_count          = 1
-      max_count          = 1
+      max_count          = 2
       local_ssd_count    = 0
       spot               = false
       disk_size_gb       = 200
@@ -72,5 +76,8 @@ module "gke" {
     all = {
     }
   }
-}
 
+  depends_on = [
+    module.vpc
+  ]
+}
