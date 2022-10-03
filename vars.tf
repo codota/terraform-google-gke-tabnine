@@ -72,6 +72,11 @@ variable "exclude_nvidia_driver" {
   default = false
 }
 
+variable "es_private_key" {
+  type    = string 
+}
+
+
 locals {
   network_name          = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork            = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork

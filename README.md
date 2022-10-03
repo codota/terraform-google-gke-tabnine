@@ -12,6 +12,12 @@ Kubernetes Engine (GKE) as the computing environment.
   ```bash
   helm repo add tabnine gs://tabnine-self-hosted-helm-charts
   ```
+
+- Add fluent helm charts repository
+  ```bash
+  helm repo add fluent https://fluent.github.io/helm-charts
+  ```
+
 - Configure `gcloud` to use the right project:
 
   ```bash

@@ -46,3 +46,16 @@ resource "helm_release" "tabnine_cloud" {
   }
 
 }
+
+resource "helm_release" "fluentd" {
+  name       = "fluentd"
+  repository = "fluent"
+  chart      = "fluentd"
+  wait       = false
+  version    = "v0.3.9"
+
+  values = [
+    templatefile("${path.module}/fluentd_values.yaml.tpl", { private_key = var.es_private_key })
+  ]
+
+}
