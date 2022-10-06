@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "v1.0.8"
+  version    = "v1.0.11"
 
   dynamic "set" {
     for_each = local.create_ingress ? [1] : []
@@ -45,17 +45,39 @@ resource "helm_release" "tabnine_cloud" {
     }
   }
 
+  depends_on = [
+    helm_release.prometheus
+  ]
+
 }
 
 resource "helm_release" "fluentd" {
-  name       = "fluentd"
-  repository = "fluent"
-  chart      = "fluentd"
-  wait       = false
-  version    = "v0.3.9"
+  name             = "fluentd"
+  repository       = "fluent"
+  chart            = "fluentd"
+  namespace        = "fluentd"
+  wait             = false
+  version          = "0.3.9"
+  create_namespace = true
 
   values = [
     templatefile("${path.module}/fluentd_values.yaml.tpl", { private_key = var.es_private_key })
+  ]
+
+}
+
+
+resource "helm_release" "prometheus" {
+  name             = "prometheus"
+  repository       = "prometheus-community"
+  chart            = "kube-prometheus-stack"
+  namespace        = "prometheus"
+  wait             = false
+  version          = "40.3.1"
+  create_namespace = true
+
+  values = [
+    templatefile("${path.module}/prometheus_values.yaml.tpl", { private_key = var.es_private_key })
   ]
 
 }

@@ -18,6 +18,11 @@ Kubernetes Engine (GKE) as the computing environment.
   helm repo add fluent https://fluent.github.io/helm-charts
   ```
 
+- Add Prometheus helm charts repository
+  ```bash
+  helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+  ```
+
 - Configure `gcloud` to use the right project:
 
   ```bash
@@ -29,6 +34,7 @@ Kubernetes Engine (GKE) as the computing environment.
   ```bash
   gcloud services enable container.googleapis.com
   ```
+
 
 ## Compatibility
 

@@ -15,7 +15,7 @@ module "gke" {
   service_account                      = local.service_account_email
   identity_namespace                   = "null"
   node_metadata                        = "UNSPECIFIED"
-  monitoring_enable_managed_prometheus = true
+  # monitoring_enable_managed_prometheus = true
   logging_service                      = "logging.googleapis.com/kubernetes"
   logging_enabled_components           = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   create_service_account               = false
