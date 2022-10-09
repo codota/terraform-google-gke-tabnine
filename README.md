@@ -7,10 +7,10 @@ Kubernetes Engine (GKE) as the computing environment.
 
 ## Prerequistes
 
-- This module uses Nvidia A100 GPU, make sure to select a [zone/region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones) where A100 is available.
+- This module uses Nvidia A100 GPU make sure to select a [zone/region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones) where A100 is available.
 - Install [helm](https://helm.sh/)
 - Install [helm-gcs](https://github.com/hayorov/helm-gcs)
-- Add Tabnine helm charts repository, make sure you have read acccess to `gs://tabnine-self-hosted-helm-charts` bucket
+- Add Tabnine helm charts repository __make sure you have read acccess to__ `gs://tabnine-self-hosted-helm-charts` 
   ```bash
   helm repo add tabnine gs://tabnine-self-hosted-helm-charts
   ```
@@ -31,7 +31,7 @@ Kubernetes Engine (GKE) as the computing environment.
   gcloud config set project <PROJECT ID>
   ```
 
-- Make sure that GKE is enable for the `<PROJECT ID>` you are going to use.
+- Make sure that GKE is enabled for the `<PROJECT ID>` you are going to use.
 
   ```bash
   gcloud services enable container.googleapis.com
@@ -40,7 +40,7 @@ Kubernetes Engine (GKE) as the computing environment.
 
 ## Compatibility
 
-This module is meant for use with Terraform X and tested using Terraform Y.
+This module is tested using Terraform 1.2.7.
 
 ## Usage
 
@@ -57,7 +57,7 @@ module "gke_tabnine" {
 }
 ```
 
-### On first use
+## On first use
 
 - `terraform init` to get the plugins
 - `tf apply -target module.gke_tabnine.module.service_accounts
