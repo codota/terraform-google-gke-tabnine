@@ -3,6 +3,8 @@
 This module creates a reslient and fault tolerant Tabnine installation using Google
 Kubernetes Engine (GKE) as the computing environment.
 
+![Tabnine on GKE architecture diagram](img/arch.png)
+
 ## Prerequistes
 
 - This module uses Nvidia A100 GPU, make sure to select a [zone/region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones) where A100 is available.
