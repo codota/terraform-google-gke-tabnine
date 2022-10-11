@@ -28,10 +28,12 @@ fileConfigs:
       <record>
         # In this example we are using record.dig to dynamically set values.
         # Values can also be static or simple variables
-        applicationName $${record.dig("kubernetes", "namespace_name")}
+        # applicationName $${record.dig("kubernetes", "namespace_name")}
+        applicationName customers
         subsystemName $${record.dig("kubernetes", "container_name")}
         computerName $${record.dig("kubernetes", "host")}
         timestamp $${time.strftime('%s%L')} # Optional
+        customerId ${customer_id}
         text $${record.to_json}
       </record>
       </filter>

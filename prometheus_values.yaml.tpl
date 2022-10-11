@@ -82,7 +82,9 @@ coreDns:
     ## RelabelConfigs to apply to samples before scraping
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    relabelings: []
+    relabelings: 
+      - targetLabel: customer_id
+        replacement: ${customer_id}
     # - sourceLabels: [__meta_kubernetes_pod_node_name]
     #   separator: ;
     #   regex: ^(.*)$
@@ -158,7 +160,7 @@ prometheusOperator:
 prometheus:
   prometheusSpec:
     remoteWrite: 
-      - url: 'https://prometheus-gateway.coralogix.us/prometheus/api/v1/write'
+      - url: 'https://prometheus-gateway.coralogix.com/prometheus/api/v1/write'
         name: 'tabnine'
         remoteTimeout: 120s
         bearerToken: '${private_key}'

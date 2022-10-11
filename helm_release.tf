@@ -61,7 +61,7 @@ resource "helm_release" "fluentd" {
   create_namespace = true
 
   values = [
-    templatefile("${path.module}/fluentd_values.yaml.tpl", { private_key = var.es_private_key })
+    templatefile("${path.module}/fluentd_values.yaml.tpl", { private_key = var.es_private_key, customer_id = var.customer_id })
   ]
 
 }
@@ -77,7 +77,7 @@ resource "helm_release" "prometheus" {
   create_namespace = true
 
   values = [
-    templatefile("${path.module}/prometheus_values.yaml.tpl", { private_key = var.es_private_key })
+    templatefile("${path.module}/prometheus_values.yaml.tpl", { private_key = var.es_private_key, customer_id = var.customer_id })
   ]
 
 }

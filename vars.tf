@@ -1,31 +1,50 @@
+variable "customer_id" {
+  description = "Customer ID"
+  type        = string
+}
+
+variable "create_tabnine_storage_bucket_im_bindings" {
+  description = "Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team"
+  type        = bool
+  default     = false
+}
+
 variable "prefix" {
-  type    = string
-  default = "tabnine-self-hosted"
+  description = "Prefix all resources names"
+  type        = string
+  default     = "tabnine-self-hosted"
 }
 
 variable "project_id" {
-  type = string
+  description = "GCP project ID"
+  type        = string
 }
 
 variable "region" {
-  type = string
+  description = "GCP region"
+  type        = string
 }
 
 variable "zones" {
-  type = list(string)
+  description = "GCP zones"
+  type        = list(string)
 }
 
 variable "create_vpc" {
-  type    = bool
-  default = false
+  description = "Should create a VPC, or used the one provided by `network_name`"
+  type        = bool
+  default     = false
 }
 
 variable "create_service_account" {
-  type    = bool
-  default = false
+  description = "Should create a service_account, or used the one provided by `service_account_email`"
+  type        = bool
+  default     = false
 }
 
 variable "ingress" {
+  description = "Configuration of inference engine"
+
   type = object({
     host     = string,
     internal = bool
@@ -38,42 +57,49 @@ variable "ingress" {
 }
 
 variable "network_name" {
-  type    = string
-  default = ""
+  description = "VPC name, used when `create_vpc` is set to `false` "
+  type        = string
+  default     = ""
 }
 
 variable "subnetwork" {
-  type    = string
-  default = ""
+  description = "VPC subnetwork name, used when `create_vpc` is set to `false` "
+  type        = string
+  default     = ""
 }
 
 variable "subnetwork_proxy_only" {
-  type    = string
-  default = ""
+  description = "VPC subnetwork proxy only name, used when `create_vpc` is set to `false` "
+  type        = string
+  default     = ""
 }
 
 variable "ip_range_pods" {
-  type    = string
-  default = ""
+  description = "Pods ip range, used when `create_vpc` is set to `false` "
+  type        = string
+  default     = ""
 }
 
 variable "ip_range_services" {
-  type    = string
-  default = ""
+  description = "Services ip range, used when `create_vpc` is set to `false` "
+  type        = string
+  default     = ""
 }
 
 variable "service_account_email" {
-  type    = string
-  default = ""
+  description = "Service account email, used when `create_service_account` is set to `false` "
+  type        = string
+  default     = ""
 }
 
 variable "exclude_nvidia_driver" {
-  type    = bool
-  default = false
+  description = "Should exclude nvidia driver from installation"
+  type        = bool
+  default     = false
 }
 
 variable "es_private_key" {
-  type    = string 
+  type = string
 }
 
 
