@@ -55,51 +55,9 @@ module "gke_tabnine" {
   create_vpc                 = true
   create_service_account     = true
 }
+
 ```
-
-## On first use
-
-- `terraform init` to get the plugins
-- `tf apply -target module.gke_tabnine.module.service_accounts
- ` to create the service account first  
-- `tf apply -var exclude_nvidia_driver=true`
-   to create infrastructure without nvidia drivers, this is a hack since kubernetes_manfest requires a live kubernetes cluster. (see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest#before-you-use-this-resource)
-   can be solved later by migrating to `kubernetes_daemonset`
-- `terraform apply` to apply everything
-
 <!-- BEGIN_TF_DOCS -->
-## Requirements
-
-No requirements.
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | n/a |
-| <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
-
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_address_fe"></a> [address\_fe](#module\_address\_fe) | terraform-google-modules/address/google | ~> 3.1 |
-| <a name="module_gke"></a> [gke](#module\_gke) | terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster | n/a |
-| <a name="module_service_accounts"></a> [service\_accounts](#module\_service\_accounts) | terraform-google-modules/service-accounts/google | ~> 4.0 |
-| <a name="module_storage_buckets_iam_bindings"></a> [storage\_buckets\_iam\_bindings](#module\_storage\_buckets\_iam\_bindings) | terraform-google-modules/iam/google//modules/storage_buckets_iam | ~> 6.4 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | ~> 4.0 |
-
-## Resources
-
-| Name | Type |
-|------|------|
-| [helm_release.fluentd](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [helm_release.prometheus](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [helm_release.tabnine_cloud](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [kubernetes_manifest.daemonset_kube_system_nvidia_driver_installer](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
-| [google_client_config.default](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config) | data source |
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -128,3 +86,17 @@ No requirements.
 |------|-------------|
 | <a name="output_ingress_ip"></a> [ingress\_ip](#output\_ingress\_ip) | Static IP of inference engine ingress |
 <!-- END_TF_DOCS -->
+
+
+## On first use
+
+- `terraform init` to get the plugins
+- `tf apply -target module.gke_tabnine.module.service_accounts
+ ` to create the service account first  
+- `tf apply -var exclude_nvidia_driver=true`
+   to create infrastructure without nvidia drivers, this is a hack since kubernetes_manfest requires a live kubernetes cluster. (see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest#before-you-use-this-resource)
+   can be solved later by migrating to `kubernetes_daemonset`
+- `terraform apply` to apply everything
+
+
+
