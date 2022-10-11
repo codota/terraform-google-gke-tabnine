@@ -6,8 +6,8 @@ Kubernetes Engine (GKE) as the computing environment.
 ![Tabnine on GKE architecture diagram](img/arch.png)
 
 ## Prerequistes
-
 - This module uses Nvidia A100 GPU make sure to select a [zone/region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones) where A100 is available.
+- Terraform 1.2.7+
 - Install [helm](https://helm.sh/)
 - Install [helm-gcs](https://github.com/hayorov/helm-gcs)
 - Add Tabnine helm charts repository __make sure you have read acccess to__ `gs://tabnine-self-hosted-helm-charts` 
@@ -36,11 +36,8 @@ Kubernetes Engine (GKE) as the computing environment.
   ```bash
   gcloud services enable container.googleapis.com
   ```
-
-
-## Compatibility
-
-This module is tested using Terraform 1.2.7.
+  
+- Log in with a user that has `Editor` & `Project IAM Admin` roles.
 
 ## Usage
 
@@ -57,6 +54,7 @@ module "gke_tabnine" {
 }
 
 ```
+
 <!-- BEGIN_TF_DOCS -->
 ## Inputs
 
