@@ -97,6 +97,3 @@ module "gke_tabnine" {
    to create infrastructure without nvidia drivers, this is a hack since kubernetes_manfest requires a live kubernetes cluster. (see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest#before-you-use-this-resource)
    can be solved later by migrating to `kubernetes_daemonset`
 - `terraform apply` to apply everything
-
-
-
