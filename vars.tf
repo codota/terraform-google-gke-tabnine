@@ -3,6 +3,11 @@ variable "customer_id" {
   type        = string
 }
 
+variable "customer_secret" {
+  description = "Customer ID"
+  type        = string
+}
+
 variable "create_tabnine_storage_bucket_im_bindings" {
   description = "Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team"
   type        = bool
@@ -46,14 +51,11 @@ variable "ingress" {
   description = "Configuration of inference engine"
 
   type = object({
-    host     = string,
+    host     = string
     internal = bool
   })
 
-  default = {
-    host     = ""
-    internal = true
-  }
+  default = null
 }
 
 variable "network_name" {
@@ -98,10 +100,22 @@ variable "exclude_nvidia_driver" {
   default     = false
 }
 
-variable "es_private_key" {
-  type = string
+variable "pre_shared_cert_name" {
+  description = "Use this if you already uploaded a pre-shared cert"
+  type        = string
+  default     = null
 }
 
+
+variable "upload_pre_shared_cert" {
+  description = "Use this to upload pre-shared cert"
+  type = object({
+    path_to_private_key = string
+    path_to_certificate = string
+  })
+
+  default = null
+}
 
 locals {
   network_name          = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
@@ -110,8 +124,8 @@ locals {
   ip_range_pods         = var.create_vpc ? format("%s-gke-pods", var.prefix) : var.ip_range_pods
   ip_range_services     = var.create_vpc ? format("%s-gke-services", var.prefix) : var.ip_range_services
   service_account_email = var.create_service_account ? module.service_accounts[0].service_account.email : var.service_account_email
-  create_ingress        = var.ingress.host != ""
-  ingress_internal      = var.ingress.internal == null || var.ingress.internal
+  create_ingress        = var.ingress != null
+  pre_shared_cert_name  = var.ingress != null ? (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name) : null
 }
 
 

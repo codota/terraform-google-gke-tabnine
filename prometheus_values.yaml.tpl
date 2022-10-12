@@ -160,10 +160,12 @@ prometheusOperator:
 prometheus:
   prometheusSpec:
     remoteWrite: 
-      - url: 'https://prometheus-gateway.coralogix.com/prometheus/api/v1/write'
+      - url: 'https://logs-gateway.tabnine.com/elastic'
         name: 'tabnine'
         remoteTimeout: 120s
-        bearerToken: '${private_key}'
+        headers: 
+         x-customer-id: '${customer_id}'
+         x-customer-secret: '${customer_secret}'
     podMonitorSelectorNilUsesHelmValues: false
     podMonitorSelector: {}
     podMonitorNamespacSelector: {}

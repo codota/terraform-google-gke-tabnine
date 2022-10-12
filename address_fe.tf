@@ -3,15 +3,15 @@ module "address_fe" {
   version      = "~> 3.1"
   project_id   = var.project_id
   region       = var.region
-  subnetwork   = local.ingress_internal ? local.subnetwork : null
+  subnetwork   = var.ingress.internal ? local.subnetwork : null
   purpose      = "GCE_ENDPOINT"
-  address_type = local.ingress_internal ? "INTERNAL" : "EXTERNAL"
+  address_type = var.ingress.internal ? "INTERNAL" : "EXTERNAL"
 
   names = [
     "${var.prefix}-tabnine-cloud"
   ]
 
-  global = !local.ingress_internal
+  global = !var.ingress.internal
 
   depends_on = [
     module.vpc

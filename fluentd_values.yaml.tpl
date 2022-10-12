@@ -3,22 +3,17 @@ fileConfigs:
     <source>
       @type tail
       @id tail_var_logs
-      @label @CORALOGIX
-      path /var/logs/*.log
-      pos_file /var/logs/all.pos
+      @label @TABNINE
+      path /var/log/containers/*.log
+      pos_file /var/log/containers.pos
       tag all
       read_from_head true
-      <parse>
-        # Can be other types as mentioned in docs
-        # https://docs.fluentd.org/configuration/parse-section
-        @type json
-      </parse>
     </source>
 
-  02_filters.conf: |-
+  02_filters.conf: ""
   03_dispatch.conf: ""
   04_outputs.conf: |-
-    <label @CORALOGIX>
+    <label @TABNINE>
       <filter **>
       @type record_transformer
       @log_level warn
@@ -26,8 +21,6 @@ fileConfigs:
       auto_typecast true
       renew_record true
       <record>
-        # In this example we are using record.dig to dynamically set values.
-        # Values can also be static or simple variables
         # applicationName $${record.dig("kubernetes", "namespace_name")}
         applicationName customers
         subsystemName $${record.dig("kubernetes", "container_name")}
@@ -40,9 +33,9 @@ fileConfigs:
 
     <match **>
       @type http
-      @id http_to_coralogix
-      endpoint "https://api.coralogix.com/logs/rest/singles"
-      headers {"private_key":"${private_key}"}
+      @id http_to_tabnine
+      endpoint "https://logs-gateway.tabnine.com/elastic"
+      headers {"x-customer-id":"${customer_id}","x-customer-secret":"${customer_secret}" }
       retryable_response_codes 503
       error_response_as_unrecoverable false
       <buffer>

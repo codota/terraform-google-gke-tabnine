@@ -66,16 +66,18 @@ module "gke_tabnine" {
 | <a name="input_customer_id"></a> [customer\_id](#input\_customer\_id) | Customer ID | `string` | n/a | yes |
 | <a name="input_es_private_key"></a> [es\_private\_key](#input\_es\_private\_key) | n/a | `string` | n/a | yes |
 | <a name="input_exclude_nvidia_driver"></a> [exclude\_nvidia\_driver](#input\_exclude\_nvidia\_driver) | Should exclude nvidia driver from installation | `bool` | `false` | no |
-| <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string,<br>    internal = bool<br>  })</pre> | <pre>{<br>  "host": "",<br>  "internal": true<br>}</pre> | no |
+| <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string<br>    internal = bool<br>  })</pre> | `null` | no |
 | <a name="input_ip_range_pods"></a> [ip\_range\_pods](#input\_ip\_range\_pods) | Pods ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_ip_range_services"></a> [ip\_range\_services](#input\_ip\_range\_services) | Services ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | VPC name, used when `create_vpc` is set to `false` | `string` | `""` | no |
+| <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | Use this if you already uploaded a pre-shared cert | `string` | `null` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
 | <a name="input_service_account_email"></a> [service\_account\_email](#input\_service\_account\_email) | Service account email, used when `create_service_account` is set to `false` | `string` | `""` | no |
 | <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | VPC subnetwork name, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_subnetwork_proxy_only"></a> [subnetwork\_proxy\_only](#input\_subnetwork\_proxy\_only) | VPC subnetwork proxy only name, used when `create_vpc` is set to `false` | `string` | `""` | no |
+| <a name="input_upload_pre_shared_cert"></a> [upload\_pre\_shared\_cert](#input\_upload\_pre\_shared\_cert) | Use this to upload pre-shared cert | <pre>object({<br>    path_to_private_key = string<br>    path_to_certificate = string<br>  })</pre> | `null` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
 
 ## Outputs
@@ -89,9 +91,9 @@ module "gke_tabnine" {
 ## On first use
 
 - `terraform init` to get the plugins
-- `tf apply -target module.gke_tabnine.module.service_accounts
+- `terraform apply -target module.gke_tabnine.module.service_accounts
  ` to create the service account first  
-- `tf apply -var exclude_nvidia_driver=true`
+- `terraform apply -var exclude_nvidia_driver=true`
    to create infrastructure without nvidia drivers, this is a hack since kubernetes_manfest requires a live kubernetes cluster. (see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest#before-you-use-this-resource)
    can be solved later by migrating to `kubernetes_daemonset`
 - `terraform apply` to apply everything

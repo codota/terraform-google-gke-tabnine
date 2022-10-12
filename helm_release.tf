@@ -22,7 +22,7 @@ resource "helm_release" "tabnine_cloud" {
   }
 
   dynamic "set" {
-    for_each = local.create_ingress && !local.ingress_internal ? [1] : []
+    for_each = local.create_ingress && !var.ingress.internal ? [1] : []
     content {
       name  = "ingress.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
       value = module.address_fe.names[0]
@@ -30,7 +30,7 @@ resource "helm_release" "tabnine_cloud" {
   }
 
   dynamic "set" {
-    for_each = local.create_ingress && local.ingress_internal ? [1] : []
+    for_each = local.create_ingress && var.ingress.internal ? [1] : []
     content {
       name  = "ingress.annotations.kubernetes\\.io/ingress\\.regional-static-ip-name"
       value = module.address_fe.names[0]
@@ -38,12 +38,21 @@ resource "helm_release" "tabnine_cloud" {
   }
 
   dynamic "set" {
-    for_each = local.create_ingress && local.ingress_internal ? [1] : []
+    for_each = local.create_ingress && var.ingress.internal ? [1] : []
     content {
       name  = "ingress.annotations.kubernetes\\.io/ingress\\.class"
       value = "gce-internal"
     }
   }
+
+  dynamic "set" {
+    for_each = local.pre_shared_cert_name != null ? [1] : []
+    content {
+      name  = "ingress.annotations.ingress\\.gcp\\.kubernetes\\.io/pre-shared-cert"
+      value = local.pre_shared_cert_name
+    }
+  }
+
 
   depends_on = [
     helm_release.prometheus
@@ -61,7 +70,7 @@ resource "helm_release" "fluentd" {
   create_namespace = true
 
   values = [
-    templatefile("${path.module}/fluentd_values.yaml.tpl", { private_key = var.es_private_key, customer_id = var.customer_id })
+    templatefile("${path.module}/fluentd_values.yaml.tpl", { customer_id = var.customer_id, customer_secret = var.customer_secret })
   ]
 
 }
@@ -77,7 +86,7 @@ resource "helm_release" "prometheus" {
   create_namespace = true
 
   values = [
-    templatefile("${path.module}/prometheus_values.yaml.tpl", { private_key = var.es_private_key, customer_id = var.customer_id })
+    templatefile("${path.module}/prometheus_values.yaml.tpl", { customer_id = var.customer_id, customer_secret = var.customer_secret })
   ]
 
 }
