@@ -10,7 +10,7 @@ Kubernetes Engine (GKE) as the computing environment.
 - Terraform 1.2.7+
 - Install [helm](https://helm.sh/)
 - Install [helm-gcs](https://github.com/hayorov/helm-gcs)
-- Add Tabnine helm charts repository __make sure you have read acccess to__ `gs://tabnine-self-hosted-helm-charts` 
+- Add Tabnine helm charts repository, __make sure you have read acccess__ to `gs://tabnine-self-hosted-helm-charts` provided by Tabnine team
   ```bash
   helm repo add tabnine gs://tabnine-self-hosted-helm-charts
   ```
