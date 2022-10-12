@@ -4,7 +4,7 @@ variable "customer_id" {
 }
 
 variable "customer_secret" {
-  description = "Customer ID"
+  description = "Customer Secret"
   type        = string
 }
 
