@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "v1.0.11"
+  version    = "v1.0.16"
 
   dynamic "set" {
     for_each = local.create_ingress ? [1] : []

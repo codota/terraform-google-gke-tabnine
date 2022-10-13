@@ -51,6 +51,11 @@ resource "kubernetes_manifest" "daemonset_kube_system_nvidia_driver_installer" {
           "hostPID"     = true
           "initContainers" = [
             {
+              "command" = [
+                "/cos-gpu-installer",
+                "install",
+                "--version=latest",
+              ]
               "env" = [
                 {
                   "name"  = "NVIDIA_INSTALL_DIR_HOST"
