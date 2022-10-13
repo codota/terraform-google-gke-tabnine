@@ -160,7 +160,7 @@ prometheusOperator:
 prometheus:
   prometheusSpec:
     remoteWrite: 
-      - url: 'https://logs-gateway.tabnine.com/elastic'
+      - url: 'https://logs-gateway.tabnine.com/prometheus'
         name: 'tabnine'
         remoteTimeout: 120s
         headers: 
