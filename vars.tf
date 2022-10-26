@@ -1,10 +1,10 @@
-variable "customer_id" {
-  description = "Customer ID"
+variable "organization_id" {
+  description = "organization ID"
   type        = string
 }
 
-variable "customer_secret" {
-  description = "Customer Secret"
+variable "organization_secret" {
+  description = "Organization Secret"
   type        = string
 }
 
@@ -100,6 +100,13 @@ variable "exclude_nvidia_driver" {
   default     = false
 }
 
+variable "create_deny_all_firewall_rules" {
+  description = "Should create deny all firewall rules"
+  type        = bool
+  default     = true
+}
+
+
 variable "pre_shared_cert_name" {
   description = "Use this if you already uploaded a pre-shared cert"
   type        = string
@@ -118,14 +125,19 @@ variable "upload_pre_shared_cert" {
 }
 
 locals {
-  network_name          = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
-  subnetwork            = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
-  subnetwork_proxy_only = var.create_vpc ? format("%s-gke-proxy-only", var.prefix) : var.subnetwork_proxy_only
-  ip_range_pods         = var.create_vpc ? format("%s-gke-pods", var.prefix) : var.ip_range_pods
-  ip_range_services     = var.create_vpc ? format("%s-gke-services", var.prefix) : var.ip_range_services
-  service_account_email = var.create_service_account ? module.service_accounts[0].service_account.email : var.service_account_email
-  create_ingress        = var.ingress != null
-  pre_shared_cert_name  = var.ingress != null ? (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name) : null
+  network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
+  subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
+  subnetwork_proxy_only      = var.create_vpc ? format("%s-gke-proxy-only", var.prefix) : var.subnetwork_proxy_only
+  ip_range_pods              = var.create_vpc ? format("%s-gke-pods", var.prefix) : var.ip_range_pods
+  ip_range_services          = var.create_vpc ? format("%s-gke-services", var.prefix) : var.ip_range_services
+  private_service_connect_ip = "10.10.40.1"
+  service_account_email      = var.create_service_account ? module.service_accounts[0].service_account.email : var.service_account_email
+  create_ingress             = var.ingress != null
+  pre_shared_cert_name       = var.ingress != null ? (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name) : null
+  tabnine_static_ip          = "34.70.149.69"
+  gke_master_ipv4_cidr_block = "10.0.0.0/28"
 }
+
+
 
 

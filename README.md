@@ -31,13 +31,21 @@ Kubernetes Engine (GKE) as the computing environment.
   gcloud config set project <PROJECT ID>
   ```
 
-- Make sure that GKE is enabled for the `<PROJECT ID>` you are going to use.
+- Enable the following google apis for the `<PROJECT ID>`:
 
   ```bash
   gcloud services enable container.googleapis.com
+  gcloud services enable servicedirectory.googleapis.com
+  gcloud services enable dns.googleapis.com
   ```
+
   
 - Log in with a user that has `Editor` & `Project IAM Admin` roles.
+
+
+
+
+
 
 ## Usage
 
@@ -60,16 +68,17 @@ module "gke_tabnine" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_create_deny_all_firewall_rules"></a> [create\_deny\_all\_firewall\_rules](#input\_create\_deny\_all\_firewall\_rules) | Should create deny all firewall rules | `bool` | `true` | no |
 | <a name="input_create_service_account"></a> [create\_service\_account](#input\_create\_service\_account) | Should create a service\_account, or used the one provided by `service_account_email` | `bool` | `false` | no |
 | <a name="input_create_tabnine_storage_bucket_im_bindings"></a> [create\_tabnine\_storage\_bucket\_im\_bindings](#input\_create\_tabnine\_storage\_bucket\_im\_bindings) | Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team | `bool` | `false` | no |
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Should create a VPC, or used the one provided by `network_name` | `bool` | `false` | no |
-| <a name="input_customer_id"></a> [customer\_id](#input\_customer\_id) | Customer ID | `string` | n/a | yes |
-| <a name="input_customer_secret"></a> [customer\_secret](#input\_customer\_secret) | Customer Secret | `string` | n/a | yes |
 | <a name="input_exclude_nvidia_driver"></a> [exclude\_nvidia\_driver](#input\_exclude\_nvidia\_driver) | Should exclude nvidia driver from installation | `bool` | `false` | no |
 | <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string<br>    internal = bool<br>  })</pre> | `null` | no |
 | <a name="input_ip_range_pods"></a> [ip\_range\_pods](#input\_ip\_range\_pods) | Pods ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_ip_range_services"></a> [ip\_range\_services](#input\_ip\_range\_services) | Services ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | VPC name, used when `create_vpc` is set to `false` | `string` | `""` | no |
+| <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | organization ID | `string` | n/a | yes |
+| <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | Organization Secret | `string` | n/a | yes |
 | <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | Use this if you already uploaded a pre-shared cert | `string` | `null` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |

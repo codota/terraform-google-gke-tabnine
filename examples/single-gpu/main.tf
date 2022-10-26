@@ -10,8 +10,8 @@ module "gke_tabnine" {
   ingress                                   = { host = "demo-cloud.tabnine.com", internal = false }
   pre_shared_cert_name                      = "<PRE-SHARED-CERT-NAME>"
   create_tabnine_storage_bucket_im_bindings = false
-  customer_id                               = "<CUSTOMER-ID>"
-  customer_secret                           = "<CUSTOMER-SECRET>"
+  organization_id                           = "<ORGANIZATION-ID>"
+  organization_secret                       = "<ORGANIZATION-SECRET>"
 }
 
 

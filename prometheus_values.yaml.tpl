@@ -24,9 +24,8 @@ fullnameOverride: ""
 
 ## Labels to apply to all resources
 ##
-commonLabels: {}
-# scmhash: abc123
-# myLabel: aakkmd
+commonLabels: 
+  organizationId: ${organization_id}
 
 ## Create default rules for monitoring the cluster
 ##
@@ -57,45 +56,6 @@ kubeControllerManager:
 ##
 coreDns:
   enabled: true
-  service:
-    port: 9153
-    targetPort: 9153
-    # selector:
-    #   k8s-app: kube-dns
-  serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    ##
-    interval: ""
-
-    ## proxyUrl: URL of a proxy that should be used for scraping.
-    ##
-    proxyUrl: ""
-
-    ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
-    ##
-    metricRelabelings: []
-    # - action: keep
-    #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
-    #   sourceLabels: [__name__]
-
-    ## RelabelConfigs to apply to samples before scraping
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
-    ##
-    relabelings: 
-      - targetLabel: customer_id
-        replacement: ${customer_id}
-    # - sourceLabels: [__meta_kubernetes_pod_node_name]
-    #   separator: ;
-    #   regex: ^(.*)$
-    #   targetLabel: nodename
-    #   replacement: $1
-    #   action: replace
-
-    ## Additional labels
-    ##
-    additionalLabels: {}
-    #  foo: bar
 
 ## Configuration for kube-state-metrics subchart
 ##
@@ -154,6 +114,9 @@ prometheus-node-exporter:
 
 prometheusOperator:
   enabled: true
+  networkPolicy: 
+    enabled: true
+
   enableFeatures:
     - agent
 
@@ -164,8 +127,8 @@ prometheus:
         name: 'tabnine'
         remoteTimeout: 120s
         headers: 
-         x-customer-id: '${customer_id}'
-         x-customer-secret: '${customer_secret}'
+         x-organization-id: '${organization_id}'
+         x-organization-secret: '${organization_secret}'
     podMonitorSelectorNilUsesHelmValues: false
     podMonitorSelector: {}
     podMonitorNamespacSelector: {}

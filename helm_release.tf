@@ -3,14 +3,16 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "v1.0.16"
+  version    = "v1.0.21"
 
-  dynamic "set" {
-    for_each = local.create_ingress ? [1] : []
-    content {
-      name  = "ingress.enabled"
-      value = "true"
-    }
+  values = [
+    templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", { private_service_connect_ip = local.private_service_connect_ip })
+  ]
+
+
+  set {
+    name  = "networkPolicy.enabled"
+    value = "true"
   }
 
   dynamic "set" {
@@ -70,7 +72,7 @@ resource "helm_release" "fluentd" {
   create_namespace = true
 
   values = [
-    templatefile("${path.module}/fluentd_values.yaml.tpl", { customer_id = var.customer_id, customer_secret = var.customer_secret })
+    templatefile("${path.module}/fluentd_values.yaml.tpl", { organization_id = var.organization_id, organization_secret = var.organization_secret })
   ]
 
 }
@@ -82,11 +84,11 @@ resource "helm_release" "prometheus" {
   chart            = "kube-prometheus-stack"
   namespace        = "prometheus"
   wait             = false
-  version          = "40.3.1"
+  version          = "41.5.1"
   create_namespace = true
 
   values = [
-    templatefile("${path.module}/prometheus_values.yaml.tpl", { customer_id = var.customer_id, customer_secret = var.customer_secret })
+    templatefile("${path.module}/prometheus_values.yaml.tpl", { organization_id = var.organization_id, organization_secret = var.organization_secret })
   ]
 
 }

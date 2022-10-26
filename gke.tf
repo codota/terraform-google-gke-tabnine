@@ -9,7 +9,7 @@ module "gke" {
   ip_range_pods              = local.ip_range_pods
   ip_range_services          = local.ip_range_services
   http_load_balancing        = true
-  network_policy             = false
+  network_policy             = true
   horizontal_pod_autoscaling = true
   filestore_csi_driver       = false
   service_account            = local.service_account_email
@@ -18,6 +18,8 @@ module "gke" {
   logging_service            = "logging.googleapis.com/kubernetes"
   logging_enabled_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   create_service_account     = false
+  enable_private_nodes       = true
+  master_ipv4_cidr_block     = local.gke_master_ipv4_cidr_block
 
 
   node_pools = [

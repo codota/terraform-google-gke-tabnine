@@ -8,6 +8,9 @@ fileConfigs:
       pos_file /var/log/containers.pos
       tag all
       read_from_head true
+      <parse>
+        @type none
+      </parse>
     </source>
 
   02_filters.conf: ""
@@ -22,11 +25,11 @@ fileConfigs:
       renew_record true
       <record>
         # applicationName $${record.dig("kubernetes", "namespace_name")}
-        applicationName customers
+        applicationName organizations
         subsystemName $${record.dig("kubernetes", "container_name")}
         computerName $${record.dig("kubernetes", "host")}
         timestamp $${time.strftime('%s%L')} # Optional
-        customerId ${customer_id}
+        organizationId ${organization_id}
         text $${record.to_json}
       </record>
       </filter>
@@ -35,7 +38,7 @@ fileConfigs:
       @type http
       @id http_to_tabnine
       endpoint "https://logs-gateway.tabnine.com/elastic"
-      headers {"x-customer-id":"${customer_id}","x-customer-secret":"${customer_secret}" }
+      headers {"x-organization-id":"${organization_id}","x-organization-secret":"${organization_secret}" }
       retryable_response_codes 503
       error_response_as_unrecoverable false
       <buffer>
