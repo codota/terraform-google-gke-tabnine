@@ -1,17 +1,10 @@
 service:
-  annotations:
-    cloud.google.com/neg: '{"ingress": true}'
+  type: NodePort
 
 networkPolicy:
   enabled: true 
   ingress: 
-    - from:
-      - namespaceSelector:
-          matchLabels:
-            name: prometheus 
-      ports:
-        - protocol: TCP
-          port: 8002
+  - {}
   egress:
   - to:
     - ipBlock:
