@@ -3,16 +3,24 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "v1.0.21"
+  version    = "v1.0.23"
 
   values = [
-    templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", { private_service_connect_ip = local.private_service_connect_ip })
+    templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", { private_service_connect_ip = local.private_service_connect_ip, gke_metadata_server_ip = local.gke_metadata_server_ip })
   ]
 
 
   set {
     name  = "networkPolicy.enabled"
-    value = "true"
+    value = "false"
+  }
+
+  dynamic "set" {
+    for_each = local.create_ingress ? [1] : []
+    content {
+      name  = "ingress.enabled"
+      value = "true"
+    }
   }
 
   dynamic "set" {

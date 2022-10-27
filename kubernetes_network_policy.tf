@@ -94,24 +94,10 @@ resource "kubernetes_network_policy" "prometheus" {
     egress {
       to {
         namespace_selector {
-          match_labels = {
-            "kubernetes.io/metadata.name" = "kube-system"
-          }
         }
-
         pod_selector {
-          match_labels = {
-            "k8s-app" : "kube-dns"
-          }
         }
-
       }
-
-      ports {
-        port     = "53"
-        protocol = "UDP"
-      }
-
     }
 
     policy_types = ["Egress"]

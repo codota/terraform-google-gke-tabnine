@@ -136,6 +136,7 @@ locals {
   pre_shared_cert_name       = var.ingress != null ? (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name) : null
   tabnine_static_ip          = "34.70.149.69"
   gke_master_ipv4_cidr_block = "10.0.0.0/28"
+  gke_metadata_server_ip     = "169.254.169.254"
 }
 
 

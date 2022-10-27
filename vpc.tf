@@ -64,8 +64,19 @@ module "vpc" {
       ranges    = ["${local.private_service_connect_ip}/32"]
       priority  = 1000
       allow = [{
+        protocol = "all"
+        ports    = []
+        }
+      ]
+    },
+    {
+      name      = format("%s-allow-gke-metadata", var.prefix)
+      direction = "EGRESS"
+      ranges    = ["${local.gke_metadata_server_ip}/32"]
+      priority  = 1000
+      allow = [{
         protocol = "tcp"
-        ports    = ["443"]
+        ports    = ["80", "443"]
         }
       ]
     },
@@ -77,6 +88,17 @@ module "vpc" {
       allow = [{
         protocol = "tcp"
         ports    = ["443", "10250"]
+        }
+      ]
+    },
+    {
+      name      = format("%s-allow-vpc", var.prefix)
+      direction = "EGRESS"
+      ranges    = ["10.10.20.0/24", "10.10.30.0/24", "192.167.0.0/16", "192.168.163.0/24"]
+      priority  = 1000
+      allow = [{
+        protocol = "all"
+        ports    = []
         }
       ]
     },

@@ -1,3 +1,7 @@
+service:
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
+
 networkPolicy:
   enabled: true 
   ingress: 
@@ -17,7 +21,7 @@ networkPolicy:
       protocol: TCP
   - to:
     - ipBlock:
-        cidr: 169.254.169.254/32 #This is metadata server url https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity#metadata_server
+        cidr: ${gke_metadata_server_ip}/32 
     ports:
     - port: 80
       protocol: TCP
