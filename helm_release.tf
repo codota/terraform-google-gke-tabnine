@@ -10,11 +10,6 @@ resource "helm_release" "tabnine_cloud" {
   ]
 
 
-  set {
-    name  = "networkPolicy.enabled"
-    value = "false"
-  }
-
   dynamic "set" {
     for_each = local.create_ingress ? [1] : []
     content {
