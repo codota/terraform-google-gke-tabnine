@@ -107,7 +107,7 @@ module "vpc" {
       name      = format("%s-deny-all", var.prefix)
       direction = "EGRESS"
       ranges    = ["0.0.0.0/0"]
-      priority  = 65535
+      priority  = 65000
       deny = [{
         protocol = "all"
         ports    = []
