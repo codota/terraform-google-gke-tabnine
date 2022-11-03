@@ -3,10 +3,10 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "v1.0.23"
+  version    = "v1.0.26"
 
   values = [
-    templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", { private_service_connect_ip = local.private_service_connect_ip, gke_metadata_server_ip = local.gke_metadata_server_ip })
+    templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", { private_service_connect_ip = local.private_service_connect_ip, gke_metadata_server_ip = local.gke_metadata_server_ip, ssl_policy_name = google_compute_ssl_policy.min_tls_v_1_2.name })
   ]
 
 
