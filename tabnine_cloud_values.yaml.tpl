@@ -1,3 +1,7 @@
+frontendConfig:
+  enabled: true
+  sslPolicyName: ${ssl_policy_name}
+
 service:
   type: NodePort
 
