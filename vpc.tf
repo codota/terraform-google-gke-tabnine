@@ -41,7 +41,7 @@ module "vpc" {
     {
       name      = format("%s-allow-http-tabnine", var.prefix)
       direction = "EGRESS"
-      ranges    = ["34.133.105.137/32"]
+      ranges    = ["${local.tabnine_static_ip}/32"]
       priority  = 1000
       allow = [{
         protocol = "tcp"
