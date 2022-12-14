@@ -13,6 +13,8 @@ module "gke_tabnine" {
   organization_id                           = "8f304a7d-b93f-41e5-bddb-5646c346ed04"
   organization_secret                       = "8f304a7d-b93f-41e5-bddb-5646c346ed04"
   pre_shared_cert_name                      = "demo-cloud-tabnine-com"
+  rudder_write_key                          = <need to get rudder write key>
+  cloud_host_name                           = "tabnine-demo-cloud"
 }
 
 
