@@ -3,10 +3,10 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "v1.0.34"
+  version    = "v1.0.36"
 
   values = [
-    templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", { private_service_connect_ip = local.private_service_connect_ip, gke_metadata_server_ip = local.gke_metadata_server_ip, ssl_policy_name = google_compute_ssl_policy.min_tls_v_1_2.name })
+    templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", { private_service_connect_ip = local.private_service_connect_ip, gke_metadata_server_ip = local.gke_metadata_server_ip, ssl_policy_name = google_compute_ssl_policy.min_tls_v_1_2.name, network_policy_enabled = var.create_deny_all_firewall_rules })
   ]
 
 
@@ -58,6 +58,21 @@ resource "helm_release" "tabnine_cloud" {
     }
   }
 
+  dynamic "set" {
+    for_each = var.rudder_write_key != null ? [1] : []
+    content {
+      name  = "frontend.rudderWriteKey"
+      value = var.rudder_write_key
+    }
+  }
+
+  dynamic "set" {
+    for_each = var.cloud_host_name != null ? [1] : []
+    content {
+      name  = "frontend.cloudHostName"
+      value = var.cloud_host_name
+    }
+  }
 
   depends_on = [
     helm_release.prometheus

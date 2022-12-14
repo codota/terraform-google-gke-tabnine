@@ -124,6 +124,18 @@ variable "upload_pre_shared_cert" {
   default = null
 }
 
+variable "rudder_write_key" {
+  description = "Use this to make tabnine send out inference analytics"
+  type = string
+  default = null
+}
+
+variable "cloud_host_name" {
+  description = "Use this to attach this property to any analytics event going out, to signify where the event came from"
+  type = string
+  default = null
+}
+
 locals {
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork

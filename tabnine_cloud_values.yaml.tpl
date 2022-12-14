@@ -6,7 +6,7 @@ service:
   type: NodePort
 
 networkPolicy:
-  enabled: true 
+  enabled: ${network_policy_enabled}
   ingress: 
   - {}
   egress:
