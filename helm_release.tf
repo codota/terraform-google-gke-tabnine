@@ -92,8 +92,9 @@ resource "helm_release" "prometheus" {
   chart            = "kube-prometheus-stack"
   namespace        = "prometheus"
   wait             = false
-  version          = "41.5.1"
+  version          = "44.3.0"
   create_namespace = true
+  cleanup_on_fail  = true
 
   values = [
     templatefile("${path.module}/prometheus_values.yaml.tpl", {
