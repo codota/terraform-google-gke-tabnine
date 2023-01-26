@@ -46,6 +46,7 @@ module "gke" {
       accelerator_count  = 1
       name               = format("%s-gpu", var.prefix)
       machine_type       = "a2-highgpu-1g"
+      gpu_partition_size = local.gpu_partition_size
       node_locations     = join(",", var.zones)
       min_count          = 1
       max_count          = 2

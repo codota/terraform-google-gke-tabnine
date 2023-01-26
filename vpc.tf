@@ -16,11 +16,11 @@ module "vpc" {
     },
     {
       // TODO: dynamically only on internal ingress 
-      subnet_name      = local.subnetwork_proxy_only
-      subnet_ip        = "10.10.30.0/24"
-      subnet_region    = var.region
-      purpose          = "INTERNAL_HTTPS_LOAD_BALANCER"
-      role             = "ACTIVE"
+      subnet_name   = local.subnetwork_proxy_only
+      subnet_ip     = "10.10.30.0/24"
+      subnet_region = var.region
+      purpose       = "INTERNAL_HTTPS_LOAD_BALANCER"
+      role          = "ACTIVE"
     },
   ]
   secondary_ranges = {

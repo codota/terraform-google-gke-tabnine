@@ -1,3 +1,5 @@
+podSecurityPolicy: # doesn't work in k8s 1.25
+  enabled: false
 fileConfigs:
   01_sources.conf: |-
     <source>
@@ -56,5 +58,3 @@ fileConfigs:
       </secondary>
     </match>
     </label>
-
-
