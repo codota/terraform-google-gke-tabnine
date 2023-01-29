@@ -1,13 +1,13 @@
 # https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/cmd/nvidia_gpu/device-plugin.yaml
 resource "kubernetes_daemonset" "nvidia_gpu_device_plugin_mig" {
-  count = var.use_nvidia_mig ? 1 : 0
+  count = var.use_nvidia_mig && !var.exclude_nvidia_driver ? 1 : 0
   metadata {
     name      = "nvidia-gpu-device-plugin-mig"
     namespace = "kube-system"
 
     labels = {
       "addonmanager.kubernetes.io/mode" = "EnsureExists"
-      k8s-app = "nvidia-gpu-device-plugin-mig"
+      k8s-app                           = "nvidia-gpu-device-plugin-mig"
     }
   }
 
@@ -183,7 +183,7 @@ resource "kubernetes_daemonset" "nvidia_gpu_device_plugin_mig" {
 
 resource "kubernetes_manifest" "daemonset_kube_system_nvidia_driver_installer" {
   // a hack which can be solved by converting this to kubernetes_daemonset
-  count = var.exclude_nvidia_driver && !var.use_nvidia_mig ? 0 : 1
+  count = var.exclude_nvidia_driver || var.use_nvidia_mig ? 0 : 1
   manifest = {
     "apiVersion" = "apps/v1"
     "kind"       = "DaemonSet"
