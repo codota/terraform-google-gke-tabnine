@@ -66,7 +66,6 @@ resource "helm_release" "tabnine_cloud" {
   depends_on = [
     helm_release.prometheus
   ]
-
 }
 
 resource "helm_release" "fluentd" {
@@ -102,5 +101,4 @@ resource "helm_release" "prometheus" {
       organization_secret = var.organization_secret
     })
   ]
-
 }

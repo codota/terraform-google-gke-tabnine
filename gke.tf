@@ -20,7 +20,7 @@ module "gke" {
   create_service_account     = false
   enable_private_nodes       = true
   master_ipv4_cidr_block     = local.gke_master_ipv4_cidr_block
-
+  remove_default_node_pool   = true
 
   node_pools = [
     {
@@ -80,6 +80,7 @@ module "gke" {
   }
 
   depends_on = [
-    module.vpc
+    module.vpc,
+    module.private_service_connect
   ]
 }
