@@ -6,7 +6,7 @@ module "private_service_connect" {
   private_service_connect_ip   = local.private_service_connect_ip
   forwarding_rule_target       = "all-apis"
   dns_code                     = format("%s-dns", var.prefix)
-  private_service_connect_name = format("%s-psconnect", var.prefix)
+  private_service_connect_name = format("%s-ps-connect", var.prefix)
   forwarding_rule_name         = random_string.forwarding_rule_name.result
 }
 
