@@ -124,7 +124,7 @@ variable "upload_pre_shared_cert" {
   default = null
 }
 
-variable "use_mig" {
+variable "use_nvidia_mig" {
   description = "Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning)"
   type        = bool
   default     = false
@@ -143,5 +143,5 @@ locals {
   tabnine_static_ip          = "34.66.4.254"
   gke_master_ipv4_cidr_block = "10.0.0.0/28"
   gke_metadata_server_ip     = "169.254.169.254"
-  gpu_partition_size         = var.use_mig ? "3g.20gb" : null
+  gpu_partition_size         = var.use_nvidia_mig ? "3g.20gb" : null
 }
