@@ -1,3 +1,6 @@
+podSecurityPolicy:
+  enabled: false 
+
 fileConfigs:
   01_sources.conf: |-
     <source>
