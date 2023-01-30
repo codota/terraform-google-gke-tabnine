@@ -1,6 +1,6 @@
 # https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/cmd/nvidia_gpu/device-plugin.yaml
 resource "kubernetes_daemonset" "nvidia_gpu_device_plugin_mig" {
-  count = var.use_nvidia_mig && !var.exclude_nvidia_driver ? 1 : 0
+  count = var.use_nvidia_mig ? 1 : 0
   metadata {
     name      = "nvidia-driver-installer"
     namespace = "kube-system"
