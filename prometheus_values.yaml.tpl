@@ -29,7 +29,7 @@ nodeExporter:
 
 prometheusOperator:
   enabled: true
-  networkPolicy: 
+  networkPolicy:
     enabled: true
 
   enableFeatures:
@@ -37,11 +37,11 @@ prometheusOperator:
 
 prometheus:
   prometheusSpec:
-    remoteWrite: 
+    remoteWrite:
       - url: 'https://logs-gateway.tabnine.com/prometheus'
         name: 'tabnine'
         remoteTimeout: 120s
-        headers: 
+        headers:
          x-organization-id: '${organization_id}'
          x-organization-secret: '${organization_secret}'
         writeRelabelConfigs:
@@ -49,7 +49,4 @@ prometheus:
               replacement: '${organization_id}'
     podMonitorSelectorNilUsesHelmValues: false
     podMonitorSelector: {}
-    podMonitorNamespacSelector: {}
-
-
-
+    podMonitorNamespaceSelector: {}

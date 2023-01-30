@@ -1,5 +1,5 @@
 podSecurityPolicy:
-  enabled: false 
+  enabled: false
 
 fileConfigs:
   01_sources.conf: |-
@@ -59,5 +59,3 @@ fileConfigs:
       </secondary>
     </match>
     </label>
-
-
