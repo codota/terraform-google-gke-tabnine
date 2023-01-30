@@ -94,12 +94,6 @@ variable "service_account_email" {
   default     = ""
 }
 
-variable "exclude_nvidia_driver" {
-  description = "Should exclude nvidia driver from installation"
-  type        = bool
-  default     = false
-}
-
 variable "create_deny_all_firewall_rules" {
   description = "Should create deny all firewall rules"
   type        = bool

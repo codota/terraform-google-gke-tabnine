@@ -6,7 +6,6 @@ module "gke_tabnine" {
   prefix                                    = "<A-PREFIX>"
   create_vpc                                = true
   create_service_account                    = true
-  exclude_nvidia_driver                     = var.exclude_nvidia_driver
   ingress                                   = { host = local.host, internal = false }
   pre_shared_cert_name                      = google_compute_managed_ssl_certificate.tabnine_cert.name
   create_tabnine_storage_bucket_im_bindings = false
@@ -35,10 +34,4 @@ locals {
   cert_name  = "<CERT-NAME>"
   host       = "<HOST-NAME>"
   project_id = "<PROJECT-ID>"
-}
-
-
-variable "exclude_nvidia_driver" {
-  type    = bool
-  default = false
 }

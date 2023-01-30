@@ -6,18 +6,11 @@ module "gke_tabnine" {
   prefix                                    = "<A-PREFIX>"
   create_vpc                                = true
   create_service_account                    = true
-  exclude_nvidia_driver                     = var.exclude_nvidia_driver
   ingress                                   = { host = "demo-cloud.tabnine.com", internal = false }
   pre_shared_cert_name                      = "<PRE-SHARED-CERT-NAME>"
   create_tabnine_storage_bucket_im_bindings = false
   organization_id                           = "<ORGANIZATION-ID>"
   organization_secret                       = "<ORGANIZATION-SECRET>"
-}
-
-
-variable "exclude_nvidia_driver" {
-  type    = bool
-  default = false
 }
 
 terraform {
@@ -26,5 +19,3 @@ terraform {
     prefix = "<DIR-IN-BUCKET>"
   }
 }
-
-
