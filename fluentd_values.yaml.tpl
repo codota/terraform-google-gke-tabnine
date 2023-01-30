@@ -1,5 +1,6 @@
-podSecurityPolicy: # doesn't work in k8s 1.25
+podSecurityPolicy:
   enabled: false
+
 fileConfigs:
   01_sources.conf: |-
     <source>

@@ -9,7 +9,8 @@ resource "helm_release" "tabnine_cloud" {
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
       private_service_connect_ip = local.private_service_connect_ip,
       gke_metadata_server_ip     = local.gke_metadata_server_ip,
-      ssl_policy_name            = google_compute_ssl_policy.min_tls_v_1_2.name
+      ssl_policy_name            = google_compute_ssl_policy.min_tls_v_1_2.name,
+      organization_id            = var.organization_id
     })
   ]
 
