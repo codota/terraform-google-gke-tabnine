@@ -32,3 +32,6 @@ networkPolicy:
       podSelector:
         matchLabels:
           k8s-app: kube-dns
+
+tabnine:
+    organizationId: "${organization_id}"
