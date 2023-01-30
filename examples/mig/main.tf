@@ -15,12 +15,6 @@ module "gke_tabnine" {
   use_nvidia_mig                            = true
 }
 
-
-variable "exclude_nvidia_driver" {
-  type    = bool
-  default = false
-}
-
 terraform {
   backend "gcs" {
     bucket = "<BUCKET>"
