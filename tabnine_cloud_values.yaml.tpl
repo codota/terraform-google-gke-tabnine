@@ -6,8 +6,8 @@ service:
   type: NodePort
 
 networkPolicy:
-  enabled: true 
-  ingress: 
+  enabled: true
+  ingress:
   - {}
   egress:
   - to:
@@ -18,7 +18,7 @@ networkPolicy:
       protocol: TCP
   - to:
     - ipBlock:
-        cidr: ${gke_metadata_server_ip}/32 
+        cidr: ${gke_metadata_server_ip}/32
     ports:
     - port: 80
       protocol: TCP
@@ -35,3 +35,5 @@ networkPolicy:
 
 tabnine:
     organizationId: "${organization_id}"
+
+useNvidiaMig: "${use_nvidia_mig}"
