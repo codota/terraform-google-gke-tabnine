@@ -36,4 +36,4 @@ networkPolicy:
 tabnine:
     organizationId: "${organization_id}"
 
-useNvidiaMig: "${use_nvidia_mig}"
+useNvidiaMig: ${use_nvidia_mig}
