@@ -124,6 +124,12 @@ variable "use_nvidia_mig" {
   default     = false
 }
 
+variable "enforce_jwt" {
+  description = "Should enforce JWT for user authentication"
+  type        = bool
+  default     = true
+}
+
 locals {
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
