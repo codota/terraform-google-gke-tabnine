@@ -33,6 +33,22 @@ resource "helm_release" "tabnine_cloud" {
   }
 
   dynamic "set" {
+    for_each = local.create_ingress && var.rudder_write_key != null ? [1] : []
+    content {
+      name  = "frontend.cloudHostName"
+      value = var.ingress.host
+    }
+  }
+
+  dynamic "set" {
+    for_each = var.rudder_write_key != null ? [1] : []
+    content {
+      name  = "frontend.rudderWriteKey"
+      value = var.rudder_write_key
+    }
+  }
+
+  dynamic "set" {
     for_each = local.create_ingress && !var.ingress.internal ? [1] : []
     content {
       name  = "ingress.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
