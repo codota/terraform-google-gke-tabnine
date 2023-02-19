@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "2.2.3"
+  version    = "2.2.5"
 
   values = [
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -29,6 +29,22 @@ resource "helm_release" "tabnine_cloud" {
     content {
       name  = "ingress.host"
       value = var.ingress.host
+    }
+  }
+
+  dynamic "set" {
+    for_each = local.create_ingress && var.rudder_write_key != null ? [1] : []
+    content {
+      name  = "frontend.cloudHostName"
+      value = var.ingress.host
+    }
+  }
+
+  dynamic "set" {
+    for_each = var.rudder_write_key != null ? [1] : []
+    content {
+      name  = "frontend.rudderWriteKey"
+      value = var.rudder_write_key
     }
   }
 

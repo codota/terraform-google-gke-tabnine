@@ -130,6 +130,12 @@ variable "enforce_jwt" {
   default     = true
 }
 
+variable "rudder_write_key" {
+  description = "Pass analytics pipeline key"
+  type        = string
+  default     = null
+}
+
 locals {
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
