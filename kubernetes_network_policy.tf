@@ -89,14 +89,23 @@ resource "kubernetes_network_policy" "prometheus" {
           cidr = "${local.tabnine_static_ip}/32"
         }
       }
-    }
 
-    egress {
+      to {
+        ip_block {
+          cidr = "192.168.63.0/24" # probably should be templated
+        }
+      }
+
       to {
         namespace_selector {
         }
         pod_selector {
         }
+      }
+
+      ports {
+        port     = "443"
+        protocol = "TCP"
       }
     }
 
