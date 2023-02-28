@@ -74,6 +74,7 @@ module "gke_tabnine" {
 | <a name="input_service_account_email"></a> [service\_account\_email](#input\_service\_account\_email) | Service account email, used when `create_service_account` is set to `false` | `string` | `""` | no |
 | <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | VPC subnetwork name, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_subnetwork_proxy_only"></a> [subnetwork\_proxy\_only](#input\_subnetwork\_proxy\_only) | VPC subnetwork proxy only name, used when `create_vpc` is set to `false` | `string` | `""` | no |
+| <a name="input_tabnine_cloud_values"></a> [tabnine\_cloud\_values](#input\_tabnine\_cloud\_values) | Tabnine cloud helm charts values, see https://github.com/codota/helm-charts/blob/master/charts/tabnine-cloud/values.yaml | `list(string)` | `[]` | no |
 | <a name="input_upload_pre_shared_cert"></a> [upload\_pre\_shared\_cert](#input\_upload\_pre\_shared\_cert) | Use this to upload pre-shared cert | <pre>object({<br>    path_to_private_key = string<br>    path_to_certificate = string<br>  })</pre> | `null` | no |
 | <a name="input_use_nvidia_mig"></a> [use\_nvidia\_mig](#input\_use\_nvidia\_mig) | Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning) | `bool` | `false` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |

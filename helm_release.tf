@@ -5,7 +5,7 @@ resource "helm_release" "tabnine_cloud" {
   wait       = false
   version    = "2.4.2"
 
-  values = [
+  values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
       private_service_connect_ip = local.private_service_connect_ip,
       gke_metadata_server_ip     = local.gke_metadata_server_ip,
@@ -16,7 +16,9 @@ resource "helm_release" "tabnine_cloud" {
       pre_shared_cert_name       = var.pre_shared_cert_name
       create_managed_cert        = var.create_managed_cert,
     })
-  ]
+    ],
+    var.tabnine_cloud_values
+  )
 
   dynamic "set" {
     for_each = local.create_ingress && var.rudder_write_key != null ? [1] : []
