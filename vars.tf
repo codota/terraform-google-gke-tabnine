@@ -107,6 +107,11 @@ variable "pre_shared_cert_name" {
   default     = null
 }
 
+variable "create_managed_cert" {
+  description = "Create google managed certificate"
+  type        = bool
+  default     = false
+}
 
 variable "upload_pre_shared_cert" {
   description = "Use this to upload pre-shared cert"

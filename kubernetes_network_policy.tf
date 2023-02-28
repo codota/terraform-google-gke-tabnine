@@ -39,6 +39,10 @@ resource "kubernetes_network_policy" "fluentd" {
           cidr = "${local.tabnine_static_ip}/32"
         }
       }
+      ports {
+        port     = "443"
+        protocol = "TCP"
+      }
     }
 
     egress {
