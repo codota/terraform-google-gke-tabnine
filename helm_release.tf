@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "2.4.0"
+  version    = "2.4.2"
 
   values = [
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -11,26 +11,12 @@ resource "helm_release" "tabnine_cloud" {
       gke_metadata_server_ip     = local.gke_metadata_server_ip,
       ssl_policy_name            = google_compute_ssl_policy.min_tls_v_1_2.name,
       organization_id            = var.organization_id,
-      enforce_jwt                = var.enforce_jwt
+      enforce_jwt                = var.enforce_jwt,
+      ingress                    = var.ingress,
+      pre_shared_cert_name       = var.pre_shared_cert_name
+      create_managed_cert        = var.create_managed_cert,
     })
   ]
-
-
-  dynamic "set" {
-    for_each = local.create_ingress ? [1] : []
-    content {
-      name  = "ingress.enabled"
-      value = "true"
-    }
-  }
-
-  dynamic "set" {
-    for_each = local.create_ingress ? [1] : []
-    content {
-      name  = "ingress.host"
-      value = var.ingress.host
-    }
-  }
 
   dynamic "set" {
     for_each = local.create_ingress && var.rudder_write_key != null ? [1] : []
@@ -71,15 +57,6 @@ resource "helm_release" "tabnine_cloud" {
       value = "gce-internal"
     }
   }
-
-  dynamic "set" {
-    for_each = local.pre_shared_cert_name != null ? [1] : []
-    content {
-      name  = "ingress.annotations.ingress\\.gcp\\.kubernetes\\.io/pre-shared-cert"
-      value = local.pre_shared_cert_name
-    }
-  }
-
 
   depends_on = [
     helm_release.prometheus

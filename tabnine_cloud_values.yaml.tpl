@@ -8,6 +8,16 @@ service:
 frontend:
   enforceJWT: ${enforce_jwt}
 
+ingress:
+  enabled: ${ingress != null }
+  host: ${ingress != null ? ingress.host : ""}
+  certificate: 
+    managed: ${create_managed_cert}
+    %{if pre_shared_cert_name != null }
+    preSharedName: ${pre_shared_cert_name}
+    %{endif}
+
+
 networkPolicy:
   enabled: true
   ingress:
