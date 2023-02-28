@@ -123,6 +123,11 @@ variable "upload_pre_shared_cert" {
   default = null
 }
 
+variable "tabnine_cloud_values" {
+  description = "Tabnine cloud helm charts values, see https://github.com/codota/helm-charts/blob/master/charts/tabnine-cloud/values.yaml"
+  type        = list(string)
+  default     = [] 
+}
 variable "use_nvidia_mig" {
   description = "Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning)"
   type        = bool
