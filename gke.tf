@@ -59,7 +59,7 @@ module "gke" {
       enable_gvnic       = false
       auto_repair        = true
       auto_upgrade       = true
-      preemptible        = false
+      preemptible        = vars.use_spot_instances
       initial_node_count = 1
     },
   ]
