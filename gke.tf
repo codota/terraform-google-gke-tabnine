@@ -48,10 +48,10 @@ module "gke" {
       machine_type       = "a2-highgpu-1g"
       gpu_partition_size = local.gpu_partition_size
       node_locations     = join(",", var.zones)
-      min_count          = 1
+      min_count          = var.min_gpu_machines
       max_count          = 2
       local_ssd_count    = 0
-      spot               = false
+      spot               = var.use_spot_instances
       disk_size_gb       = 200
       disk_type          = "pd-standard"
       image_type         = "COS_CONTAINERD"
@@ -59,7 +59,7 @@ module "gke" {
       enable_gvnic       = false
       auto_repair        = true
       auto_upgrade       = true
-      preemptible        = var.use_spot_instances
+      preemptible        = false
       initial_node_count = 1
     },
   ]
