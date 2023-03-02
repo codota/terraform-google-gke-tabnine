@@ -152,6 +152,12 @@ variable "use_spot_instances" {
   default     = false
 }
 
+variable "min_gpu_machines" {
+  description = "Minimum number of GPU instances"
+  type        = number
+  default     = 1
+}
+
 locals {
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
