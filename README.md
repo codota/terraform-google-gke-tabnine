@@ -61,8 +61,10 @@ module "gke_tabnine" {
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Should create a VPC, or used the one provided by `network_name` | `bool` | `false` | no |
 | <a name="input_enforce_jwt"></a> [enforce\_jwt](#input\_enforce\_jwt) | Should enforce JWT for user authentication | `bool` | `true` | no |
 | <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string<br>    internal = bool<br>  })</pre> | `null` | no |
+| <a name="input_install_nats"></a> [install\_nats](#input\_install\_nats) | Should install nats | `bool` | `false` | no |
 | <a name="input_ip_range_pods"></a> [ip\_range\_pods](#input\_ip\_range\_pods) | Pods ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_ip_range_services"></a> [ip\_range\_services](#input\_ip\_range\_services) | Services ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
+| <a name="input_min_gpu_machines"></a> [min\_gpu\_machines](#input\_min\_gpu\_machines) | Minimum number of GPU instances | `number` | `1` | no |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | VPC name, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | organization ID | `string` | n/a | yes |
 | <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | Organization Secret | `string` | n/a | yes |
@@ -77,6 +79,7 @@ module "gke_tabnine" {
 | <a name="input_tabnine_cloud_values"></a> [tabnine\_cloud\_values](#input\_tabnine\_cloud\_values) | Tabnine cloud helm charts values, see https://github.com/codota/helm-charts/blob/master/charts/tabnine-cloud/values.yaml | `list(string)` | `[]` | no |
 | <a name="input_upload_pre_shared_cert"></a> [upload\_pre\_shared\_cert](#input\_upload\_pre\_shared\_cert) | Use this to upload pre-shared cert | <pre>object({<br>    path_to_private_key = string<br>    path_to_certificate = string<br>  })</pre> | `null` | no |
 | <a name="input_use_nvidia_mig"></a> [use\_nvidia\_mig](#input\_use\_nvidia\_mig) | Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning) | `bool` | `false` | no |
+| <a name="input_use_spot_instances"></a> [use\_spot\_instances](#input\_use\_spot\_instances) | Should use spot instances | `bool` | `false` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
 
 ## Outputs

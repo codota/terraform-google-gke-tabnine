@@ -147,7 +147,7 @@ variable "rudder_write_key" {
 }
 
 variable "use_spot_instances" {
-  description = "Should use preemptible instances"
+  description = "Should use spot instances"
   type        = bool
   default     = false
 }

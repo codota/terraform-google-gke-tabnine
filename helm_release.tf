@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "2.5.0"
+  version    = "2.5.2"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -97,5 +97,24 @@ resource "helm_release" "prometheus" {
       organization_id     = var.organization_id,
       organization_secret = var.organization_secret
     })
+  ]
+}
+
+
+resource "helm_release" "nats" {
+  name             = "nats"
+  chart            = "nats"
+  repository       = "https://nats-io.github.io/k8s/helm/charts/"
+  version          = "0.19.12"
+  namespace        = "nats"
+  create_namespace = true
+  wait             = false
+
+  set {
+    name  = "natsbox.enabled"
+    value = "true"
+  }
+  values = [
+    "${file("${path.module}/nats_values.yaml")}"
   ]
 }

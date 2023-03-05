@@ -1,0 +1,24 @@
+exporter:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+nats:
+  resources:
+    requests:
+      cpu: 1
+      memory: 4Gi
+    limits:
+      cpu: 1
+      memory: 4Gi
+  client:
+    portName: tcp
+
+  jetstream:
+    enabled: true
+    memStorage:
+      enabled: true
+      size: 2Gi
+    fileStorage:
+      enabled: false
+natsbox:
+  enabled: true

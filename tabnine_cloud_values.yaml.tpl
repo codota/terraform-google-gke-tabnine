@@ -11,7 +11,7 @@ frontend:
 ingress:
   enabled: ${ingress != null }
   host: ${ingress != null ? ingress.host : ""}
-  certificate: 
+  certificate:
     managed: ${create_managed_cert}
     %{if pre_shared_cert_name != null }
     preSharedName: ${pre_shared_cert_name}
@@ -35,6 +35,13 @@ networkPolicy:
     ports:
     - port: 80
       protocol: TCP
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: nats
+    ports:
+     - port: 4222
+       protocol: TCP
   - ports:
     - port: 53
       protocol: UDP
