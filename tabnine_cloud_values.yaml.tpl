@@ -36,12 +36,12 @@ networkPolicy:
     - port: 80
       protocol: TCP
   - to:
-      namespaceSelector:
+    - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: nats
-      ports:
-      - port: 4222
-        protocol: TCP
+    ports:
+     - port: 4222
+       protocol: TCP
   - ports:
     - port: 53
       protocol: UDP
