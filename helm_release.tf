@@ -115,6 +115,6 @@ resource "helm_release" "nats" {
     value = "true"
   }
   values = [
-    "${path.module}/nats_values.yaml"
+    "${file("${path.module}/nats_values.yaml")}"
   ]
 }
