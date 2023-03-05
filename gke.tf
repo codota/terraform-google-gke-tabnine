@@ -25,7 +25,7 @@ module "gke" {
   node_pools = [
     {
       name               = format("%s-default", var.prefix)
-      machine_type       = "e2-medium"
+      machine_type       = "n2-standard-4"
       node_locations     = join(",", var.zones)
       min_count          = 1
       max_count          = 3
