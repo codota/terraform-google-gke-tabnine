@@ -99,3 +99,23 @@ resource "helm_release" "prometheus" {
     })
   ]
 }
+
+
+resource "helm_release" "nats" {
+  count      = var.install_nats ? 1 : 0
+  name       = "nats"
+  chart      = "nats"
+  repository = "https://nats-io.github.io/k8s/helm/charts/"
+  version    = "0.17.0"
+  wait       = false
+
+  set {
+    name  = "natsbox.enabled"
+    value = "true"
+  }
+  values = [
+    templatefile("${path.module}/values.yaml", {
+      replicas = var.server_count
+    })
+  ]
+}

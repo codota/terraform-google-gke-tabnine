@@ -147,7 +147,7 @@ variable "rudder_write_key" {
 }
 
 variable "use_spot_instances" {
-  description = "Should use preemptible instances"
+  description = "Should use spot instances"
   type        = bool
   default     = false
 }
@@ -156,6 +156,12 @@ variable "min_gpu_machines" {
   description = "Minimum number of GPU instances"
   type        = number
   default     = 1
+}
+
+variable "install_nats" {
+  description = "Should install nats"
+  type        = bool
+  default     = false
 }
 
 locals {
