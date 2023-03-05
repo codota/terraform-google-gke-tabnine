@@ -102,11 +102,10 @@ resource "helm_release" "prometheus" {
 
 
 resource "helm_release" "nats" {
-  count            = var.install_nats ? 1 : 0
   name             = "nats"
   chart            = "nats"
   repository       = "https://nats-io.github.io/k8s/helm/charts/"
-  version          = "0.17.0"
+  version          = "0.19.12"
   namespace        = "nats"
   create_namespace = true
   wait             = false
@@ -116,8 +115,6 @@ resource "helm_release" "nats" {
     value = "true"
   }
   values = [
-    templatefile("${path.module}/nats_values.yaml", {
-      replicas = var.min_gpu_machines
-    })
+    "${path.module}/nats_values.yaml"
   ]
 }

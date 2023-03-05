@@ -158,12 +158,6 @@ variable "min_gpu_machines" {
   default     = 1
 }
 
-variable "install_nats" {
-  description = "Should install nats"
-  type        = bool
-  default     = false
-}
-
 locals {
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
