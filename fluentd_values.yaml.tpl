@@ -32,7 +32,7 @@ fileConfigs:
         subsystemName $${record.dig("kubernetes", "container_name")}
         computerName $${record.dig("kubernetes", "host")}
         timestamp $${time.strftime('%s%L')} # Optional
-        text $${record.merge({"organization_id":"${organization_id}"}).to_json}
+        text $${record.merge({organization_id:"${organization_id}"}).to_json}
       </record>
       </filter>
 
