@@ -96,7 +96,7 @@ resource "kubernetes_network_policy" "prometheus" {
 
       to {
         ip_block {
-          cidr = "192.168.63.0/24" # probably should be templated
+          cidr = local.gke_master_ipv4_cidr_block
         }
       }
 
@@ -111,6 +111,12 @@ resource "kubernetes_network_policy" "prometheus" {
         port     = "443"
         protocol = "TCP"
       }
+
+      ports {
+        port     = "53"
+        protocol = "UDP"
+      }
+
     }
 
     policy_types = ["Egress"]
