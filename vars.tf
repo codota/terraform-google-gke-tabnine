@@ -8,6 +8,11 @@ variable "organization_secret" {
   type        = string
 }
 
+variable "organization_name" {
+  description = "Organization Name"
+  type        = string
+}
+
 variable "create_tabnine_storage_bucket_im_bindings" {
   description = "Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team"
   type        = bool
