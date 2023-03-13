@@ -61,12 +61,12 @@ module "gke_tabnine" {
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Should create a VPC, or used the one provided by `network_name` | `bool` | `false` | no |
 | <a name="input_enforce_jwt"></a> [enforce\_jwt](#input\_enforce\_jwt) | Should enforce JWT for user authentication | `bool` | `true` | no |
 | <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string<br>    internal = bool<br>  })</pre> | `null` | no |
-| <a name="input_install_nats"></a> [install\_nats](#input\_install\_nats) | Should install nats | `bool` | `false` | no |
 | <a name="input_ip_range_pods"></a> [ip\_range\_pods](#input\_ip\_range\_pods) | Pods ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_ip_range_services"></a> [ip\_range\_services](#input\_ip\_range\_services) | Services ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_min_gpu_machines"></a> [min\_gpu\_machines](#input\_min\_gpu\_machines) | Minimum number of GPU instances | `number` | `1` | no |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | VPC name, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | organization ID | `string` | n/a | yes |
+| <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | Organization Name | `string` | n/a | yes |
 | <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | Organization Secret | `string` | n/a | yes |
 | <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | Use this if you already uploaded a pre-shared cert | `string` | `null` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |

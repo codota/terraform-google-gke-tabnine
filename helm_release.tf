@@ -77,7 +77,8 @@ resource "helm_release" "fluentd" {
   values = [
     templatefile("${path.module}/fluentd_values.yaml.tpl", {
       organization_id     = var.organization_id,
-      organization_secret = var.organization_secret
+      organization_secret = var.organization_secret,
+      organization_name   = var.organization_name
     })
   ]
 }
@@ -95,7 +96,8 @@ resource "helm_release" "prometheus" {
   values = [
     templatefile("${path.module}/prometheus_values.yaml.tpl", {
       organization_id     = var.organization_id,
-      organization_secret = var.organization_secret
+      organization_secret = var.organization_secret,
+      organization_name   = var.organization_name
     })
   ]
 }

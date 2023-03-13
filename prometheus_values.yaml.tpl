@@ -47,6 +47,8 @@ prometheus:
         writeRelabelConfigs:
             - targetLabel: organization_id
               replacement: '${organization_id}'
+            - targetLabel: organization_name
+              replacement: '${organization_name}'
     podMonitorSelectorNilUsesHelmValues: false
     podMonitorSelector: {}
     podMonitorNamespaceSelector: {}
