@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "2.5.3"
+  version    = "3.0.0"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -20,6 +20,7 @@ resource "helm_release" "tabnine_cloud" {
     var.tabnine_cloud_values
   )
 
+  // these need to be templated like the other attributes above
   dynamic "set" {
     for_each = local.create_ingress && var.rudder_write_key != null ? [1] : []
     content {
@@ -39,7 +40,7 @@ resource "helm_release" "tabnine_cloud" {
   dynamic "set" {
     for_each = local.create_ingress && !var.ingress.internal ? [1] : []
     content {
-      name  = "ingress.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
+      name  = "global.ingress.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
       value = module.address_fe.names[0]
     }
   }
@@ -47,7 +48,7 @@ resource "helm_release" "tabnine_cloud" {
   dynamic "set" {
     for_each = local.create_ingress && var.ingress.internal ? [1] : []
     content {
-      name  = "ingress.annotations.kubernetes\\.io/ingress\\.regional-static-ip-name"
+      name  = "global.ingress.annotations.kubernetes\\.io/ingress\\.regional-static-ip-name"
       value = module.address_fe.names[0]
     }
   }

@@ -6,7 +6,9 @@ global:
     enabled: ${ingress != null }
     host: ${ingress != null ? ingress.host : ""}
     annotations:
+      %{if pre_shared_cert_name != null }
       ingress.gcp.kubernetes.io/pre-shared-cert: ${pre_shared_cert_name}
+      %{endif}
       networking.gke.io/v1beta1.FrontendConfig: ${frontend_config_name}
 
   tabnine:
@@ -15,6 +17,9 @@ global:
 
 
 frontend:
+  service:
+    type: NodePort
+    port: 8080
   enforceJWT: ${enforce_jwt}
   networkPolicy:
     enabled: true
@@ -53,6 +58,14 @@ frontend:
 
 
 server:
+  service:
+    type: NodePort
+    port: 8081
   nodeSelector:
     "cloud.google.com/gke-accelerator": "nvidia-tesla-a100"
 
+
+analytics:
+  service:
+    type: NodePort
+    port: 8082

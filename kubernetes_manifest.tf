@@ -9,6 +9,10 @@ resource "kubernetes_manifest" "frontend_config_tabnine_cloud" {
     }
     spec = {
       sslPolicy = google_compute_ssl_policy.min_tls_v_1_2.name
+      redirectToHttps = {
+        enabled          = "true"
+        responseCodeName = "MOVED_PERMANENTLY_DEFAULT"
+      }
     }
   }
 
