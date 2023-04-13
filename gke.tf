@@ -1,26 +1,29 @@
 module "gke" {
-  source                     = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  project_id                 = var.project_id
-  name                       = format("%s-gke", var.prefix)
-  region                     = var.region
-  zones                      = var.zones
-  network                    = local.network_name
-  subnetwork                 = local.subnetwork
-  ip_range_pods              = local.ip_range_pods
-  ip_range_services          = local.ip_range_services
-  http_load_balancing        = true
-  network_policy             = true
-  horizontal_pod_autoscaling = true
-  filestore_csi_driver       = false
-  service_account            = local.service_account_email
-  identity_namespace         = "null"
-  node_metadata              = "UNSPECIFIED"
-  logging_service            = "logging.googleapis.com/kubernetes"
-  logging_enabled_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
-  create_service_account     = false
-  enable_private_nodes       = true
-  master_ipv4_cidr_block     = local.gke_master_ipv4_cidr_block
-  remove_default_node_pool   = true
+  source                      = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
+  project_id                  = var.project_id
+  name                        = format("%s-gke", var.prefix)
+  region                      = var.region
+  zones                       = var.zones
+  network                     = local.network_name
+  subnetwork                  = local.subnetwork
+  ip_range_pods               = local.ip_range_pods
+  ip_range_services           = local.ip_range_services
+  http_load_balancing         = true
+  network_policy              = true
+  horizontal_pod_autoscaling  = true
+  filestore_csi_driver        = false
+  service_account             = local.service_account_email
+  identity_namespace          = "null"
+  node_metadata               = "UNSPECIFIED"
+  logging_service             = "logging.googleapis.com/kubernetes"
+  logging_enabled_components  = ["SYSTEM_COMPONENTS", "WORKLOADS"]
+  create_service_account      = false
+  enable_private_nodes        = true
+  master_ipv4_cidr_block      = local.gke_master_ipv4_cidr_block
+  remove_default_node_pool    = true
+  enable_intranode_visibility = true # on existing cluster, this need to be commented first
+  disable_default_snat        = true
+  database_encryption         = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
 
   node_pools = [
     {
