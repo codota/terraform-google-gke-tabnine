@@ -1,5 +1,7 @@
 data "google_client_config" "default" {}
 
+data "google_project" "project" {}
+
 provider "helm" {
   kubernetes {
     host                   = "https://${module.gke.endpoint}"
