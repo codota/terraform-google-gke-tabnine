@@ -9,5 +9,6 @@ module "service_accounts" {
     "${var.project_id}=>roles/logging.logWriter",
     # "${var.project_id}=>roles/logging.bucketWriter",
     "${var.project_id}=>roles/monitoring.metricWriter",
+    "${var.project_id}=>roles/cloudkms.cryptoKeyEncrypterDecrypter",
   ]
 }
