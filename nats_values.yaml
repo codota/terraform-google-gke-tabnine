@@ -26,4 +26,4 @@ natsbox:
 tolerations:
   - key: "nvidia.com/gpu"
     operator: "Exists"
-    effect: PreferNoSchedule
+    effect: NoSchedule
