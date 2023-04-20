@@ -13,7 +13,7 @@ resource "helm_release" "tabnine_cloud" {
       organization_id            = var.organization_id,
       enforce_jwt                = var.enforce_jwt,
       ingress                    = var.ingress,
-      pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : var.pre_shared_cert_name
+      pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : (var.upload_pre_shared_cert ? google_compute_managed_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name)
       frontend_config_name       = "tabnine-cloud"
     })
     ],
