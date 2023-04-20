@@ -5,11 +5,11 @@ exporter:
 nats:
   resources:
     requests:
-      cpu: 1
-      memory: 4Gi
+      cpu: 0.3
+      memory: 2Gi
     limits:
-      cpu: 1
-      memory: 4Gi
+      cpu: 0.3
+      memory: 2Gi
   client:
     portName: tcp
 
