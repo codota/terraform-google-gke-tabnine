@@ -29,10 +29,10 @@ module "gke" {
   node_pools = [
     {
       name               = format("%s-default", var.prefix)
-      machine_type       = "n2-standard-4"
+      machine_type       = "e2-medium"
       node_locations     = join(",", var.zones)
       min_count          = 1
-      max_count          = 3
+      max_count          = 4
       local_ssd_count    = 0
       spot               = false
       disk_size_gb       = 200

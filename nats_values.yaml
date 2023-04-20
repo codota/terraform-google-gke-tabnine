@@ -6,10 +6,10 @@ nats:
   resources:
     requests:
       cpu: 1
-      memory: 4Gi
+      memory: 2Gi
     limits:
       cpu: 1
-      memory: 4Gi
+      memory: 2Gi
   client:
     portName: tcp
 
@@ -22,3 +22,8 @@ nats:
       enabled: false
 natsbox:
   enabled: true
+
+tolerations:
+  - key: "nvidia.com/gpu"
+    operator: "Exists"
+    effect: NoSchedule
