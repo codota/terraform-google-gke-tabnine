@@ -22,3 +22,8 @@ nats:
       enabled: false
 natsbox:
   enabled: true
+
+tolerations:
+  - key: "nvidia.com/gpu"
+    operator: "Exists"
+    effect: NoSchedule
