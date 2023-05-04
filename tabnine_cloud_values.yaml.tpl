@@ -13,6 +13,7 @@ global:
 
   tabnine:
     organizationId: "${organization_id}"
+    licenseKey: "${license_key}"
 
 
 

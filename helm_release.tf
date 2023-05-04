@@ -11,6 +11,7 @@ resource "helm_release" "tabnine_cloud" {
       gke_metadata_server_ip     = local.gke_metadata_server_ip,
       ssl_policy_name            = google_compute_ssl_policy.min_tls_v_1_2.name,
       organization_id            = var.organization_id,
+      license_key                = var.license_key,
       enforce_jwt                = var.enforce_jwt,
       ingress                    = var.ingress,
       pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name)
