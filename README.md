@@ -63,6 +63,7 @@ module "gke_tabnine" {
 | <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string<br>    internal = bool<br>  })</pre> | `null` | no |
 | <a name="input_ip_range_pods"></a> [ip\_range\_pods](#input\_ip\_range\_pods) | Pods ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_ip_range_services"></a> [ip\_range\_services](#input\_ip\_range\_services) | Services ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
+| <a name="input_license_key"></a> [license\_key](#input\_license\_key) | License key | `string` | n/a | yes |
 | <a name="input_min_gpu_machines"></a> [min\_gpu\_machines](#input\_min\_gpu\_machines) | Minimum number of GPU instances | `number` | `1` | no |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | VPC name, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | organization ID | `string` | n/a | yes |
