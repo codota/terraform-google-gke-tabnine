@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "3.4.0"
+  version    = "3.5.2"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -14,8 +14,11 @@ resource "helm_release" "tabnine_cloud" {
       enforce_jwt                = var.enforce_jwt,
       ingress                    = var.ingress,
       pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name)
-      frontend_config_name       = "tabnine-cloud"
-    })
+      frontend_config_name       = "tabnine-cloud",
+    }),
+    templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tpl", {
+      db_url = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}"
+    }),
     ],
     var.tabnine_cloud_values
   )

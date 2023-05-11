@@ -15,7 +15,6 @@ global:
     organizationId: "${organization_id}"
 
 
-
 frontend:
   service:
     type: NodePort
