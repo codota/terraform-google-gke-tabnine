@@ -18,9 +18,9 @@ resource "helm_release" "tabnine_cloud" {
     }),
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tpl", {
-      db_url    = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}",
-      redis_url = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}"
-      serverCA  = module.memstore.server_ca_certs
+      db_url          = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}",
+      redis_url       = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}"
+      redis_server_ca = module.memstore.server_ca_certs
     }),
     ],
     var.tabnine_cloud_values
