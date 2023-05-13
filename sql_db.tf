@@ -21,7 +21,7 @@ module "sql_db" {
     ipv4_enabled       = true
     require_ssl        = true
     private_network    = data.google_compute_network.vpc.self_link
-    allocated_ip_range = null
+    allocated_ip_range = module.private_service_access.google_compute_global_address_name
     authorized_networks = [
       #   {
       #     name  = "${var.project_id}-cidr"
@@ -54,6 +54,9 @@ module "sql_db" {
   #     random_password = false
   #   },
   # ]
+  depends_on = [
+    module.private_service_access.peering_completed
+  ]
 }
 
 module "private_service_access" {
