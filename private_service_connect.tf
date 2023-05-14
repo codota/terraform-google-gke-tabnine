@@ -7,7 +7,7 @@ module "private_service_connect" {
   forwarding_rule_target       = "all-apis"
   dns_code                     = format("%s-dns", var.prefix)
   private_service_connect_name = format("%s-ps-connect", var.prefix)
-  forwarding_rule_name         = random_string.forwarding_rule_name.result
+  forwarding_rule_name         = format("a%s", random_string.forwarding_rule_name.result)
 }
 
 resource "random_string" "forwarding_rule_name" {
