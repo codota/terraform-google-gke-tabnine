@@ -11,6 +11,7 @@ resource "helm_release" "tabnine_cloud" {
       gke_metadata_server_ip     = local.gke_metadata_server_ip,
       ssl_policy_name            = google_compute_ssl_policy.min_tls_v_1_2.name,
       organization_id            = var.organization_id,
+      organization_name          = var.organization_name,
       license_key                = var.license_key,
       enforce_jwt                = var.enforce_jwt,
       ingress                    = var.ingress,
