@@ -116,3 +116,7 @@ module "vpc" {
   ] : firewall_rule if var.create_deny_all_firewall_rules == true]
 
 }
+
+data "google_compute_network" "vpc" {
+  name = local.network_name
+}

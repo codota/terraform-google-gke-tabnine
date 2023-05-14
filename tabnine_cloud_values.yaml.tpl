@@ -17,7 +17,6 @@ global:
     licenseKey: "${license_key}"
 
 
-
 frontend:
   service:
     type: NodePort
@@ -71,3 +70,18 @@ analytics:
   service:
     type: NodePort
     port: 8082
+
+update:
+  service:
+    type: NodePort
+    port: 8083
+
+app:
+  service:
+    type: NodePort
+    port: 8084
+
+auth:
+  service:
+    type: NodePort
+    port: 8085
