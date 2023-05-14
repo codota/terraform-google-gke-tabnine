@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "3.7.1"
+  version    = "3.8.0"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
