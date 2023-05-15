@@ -13,6 +13,8 @@ global:
 
   tabnine:
     organizationId: "${organization_id}"
+    organizationName: "${organization_name}"
+    organizationSecret: "${organization_secret}"
 
 
 frontend:
