@@ -16,3 +16,7 @@ module "kms" {
   ]
 
 }
+
+resource "random_id" "kms" {
+  byte_length = 8
+}
