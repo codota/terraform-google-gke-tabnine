@@ -80,6 +80,7 @@ app:
     port: 8084
 
 auth:
+  defaultEmail: ${default_email}
   service:
     type: NodePort
     port: 8085

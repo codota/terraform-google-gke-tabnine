@@ -169,6 +169,11 @@ variable "db_master_zone" {
   default     = null
 }
 
+variable "default_email" {
+  description = "The first user to be put in the database. Password will be automatically generated"
+  type        = string
+}
+
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name

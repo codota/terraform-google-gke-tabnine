@@ -1,9 +1,9 @@
 resource "helm_release" "tabnine_cloud" {
   name       = "tabnine-cloud"
-  repository = "tabnine"
+  repository = "${path.module}/../helm-charts/charts"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "3.8.0"
+  version    = "3.8.1"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -15,6 +15,7 @@ resource "helm_release" "tabnine_cloud" {
       ingress                    = var.ingress,
       pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name)
       frontend_config_name       = "tabnine-cloud",
+      default_email              = var.default_email
     }),
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tpl", {
