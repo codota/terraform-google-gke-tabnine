@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "3.8.1"
+  version    = "3.9.0"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -22,6 +22,7 @@ resource "helm_release" "tabnine_cloud" {
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tpl", {
       db_url          = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}:5432/tabnine",
+      db_server_ca    = module.sql_db.instance_server_ca_cert
       redis_url       = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}"
       redis_server_ca = module.memstore.server_ca_certs[0].cert
     }),
