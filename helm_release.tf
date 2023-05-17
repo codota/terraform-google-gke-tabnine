@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "3.10.0"
+  version    = "3.13.1"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -18,13 +18,17 @@ resource "helm_release" "tabnine_cloud" {
       pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name)
       frontend_config_name       = "tabnine-cloud",
       default_email              = var.default_email,
-      db_ca_base64               = base64encode(module.sql_db.instance_server_ca_cert[0].cert)
-      redis_ca_base64                = base64encode(module.memstore.server_ca_certs[0].cert)
+      db = { ca_base64 = base64encode(google_sql_ssl_cert.sql_db.server_ca_cert),
+        cert_base64 = base64encode(google_sql_ssl_cert.sql_db.cert)
+      },
+      redis = { ca_base64 = base64encode(module.memstore.server_ca_certs[0].cert) }
     }),
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tpl", {
-      db_url    = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}:5432/tabnine",
-      redis_url = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}"
+      db = { url = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}:5432/tabnine",
+        cert_private_key_base64 = base64encode(google_sql_ssl_cert.sql_db.private_key)
+      }
+      redis = { url = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}" }
     }),
     ],
     var.tabnine_cloud_values

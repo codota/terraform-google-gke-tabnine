@@ -15,8 +15,11 @@ global:
     organizationId: "${organization_id}"
     organizationName: "${organization_name}"
     organizationSecret: "${organization_secret}"
-    dbCABase64: ${db_ca_base64}
-    redisCABase64: ${redis_ca_base64}
+    db:
+      caBase64: ${db.ca_base64}
+      certBase64: ${db.cert_base64}
+    redis:
+      caBase64: ${redis.ca_base64}
 
 
 frontend:
