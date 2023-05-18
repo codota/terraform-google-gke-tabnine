@@ -14,7 +14,13 @@ global:
   tabnine:
     organizationId: "${organization_id}"
     organizationName: "${organization_name}"
+    organizationSecret: "${organization_secret}"
     licenseKey: "${license_key}"
+    db:
+      caBase64: ${db.ca_base64}
+      certBase64: ${db.cert_base64}
+    redis:
+      caBase64: ${redis.ca_base64}
 
 
 frontend:
@@ -82,6 +88,7 @@ app:
     port: 8084
 
 auth:
+  defaultEmail: ${default_email}
   service:
     type: NodePort
     port: 8085

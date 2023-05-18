@@ -23,10 +23,6 @@ module "sql_db" {
     private_network    = data.google_compute_network.vpc.self_link
     allocated_ip_range = module.private_service_access.google_compute_global_address_name
     authorized_networks = [
-      #   {
-      #     name  = "${var.project_id}-cidr"
-      #     value = var.pg_ha_external_ip_range
-      #   },
     ]
   }
 
@@ -64,3 +60,9 @@ module "private_service_access" {
   project_id  = var.project_id
   vpc_network = local.network_name
 }
+
+resource "google_sql_ssl_cert" "sql_db" {
+  common_name = "tabnine-cloud"
+  instance    = module.sql_db.instance_name
+}
+

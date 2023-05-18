@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "3.8.0"
+  version    = "3.13.1"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tpl", {
@@ -12,17 +12,24 @@ resource "helm_release" "tabnine_cloud" {
       ssl_policy_name            = google_compute_ssl_policy.min_tls_v_1_2.name,
       organization_id            = var.organization_id,
       organization_name          = var.organization_name,
+      organization_secret        = var.organization_secret,
       license_key                = var.license_key,
       enforce_jwt                = var.enforce_jwt,
       ingress                    = var.ingress,
       pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name)
       frontend_config_name       = "tabnine-cloud",
+      default_email              = var.default_email,
+      db = { ca_base64 = base64encode(google_sql_ssl_cert.sql_db.server_ca_cert),
+        cert_base64 = base64encode(google_sql_ssl_cert.sql_db.cert)
+      },
+      redis = { ca_base64 = base64encode(module.memstore.server_ca_certs[0].cert) }
     }),
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tpl", {
-      db_url          = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}:5432/tabnine",
-      redis_url       = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}"
-      redis_server_ca = module.memstore.server_ca_certs[0].cert
+      db = { url = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}:5432/tabnine",
+        cert_private_key_base64 = base64encode(google_sql_ssl_cert.sql_db.private_key)
+      }
+      redis = { url = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}" }
     }),
     ],
     var.tabnine_cloud_values
