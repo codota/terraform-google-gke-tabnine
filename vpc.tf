@@ -15,7 +15,7 @@ module "vpc" {
     subnet_private_access = "true"
     },
     {
-      // TODO: dynamically only on internal ingress 
+      // TODO: dynamically only on internal ingress
       subnet_name   = local.subnetwork_proxy_only
       subnet_ip     = "10.10.30.0/24"
       subnet_region = var.region
@@ -119,4 +119,8 @@ module "vpc" {
 
 data "google_compute_network" "vpc" {
   name = local.network_name
+
+  depends_on = [
+    module.vpc
+  ]
 }
