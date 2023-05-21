@@ -201,6 +201,11 @@ variable "smtp_password" {
   type        = string
 }
 
+variable "email_from_field" {
+  description = "A valid sender for the SMTP server to be set in the 'From' field of outgoing emails"
+  type        = string
+}
+
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name

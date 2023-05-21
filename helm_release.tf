@@ -1,6 +1,6 @@
 resource "helm_release" "tabnine_cloud" {
   name       = "tabnine-cloud"
-  repository = "tabnine"
+  repository = "${path.module}/../helm-charts/charts"
   chart      = "tabnine-cloud"
   wait       = false
   version    = "3.15.0"
@@ -23,6 +23,7 @@ resource "helm_release" "tabnine_cloud" {
       smtp_port                  = var.smtp_port,
       smtp_user                  = var.smtp_user,
       smtp_password              = var.smtp_password,
+      email_from_field           = var.email_from_field
       db = { ca_base64 = base64encode(google_sql_ssl_cert.sql_db.server_ca_cert),
         cert_base64 = base64encode(google_sql_ssl_cert.sql_db.cert)
       },

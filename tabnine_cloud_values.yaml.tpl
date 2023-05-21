@@ -98,6 +98,8 @@ auth:
       value: ${smtp_password}
     - name: SMTP_PORT
       value: ${smtp_port}
+    - name: EMAIL_FROM_FIELD
+      value: ${email_from_field}
   service:
     type: NodePort
     port: 8085
