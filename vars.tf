@@ -174,6 +174,12 @@ variable "default_email" {
   type        = string
 }
 
+variable "drop_all_analytics" {
+  description = "Should the analytics service forward telemetry to Tabnine servers"
+  type        = bool
+  default     = false
+}
+
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name

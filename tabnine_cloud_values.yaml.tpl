@@ -72,6 +72,7 @@ server:
 
 
 analytics:
+  dropAll: ${drop_all_analytics}
   service:
     type: NodePort
     port: 8082
