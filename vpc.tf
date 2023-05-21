@@ -15,7 +15,7 @@ module "vpc" {
     subnet_private_access = "true"
     },
     {
-      // TODO: dynamically only on internal ingress 
+      // TODO: dynamically only on internal ingress
       subnet_name   = local.subnetwork_proxy_only
       subnet_ip     = "10.10.30.0/24"
       subnet_region = var.region
@@ -27,11 +27,11 @@ module "vpc" {
     (local.subnetwork) = [
       {
         range_name    = local.ip_range_pods
-        ip_cidr_range = "192.167.0.0/16"
+        ip_cidr_range = "192.168.0.0/18"
       },
       {
         range_name    = local.ip_range_services
-        ip_cidr_range = "192.168.63.0/24"
+        ip_cidr_range = "192.168.64.0/18"
       },
     ],
     (local.subnetwork_proxy_only) = []
@@ -95,7 +95,7 @@ module "vpc" {
     {
       name      = format("%s-allow-vpc", var.prefix)
       direction = "EGRESS"
-      ranges    = ["10.10.20.0/24", "10.10.30.0/24", "192.167.0.0/16", "192.168.163.0/24"]
+      ranges    = ["10.10.20.0/24", "10.10.30.0/24", "10.28.0.0/23", "192.168.0.0/18", "192.168.64.0/18"]
       priority  = 1000
       allow = [{
         protocol = "all"
@@ -115,4 +115,8 @@ module "vpc" {
     }
   ] : firewall_rule if var.create_deny_all_firewall_rules == true]
 
+}
+
+data "google_compute_network" "vpc" {
+  name = local.network_name
 }

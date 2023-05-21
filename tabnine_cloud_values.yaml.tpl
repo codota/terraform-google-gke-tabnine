@@ -13,7 +13,13 @@ global:
 
   tabnine:
     organizationId: "${organization_id}"
-
+    organizationName: "${organization_name}"
+    organizationSecret: "${organization_secret}"
+    db:
+      caBase64: ${db.ca_base64}
+      certBase64: ${db.cert_base64}
+    redis:
+      caBase64: ${redis.ca_base64}
 
 
 frontend:
@@ -66,6 +72,23 @@ server:
 
 
 analytics:
+  dropAll: ${drop_all_analytics}
   service:
     type: NodePort
     port: 8082
+
+update:
+  service:
+    type: NodePort
+    port: 8083
+
+app:
+  service:
+    type: NodePort
+    port: 8084
+
+auth:
+  defaultEmail: ${default_email}
+  service:
+    type: NodePort
+    port: 8085

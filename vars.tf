@@ -163,7 +163,25 @@ variable "min_gpu_machines" {
   default     = 1
 }
 
+variable "db_master_zone" {
+  description = "Database master zone. If not set, will default to first zone"
+  type        = string
+  default     = null
+}
+
+variable "default_email" {
+  description = "The first user to be put in the database. Password will be automatically generated"
+  type        = string
+}
+
+variable "drop_all_analytics" {
+  description = "Should the analytics service forward telemetry to Tabnine servers"
+  type        = bool
+  default     = false
+}
+
 locals {
+  db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
   subnetwork_proxy_only      = var.create_vpc ? format("%s-gke-proxy-only", var.prefix) : var.subnetwork_proxy_only
