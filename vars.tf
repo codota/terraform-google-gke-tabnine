@@ -180,6 +180,22 @@ variable "drop_all_analytics" {
   default     = false
 }
 
+variable "smtp_host" {
+  description = "SMTP server host address"
+  type        = string
+}
+
+variable "smtp_user" {
+  description = "SMTP server user"
+  type        = string
+}
+
+
+variable "smtp_password" {
+  description = "SMTP server password"
+  type        = string
+}
+
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
