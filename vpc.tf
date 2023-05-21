@@ -109,7 +109,7 @@ module "vpc" {
       ranges    = data.dns_a_record_set.smtp_ip.addrs
       priority  = 1000
       allow = [{
-        protocol = "tcpga "
+        protocol = "tcp"
         ports    = [var.smtp_port]
         }
       ]
