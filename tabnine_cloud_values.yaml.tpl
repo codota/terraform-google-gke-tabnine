@@ -90,10 +90,14 @@ app:
 auth:
   defaultEmail: ${default_email}
   env:
-    - SMTP_HOST: ${smtp_host}
-    - SMTP_USER: ${smtp_user}
-    - SMTP_PASS: ${smtp_password}
-    - SMTP_PORT: ${smtp_port}
+    - name: SMTP_HOST
+      value: ${smtp_host}
+    - name: SMTP_USER
+      value: ${smtp_user}
+    - name: SMTP_PASS
+      value: ${smtp_password}
+    - name: SMTP_PORT
+      value: ${smtp_port}
   service:
     type: NodePort
     port: 8085

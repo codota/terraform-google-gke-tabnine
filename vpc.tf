@@ -104,6 +104,17 @@ module "vpc" {
       ]
     },
     {
+      name      = format("%s-allow-smtp", var.prefix)
+      direction = "EGRESS"
+      ranges    = data.dns_a_record_set.smtp_ip.addrs
+      priority  = 1000
+      allow = [{
+        protocol = "tcpga "
+        ports    = [var.smtp_port]
+        }
+      ]
+    },
+    {
       name      = format("%s-deny-all", var.prefix)
       direction = "EGRESS"
       ranges    = ["0.0.0.0/0"]
@@ -119,4 +130,8 @@ module "vpc" {
 
 data "google_compute_network" "vpc" {
   name = local.network_name
+}
+
+data "dns_a_record_set" "smtp_ip" {
+  host = var.smtp_host
 }
