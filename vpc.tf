@@ -15,7 +15,7 @@ module "vpc" {
     subnet_private_access = "true"
     },
     {
-      // TODO: dynamically only on internal ingress 
+      // TODO: dynamically only on internal ingress
       subnet_name   = local.subnetwork_proxy_only
       subnet_ip     = "10.10.30.0/24"
       subnet_region = var.region
@@ -95,7 +95,7 @@ module "vpc" {
     {
       name      = format("%s-allow-vpc", var.prefix)
       direction = "EGRESS"
-      ranges    = ["10.10.20.0/24", "10.10.30.0/24", "192.168.0.0/18", "192.168.64.0/18"]
+      ranges    = ["10.10.20.0/24", "10.10.30.0/24", "10.28.0.0/23", "192.168.0.0/18", "192.168.64.0/18"]
       priority  = 1000
       allow = [{
         protocol = "all"

@@ -1,6 +1,6 @@
 resource "helm_release" "tabnine_cloud" {
   name       = "tabnine-cloud"
-  repository = "tabnine"
+  repository = "${path.module}/../helm-charts/charts"
   chart      = "tabnine-cloud"
   wait       = false
   version    = "3.14.2"
@@ -25,6 +25,8 @@ resource "helm_release" "tabnine_cloud" {
       },
       redis = { ca_base64 = base64encode(module.memstore.server_ca_certs[0].cert) }
     }),
+
+    
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tpl", {
       db = { url = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}:5432/tabnine",
