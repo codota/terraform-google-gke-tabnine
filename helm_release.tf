@@ -19,8 +19,9 @@ resource "helm_release" "tabnine_cloud" {
       frontend_config_name       = "tabnine-cloud",
       default_email              = var.default_email,
       drop_all_analytics         = var.drop_all_analytics,
-      smtp_host                  = var.smtp_host
-      smtp_user                  = var.smtp_user
+      smtp_host                  = var.smtp_host,
+      smtp_port                  = var.smtp_port,
+      smtp_user                  = var.smtp_user,
       smtp_password              = var.smtp_password,
       db = { ca_base64 = base64encode(google_sql_ssl_cert.sql_db.server_ca_cert),
         cert_base64 = base64encode(google_sql_ssl_cert.sql_db.cert)

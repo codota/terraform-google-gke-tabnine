@@ -185,11 +185,16 @@ variable "smtp_host" {
   type        = string
 }
 
+variable "smtp_port" {
+  description = "SMTP server port"
+  type        = number
+  default     = 587
+}
+
 variable "smtp_user" {
   description = "SMTP server user"
   type        = string
 }
-
 
 variable "smtp_password" {
   description = "SMTP server password"

@@ -77,6 +77,10 @@ module "gke_tabnine" {
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
 | <a name="input_rudder_write_key"></a> [rudder\_write\_key](#input\_rudder\_write\_key) | Pass analytics pipeline key | `string` | `null` | no |
 | <a name="input_service_account_email"></a> [service\_account\_email](#input\_service\_account\_email) | Service account email, used when `create_service_account` is set to `false` | `string` | `""` | no |
+| <a name="input_smtp_host"></a> [smtp\_host](#input\_smtp\_host) | SMTP server host address | `string` | n/a | yes |
+| <a name="input_smtp_password"></a> [smtp\_password](#input\_smtp\_password) | SMTP server password | `string` | n/a | yes |
+| <a name="input_smtp_port"></a> [smtp\_port](#input\_smtp\_port) | SMTP server port | `number` | `587` | no |
+| <a name="input_smtp_user"></a> [smtp\_user](#input\_smtp\_user) | SMTP server user | `string` | n/a | yes |
 | <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | VPC subnetwork name, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_subnetwork_proxy_only"></a> [subnetwork\_proxy\_only](#input\_subnetwork\_proxy\_only) | VPC subnetwork proxy only name, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_tabnine_cloud_values"></a> [tabnine\_cloud\_values](#input\_tabnine\_cloud\_values) | Tabnine cloud helm charts values, see https://github.com/codota/helm-charts/blob/master/charts/tabnine-cloud/values.yaml | `list(string)` | `[]` | no |

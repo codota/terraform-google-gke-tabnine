@@ -93,6 +93,7 @@ auth:
     - SMTP_HOST: ${smtp_host}
     - SMTP_USER: ${smtp_user}
     - SMTP_PASS: ${smtp_password}
+    - SMTP_PORT: ${smtp_port}
   service:
     type: NodePort
     port: 8085
