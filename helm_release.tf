@@ -17,13 +17,6 @@ resource "helm_release" "tabnine_cloud" {
       ingress                    = var.ingress,
       pre_shared_cert_name       = var.create_managed_cert ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name)
       frontend_config_name       = "tabnine-cloud",
-      default_email              = var.default_email,
-      drop_all_analytics         = var.drop_all_analytics,
-      smtp_host                  = var.smtp_host,
-      smtp_port                  = var.smtp_port,
-      smtp_user                  = var.smtp_user,
-      smtp_password              = var.smtp_password,
-      email_from_field           = var.email_from_field
       db = { ca_base64 = base64encode(google_sql_ssl_cert.sql_db.server_ca_cert),
         cert_base64 = base64encode(google_sql_ssl_cert.sql_db.cert)
       },

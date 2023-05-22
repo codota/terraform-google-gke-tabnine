@@ -169,43 +169,6 @@ variable "db_master_zone" {
   default     = null
 }
 
-variable "default_email" {
-  description = "The first user to be put in the database. Password will be automatically generated"
-  type        = string
-}
-
-variable "drop_all_analytics" {
-  description = "Should the analytics service forward telemetry to Tabnine servers"
-  type        = bool
-  default     = false
-}
-
-variable "smtp_host" {
-  description = "SMTP server host address"
-  type        = string
-}
-
-variable "smtp_port" {
-  description = "SMTP server port"
-  type        = number
-  default     = 587
-}
-
-variable "smtp_user" {
-  description = "SMTP server user"
-  type        = string
-}
-
-variable "smtp_password" {
-  description = "SMTP server password"
-  type        = string
-}
-
-variable "email_from_field" {
-  description = "A valid sender for the SMTP server to be set in the 'From' field of outgoing emails"
-  type        = string
-}
-
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
