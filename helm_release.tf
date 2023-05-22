@@ -1,6 +1,6 @@
 resource "helm_release" "tabnine_cloud" {
   name       = "tabnine-cloud"
-  repository = "tabnine"
+  repository = "${path.module}/../helm-charts/charts"
   chart      = "tabnine-cloud"
   wait       = false
   version    = "3.15.0"

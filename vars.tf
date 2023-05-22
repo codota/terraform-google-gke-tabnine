@@ -169,6 +169,17 @@ variable "db_master_zone" {
   default     = null
 }
 
+variable "smtp_host" {
+  description = "SMTP server host address"
+  type        = string
+}
+
+variable "smtp_port" {
+  description = "SMTP server port"
+  type        = number
+  default     = 587
+}
+
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
