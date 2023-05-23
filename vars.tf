@@ -169,15 +169,15 @@ variable "db_master_zone" {
   default     = null
 }
 
-variable "default_email" {
-  description = "The first user to be put in the database. Password will be automatically generated"
+variable "smtp_host" {
+  description = "SMTP server host address"
   type        = string
 }
 
-variable "drop_all_analytics" {
-  description = "Should the analytics service forward telemetry to Tabnine servers"
-  type        = bool
-  default     = false
+variable "smtp_port" {
+  description = "SMTP server port"
+  type        = number
+  default     = 587
 }
 
 locals {

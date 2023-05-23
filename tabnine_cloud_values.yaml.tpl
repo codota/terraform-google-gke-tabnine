@@ -72,7 +72,6 @@ server:
 
 
 analytics:
-  dropAll: ${drop_all_analytics}
   service:
     type: NodePort
     port: 8082
@@ -88,7 +87,6 @@ app:
     port: 8084
 
 auth:
-  defaultEmail: ${default_email}
   service:
     type: NodePort
     port: 8085
