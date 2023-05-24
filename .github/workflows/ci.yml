@@ -13,13 +13,7 @@ jobs:
   ci:
     name: 'CI'
     runs-on: ubuntu-latest
-    environment: production
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
