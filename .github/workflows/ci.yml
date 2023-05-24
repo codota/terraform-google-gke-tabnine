@@ -25,7 +25,7 @@ jobs:
       run: terraform fmt -check -recursive
 
     - name: Validate example
-      run:
+      run: |
         cd examples/single-gpu
         terraform init 
         terraform init -backend=false -lockfile=readonly
