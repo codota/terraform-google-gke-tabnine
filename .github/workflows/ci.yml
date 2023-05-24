@@ -27,7 +27,7 @@ jobs:
     - name: Validate example
       run: |
         cd examples/single-gpu
-        terraform init -backend=false -lockfile=readonly
+        terraform init -backend=false
         terraform validate
       
 
