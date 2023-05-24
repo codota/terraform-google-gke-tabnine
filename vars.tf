@@ -100,7 +100,7 @@ variable "service_account_email" {
 }
 
 variable "firewall_rules" {
-  description = "Create firewall rules"
+  description = "Egress firewall rules configuration"
   type = object({
     deny_all = bool
     allow = list(object({
