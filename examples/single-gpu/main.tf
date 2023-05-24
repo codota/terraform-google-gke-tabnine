@@ -11,6 +11,7 @@ module "gke_tabnine" {
   create_tabnine_storage_bucket_im_bindings = false
   organization_id                           = "<ORGANIZATION-ID>"
   organization_secret                       = "<ORGANIZATION-SECRET>"
+  organization_name                         = "<ORGANIZATION-NAME>"
   tabnine_cloud_values                      = [file("${path.module}/tabnine_cloud_values.yaml")]
 
   firewall_rules = {
