@@ -99,10 +99,23 @@ variable "service_account_email" {
   default     = ""
 }
 
-variable "create_deny_all_firewall_rules" {
-  description = "Should create deny all firewall rules"
-  type        = bool
-  default     = true
+variable "firewall_rules" {
+  description = "Create firewall rules"
+  type = object({
+    deny_all = bool
+    allow = list(object({
+      name   = string
+      ranges = list(string)
+      ports = list(object({
+        number   = list(string)
+        protocol = string
+      }))
+    }))
+  })
+  default = {
+    deny_all = true
+    allow    = []
+  }
 }
 
 
@@ -139,12 +152,6 @@ variable "use_nvidia_mig" {
   default     = false
 }
 
-variable "enforce_jwt" {
-  description = "Should enforce JWT for user authentication"
-  type        = bool
-  default     = true
-}
-
 variable "rudder_write_key" {
   description = "Pass analytics pipeline key"
   type        = string
@@ -169,16 +176,6 @@ variable "db_master_zone" {
   default     = null
 }
 
-variable "smtp_host" {
-  description = "SMTP server host address"
-  type        = string
-}
-
-variable "smtp_port" {
-  description = "SMTP server port"
-  type        = number
-  default     = 587
-}
 
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]

@@ -26,7 +26,7 @@ frontend:
   service:
     type: NodePort
     port: 8080
-  enforceJWT: ${enforce_jwt}
+  enforceJWT: true
   networkPolicy:
     enabled: true
     ingress:
