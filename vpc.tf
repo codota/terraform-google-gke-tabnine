@@ -37,7 +37,16 @@ module "vpc" {
     (local.subnetwork_proxy_only) = []
   }
 
-  firewall_rules = [for _, firewall_rule in [
+  firewall_rules = concat([for _, allow_rule in var.firewall_rules.allow : {
+    name      = format("%s-%s", var.prefix, allow_rule.name)
+    direction = "EGRESS"
+    ranges    = allow_rule.ranges
+    priority  = 1000
+    allow = [for _, port in allow_rule.ports : {
+      protocol = port.protocol
+      ports    = port.number
+    }]
+    }], [for _, firewall_rule in [
     {
       name      = format("%s-allow-http-tabnine", var.prefix)
       direction = "EGRESS"
@@ -104,17 +113,6 @@ module "vpc" {
       ]
     },
     {
-      name      = format("%s-allow-smtp", var.prefix)
-      direction = "EGRESS"
-      ranges    = data.dns_a_record_set.smtp_ip.addrs
-      priority  = 1000
-      allow = [{
-        protocol = "tcp"
-        ports    = [var.smtp_port]
-        }
-      ]
-    },
-    {
       name      = format("%s-deny-all", var.prefix)
       direction = "EGRESS"
       ranges    = ["0.0.0.0/0"]
@@ -124,7 +122,7 @@ module "vpc" {
         ports    = []
       }]
     }
-  ] : firewall_rule if var.create_deny_all_firewall_rules == true]
+  ] : firewall_rule if var.firewall_rules.deny_all == true])
 
 }
 
@@ -132,6 +130,3 @@ data "google_compute_network" "vpc" {
   name = local.network_name
 }
 
-data "dns_a_record_set" "smtp_ip" {
-  host = var.smtp_host
-}
