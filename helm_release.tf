@@ -29,7 +29,6 @@ resource "helm_release" "tabnine_cloud" {
       }
       redis = { url = "rediss://:${module.memstore.auth_string}@${module.memstore.host}:${module.memstore.port}" }
     }),
-    }),
     ],
     var.tabnine_cloud_values
   )
