@@ -37,7 +37,16 @@ module "vpc" {
     (local.subnetwork_proxy_only) = []
   }
 
-  firewall_rules = [for _, firewall_rule in [
+  firewall_rules = concat([for _, allow_rule in var.firewall_rules.allow : {
+    name      = format("%s-%s", var.prefix, allow_rule.name)
+    direction = "EGRESS"
+    ranges    = allow_rule.ranges
+    priority  = 1000
+    allow = [for _, port in allow_rule.ports : {
+      protocol = port.protocol
+      ports    = port.number
+    }]
+    }], [for _, firewall_rule in [
     {
       name      = format("%s-allow-http-tabnine", var.prefix)
       direction = "EGRESS"
@@ -95,7 +104,7 @@ module "vpc" {
     {
       name      = format("%s-allow-vpc", var.prefix)
       direction = "EGRESS"
-      ranges    = ["10.10.20.0/24", "10.10.30.0/24", "192.168.0.0/18", "192.168.64.0/18"]
+      ranges    = ["10.10.20.0/24", "10.10.30.0/24", "10.28.0.0/23", "192.168.0.0/18", "192.168.64.0/18"]
       priority  = 1000
       allow = [{
         protocol = "all"
@@ -113,7 +122,7 @@ module "vpc" {
         ports    = []
       }]
     }
-  ] : firewall_rule if var.create_deny_all_firewall_rules == true]
+  ] : firewall_rule if var.firewall_rules.deny_all == true])
 
 }
 
@@ -124,3 +133,4 @@ data "google_compute_network" "vpc" {
     module.vpc
   ]
 }
+

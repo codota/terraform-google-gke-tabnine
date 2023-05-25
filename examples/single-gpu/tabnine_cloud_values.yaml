@@ -1,0 +1,11 @@
+auth:
+  defaultEmail: "tabnine-admin@customer.com"
+  env:
+    - name: SMTP_HOST
+      value: smtp.customer.com
+    - name: SMTP_USER
+      value: user
+    - name: SMTP_PASS
+      value: password
+    - name: EMAIL_FROM_FIELD
+      value: Tabnine Enterprise <tabnine-support@customer.com>

@@ -54,14 +54,13 @@ module "gke_tabnine" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_create_deny_all_firewall_rules"></a> [create\_deny\_all\_firewall\_rules](#input\_create\_deny\_all\_firewall\_rules) | Should create deny all firewall rules | `bool` | `true` | no |
 | <a name="input_create_managed_cert"></a> [create\_managed\_cert](#input\_create\_managed\_cert) | Create google managed certificate | `bool` | `false` | no |
 | <a name="input_create_service_account"></a> [create\_service\_account](#input\_create\_service\_account) | Should create a service\_account, or used the one provided by `service_account_email` | `bool` | `false` | no |
 | <a name="input_create_tabnine_storage_bucket_im_bindings"></a> [create\_tabnine\_storage\_bucket\_im\_bindings](#input\_create\_tabnine\_storage\_bucket\_im\_bindings) | Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team | `bool` | `false` | no |
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Should create a VPC, or used the one provided by `network_name` | `bool` | `false` | no |
 | <a name="input_db_master_zone"></a> [db\_master\_zone](#input\_db\_master\_zone) | Database master zone. If not set, will default to first zone | `string` | `null` | no |
 | <a name="input_default_email"></a> [default\_email](#input\_default\_email) | The first user to be put in the database. Password will be automatically generated | `string` | n/a | yes |
-| <a name="input_enforce_jwt"></a> [enforce\_jwt](#input\_enforce\_jwt) | Should enforce JWT for user authentication | `bool` | `true` | no |
+| <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | Egress firewall rules configuration | <pre>object({<br>    deny_all = bool<br>    allow = list(object({<br>      name   = string<br>      ranges = list(string)<br>      ports = list(object({<br>        number   = list(string)<br>        protocol = string<br>      }))<br>    }))<br>  })</pre> | <pre>{<br>  "allow": [],<br>  "deny_all": true<br>}</pre> | no |
 | <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string<br>    internal = bool<br>  })</pre> | `null` | no |
 | <a name="input_ip_range_pods"></a> [ip\_range\_pods](#input\_ip\_range\_pods) | Pods ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
 | <a name="input_ip_range_services"></a> [ip\_range\_services](#input\_ip\_range\_services) | Services ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |

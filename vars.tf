@@ -104,10 +104,23 @@ variable "service_account_email" {
   default     = ""
 }
 
-variable "create_deny_all_firewall_rules" {
-  description = "Should create deny all firewall rules"
-  type        = bool
-  default     = true
+variable "firewall_rules" {
+  description = "Egress firewall rules configuration"
+  type = object({
+    deny_all = bool
+    allow = list(object({
+      name   = string
+      ranges = list(string)
+      ports = list(object({
+        number   = list(string)
+        protocol = string
+      }))
+    }))
+  })
+  default = {
+    deny_all = true
+    allow    = []
+  }
 }
 
 
@@ -142,12 +155,6 @@ variable "use_nvidia_mig" {
   description = "Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning)"
   type        = bool
   default     = false
-}
-
-variable "enforce_jwt" {
-  description = "Should enforce JWT for user authentication"
-  type        = bool
-  default     = true
 }
 
 variable "rudder_write_key" {
