@@ -12,6 +12,9 @@ module "gke_tabnine" {
   organization_id                           = "<ORGANIZATION-ID>"
   organization_secret                       = "<ORGANIZATION-SECRET>"
   use_nvidia_mig                            = true
+  default_email                             = "<DEFAULT-EMAIL>"
+  license_key                               = "<LICENSE-KEY>"
+  organization_name                         = "<ORGANIZATION-NAME>"
 }
 
 terraform {

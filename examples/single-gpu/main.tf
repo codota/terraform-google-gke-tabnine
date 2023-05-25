@@ -27,6 +27,8 @@ module "gke_tabnine" {
     }]
   }
 
+  default_email = "<DEFAULT-EMAIL>"
+  license_key   = "<LICENSE-KEY>"
 }
 
 terraform {
