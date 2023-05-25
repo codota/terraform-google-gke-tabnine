@@ -8,6 +8,10 @@ module "private_service_connect" {
   dns_code                     = format("%s-dns", var.prefix)
   private_service_connect_name = format("%s-ps-connect", var.prefix)
   forwarding_rule_name         = "a${random_string.forwarding_rule_name.result}"
+
+  depends_on = [
+    module.vpc
+  ]
 }
 
 resource "random_string" "forwarding_rule_name" {

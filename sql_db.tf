@@ -51,7 +51,8 @@ module "sql_db" {
   #   },
   # ]
   depends_on = [
-    module.private_service_access.peering_completed
+    module.private_service_access.peering_completed,
+    module.vpc
   ]
 }
 
@@ -59,10 +60,18 @@ module "private_service_access" {
   source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
   project_id  = var.project_id
   vpc_network = local.network_name
+
+  depends_on = [
+    module.vpc
+  ]
 }
 
 resource "google_sql_ssl_cert" "sql_db" {
   common_name = "tabnine-cloud"
   instance    = module.sql_db.instance_name
+
+  depends_on = [
+    module.sql_db
+  ]
 }
 
