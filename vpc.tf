@@ -128,5 +128,9 @@ module "vpc" {
 
 data "google_compute_network" "vpc" {
   name = local.network_name
+
+  depends_on = [
+    module.vpc
+  ]
 }
 

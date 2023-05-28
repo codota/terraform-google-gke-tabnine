@@ -15,4 +15,8 @@ module "memstore" {
     persistence_mode    = "RDB"
     rdb_snapshot_period = "ONE_HOUR"
   }
+
+  depends_on = [
+    module.private_service_access.peering_completed
+  ]
 }
