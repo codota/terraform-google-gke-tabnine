@@ -55,12 +55,6 @@ module "sql_db" {
   ]
 }
 
-module "private_service_access" {
-  source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
-  project_id  = var.project_id
-  vpc_network = local.network_name
-}
-
 resource "google_sql_ssl_cert" "sql_db" {
   common_name = "tabnine-cloud"
   instance    = module.sql_db.instance_name
