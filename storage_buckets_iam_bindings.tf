@@ -9,10 +9,10 @@ module "storage_buckets_iam_bindings" {
 
   bindings = {
     "roles/storage.legacyBucketReader" = [
-      format("serviceAccount:%s", local.service_account_email)
+      format("serviceAccount:%s", module.service_accounts.service_account.email)
     ],
     "roles/storage.objectViewer" = [
-      format("serviceAccount:%s", local.service_account_email)
+      format("serviceAccount:%s", module.service_accounts.service_account.email)
     ],
   }
 }

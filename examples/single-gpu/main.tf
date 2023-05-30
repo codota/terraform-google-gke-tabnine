@@ -4,8 +4,6 @@ module "gke_tabnine" {
   region                                    = "<REGION>"
   zones                                     = ["<ZONE>"]
   prefix                                    = "<A-PREFIX>"
-  create_vpc                                = true
-  create_service_account                    = true
   ingress                                   = { host = "tabnine.customer.com", internal = false }
   pre_shared_cert_name                      = "<PRE-SHARED-CERT-NAME>"
   create_tabnine_storage_bucket_im_bindings = false

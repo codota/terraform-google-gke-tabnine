@@ -20,7 +20,7 @@ module "sql_db" {
   ip_configuration = {
     ipv4_enabled       = true
     require_ssl        = true
-    private_network    = local.network_self_link
+    private_network    = module.vpc.network_self_link
     allocated_ip_range = module.private_service_access.google_compute_global_address_name
     authorized_networks = [
     ]

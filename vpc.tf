@@ -1,14 +1,12 @@
 module "vpc" {
-  count   = var.create_vpc ? 1 : 0
   source  = "terraform-google-modules/network/google"
   version = "7.0.0"
 
   project_id   = var.project_id
-  network_name = local.network_name
-
+  network_name = format("%s-gke", var.prefix)
 
   subnets = [{
-    subnet_name           = local.subnetwork
+    subnet_name           = format("%s-gke", var.prefix)
     subnet_ip             = "10.10.20.0/24"
     subnet_flow_logs      = "true"
     subnet_region         = var.region
@@ -16,7 +14,7 @@ module "vpc" {
     },
     {
       // TODO: dynamically only on internal ingress
-      subnet_name   = local.subnetwork_proxy_only
+      subnet_name   = format("%s-gke-proxy-only", var.prefix)
       subnet_ip     = "10.10.30.0/24"
       subnet_region = var.region
       purpose       = "INTERNAL_HTTPS_LOAD_BALANCER"
@@ -24,17 +22,17 @@ module "vpc" {
     },
   ]
   secondary_ranges = {
-    (local.subnetwork) = [
+    (format("%s-gke", var.prefix)) = [
       {
-        range_name    = local.ip_range_pods
+        range_name    = format("%s-gke-pods", var.prefix)
         ip_cidr_range = "192.168.0.0/18"
       },
       {
-        range_name    = local.ip_range_services
+        range_name    = format("%s-gke-services", var.prefix)
         ip_cidr_range = "192.168.64.0/18"
       },
     ],
-    (local.subnetwork_proxy_only) = []
+    (format("%s-gke-proxy-only", var.prefix)) = []
   }
 
   firewall_rules = concat([for _, allow_rule in var.firewall_rules.allow : {
@@ -125,9 +123,3 @@ module "vpc" {
   ] : firewall_rule if var.firewall_rules.deny_all == true])
 
 }
-
-data "google_compute_network" "vpc" {
-  count = var.create_vpc ? 0 : 1
-  name  = local.network_name
-}
-

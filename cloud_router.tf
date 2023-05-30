@@ -3,7 +3,7 @@ module "cloud_router" {
   version = "~> 0.4"
   project = var.project_id # Replace this with your project ID in quotes
   name    = format("%s-router", var.prefix)
-  network = local.network_name
+  network = module.vpc.network_name
   region  = var.region
 
   nats = [{
