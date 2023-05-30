@@ -12,8 +12,4 @@ module "address_fe" {
   ]
 
   global = !var.ingress.internal
-
-  depends_on = [
-    module.vpc
-  ]
 }

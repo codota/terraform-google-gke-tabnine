@@ -2,7 +2,7 @@ module "private_service_connect" {
   source = "terraform-google-modules/network/google//modules/private-service-connect"
 
   project_id                   = var.project_id
-  network_self_link            = data.google_compute_network.vpc.self_link
+  network_self_link            = local.network_self_link
   private_service_connect_ip   = local.private_service_connect_ip
   forwarding_rule_target       = "all-apis"
   dns_code                     = format("%s-dns", var.prefix)

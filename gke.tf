@@ -84,7 +84,6 @@ module "gke" {
   }
 
   depends_on = [
-    module.vpc,
     module.private_service_connect
   ]
 }

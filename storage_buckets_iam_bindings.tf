@@ -1,7 +1,7 @@
 module "storage_buckets_iam_bindings" {
   count   = var.create_tabnine_storage_bucket_im_bindings ? 1 : 0
   source  = "terraform-google-modules/iam/google//modules/storage_buckets_iam"
-  version = "~> 6.4"
+  version = "~> 7.6"
 
   storage_buckets = ["tabnine-self-hosted-models", "artifacts.tabnine-self-hosted.appspot.com"]
 

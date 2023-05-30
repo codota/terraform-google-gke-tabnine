@@ -15,12 +15,12 @@ module "sql_db" {
   maintenance_window_hour         = 12
   maintenance_window_update_track = "stable"
 
-  deletion_protection = true
+  deletion_protection = false
 
   ip_configuration = {
     ipv4_enabled       = true
     require_ssl        = true
-    private_network    = data.google_compute_network.vpc.self_link
+    private_network    = local.network_self_link
     allocated_ip_range = module.private_service_access.google_compute_global_address_name
     authorized_networks = [
     ]

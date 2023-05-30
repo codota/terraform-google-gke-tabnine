@@ -8,6 +8,7 @@ module "kms" {
   keys               = ["gke"]
   set_encrypters_for = ["gke"]
   set_decrypters_for = ["gke"]
+  prevent_destroy    = false
   decrypters = [
     format("serviceAccount:service-%s@container-engine-robot.iam.gserviceaccount.com", data.google_project.project.number)
   ]

@@ -176,11 +176,19 @@ variable "db_master_zone" {
   default     = null
 }
 
+variable "exclude_kubernetes_manifest" {
+  description = "Exclude kubernetes manifest installations. This should be off during initial installation"
+  type        = bool
+  default     = false
+}
+
 
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
   subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
+  network_self_link          = var.create_vpc ? module.vpc[0].network_self_link : data.google_compute_network.vpc[0].self_link
+  network_id                 = var.create_vpc ? module.vpc[0].network_id : data.google_compute_network.vpc[0].id
   subnetwork_proxy_only      = var.create_vpc ? format("%s-gke-proxy-only", var.prefix) : var.subnetwork_proxy_only
   ip_range_pods              = var.create_vpc ? format("%s-gke-pods", var.prefix) : var.ip_range_pods
   ip_range_services          = var.create_vpc ? format("%s-gke-services", var.prefix) : var.ip_range_services

@@ -4,8 +4,4 @@ module "private_service_access" {
   vpc_network = local.network_name
 
   address = "10.18.0.0"
-
-  depends_on = [
-    module.vpc
-  ]
 }

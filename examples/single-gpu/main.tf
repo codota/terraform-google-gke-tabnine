@@ -13,6 +13,7 @@ module "gke_tabnine" {
   organization_secret                       = "<ORGANIZATION-SECRET>"
   organization_name                         = "<ORGANIZATION-NAME>"
   tabnine_cloud_values                      = [file("${path.module}/tabnine_cloud_values.yaml")]
+  exclude_kubernetes_manifest               = var.exclude_kubernetes_manifest
 
   firewall_rules = {
     deny_all = true
@@ -28,6 +29,13 @@ module "gke_tabnine" {
   }
 
 }
+
+variable "exclude_kubernetes_manifest" {
+  description = "Exclude kubernetes manifest installations. This should be off during initial installation"
+  type        = bool
+  default     = false
+}
+
 
 terraform {
   backend "gcs" {

@@ -1,7 +1,7 @@
 module "vpc" {
   count   = var.create_vpc ? 1 : 0
   source  = "terraform-google-modules/network/google"
-  version = "~> 5.2"
+  version = "7.0.0"
 
   project_id   = var.project_id
   network_name = local.network_name
@@ -127,10 +127,7 @@ module "vpc" {
 }
 
 data "google_compute_network" "vpc" {
-  name = local.network_name
-
-  depends_on = [
-    module.vpc
-  ]
+  count = var.create_vpc ? 0 : 1
+  name  = local.network_name
 }
 
