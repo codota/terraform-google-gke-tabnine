@@ -96,3 +96,4 @@ module "gke_tabnine" {
   ` to create the service account first
 -  `terraform apply -var exclude_kubernetes_manifest=true` to exclude kubernetes_manifest while kuberentes is not ready
 - `terraform apply` to apply everything
+- `terraform output -json` to get ingress ip & default password
