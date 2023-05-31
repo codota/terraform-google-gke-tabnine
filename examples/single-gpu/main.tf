@@ -28,6 +28,15 @@ module "gke_tabnine" {
 
 }
 
+output "ingress_ip" {
+  value = module.gke_tabnine.ingress_ip
+}
+
+output "default_password" {
+  value     = module.gke_tabnine.default_password
+  sensitive = true
+}
+
 variable "exclude_kubernetes_manifest" {
   description = "Exclude kubernetes manifest installations. This should be off during initial installation"
   type        = bool
