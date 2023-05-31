@@ -40,18 +40,6 @@ variable "zones" {
   type        = list(string)
 }
 
-variable "create_vpc" {
-  description = "Should create a VPC, or used the one provided by `network_name`"
-  type        = bool
-  default     = false
-}
-
-variable "create_service_account" {
-  description = "Should create a service_account, or used the one provided by `service_account_email`"
-  type        = bool
-  default     = false
-}
-
 variable "ingress" {
   description = "Configuration of inference engine"
 
@@ -61,42 +49,6 @@ variable "ingress" {
   })
 
   default = null
-}
-
-variable "network_name" {
-  description = "VPC name, used when `create_vpc` is set to `false` "
-  type        = string
-  default     = ""
-}
-
-variable "subnetwork" {
-  description = "VPC subnetwork name, used when `create_vpc` is set to `false` "
-  type        = string
-  default     = ""
-}
-
-variable "subnetwork_proxy_only" {
-  description = "VPC subnetwork proxy only name, used when `create_vpc` is set to `false` "
-  type        = string
-  default     = ""
-}
-
-variable "ip_range_pods" {
-  description = "Pods ip range, used when `create_vpc` is set to `false` "
-  type        = string
-  default     = ""
-}
-
-variable "ip_range_services" {
-  description = "Services ip range, used when `create_vpc` is set to `false` "
-  type        = string
-  default     = ""
-}
-
-variable "service_account_email" {
-  description = "Service account email, used when `create_service_account` is set to `false` "
-  type        = string
-  default     = ""
 }
 
 variable "firewall_rules" {
@@ -176,16 +128,16 @@ variable "db_master_zone" {
   default     = null
 }
 
+variable "exclude_kubernetes_manifest" {
+  description = "Exclude kubernetes manifest installations. This should be off during initial installation"
+  type        = bool
+  default     = false
+}
+
 
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
-  network_name               = var.create_vpc ? format("%s-gke", var.prefix) : var.network_name
-  subnetwork                 = var.create_vpc ? format("%s-gke", var.prefix) : var.subnetwork
-  subnetwork_proxy_only      = var.create_vpc ? format("%s-gke-proxy-only", var.prefix) : var.subnetwork_proxy_only
-  ip_range_pods              = var.create_vpc ? format("%s-gke-pods", var.prefix) : var.ip_range_pods
-  ip_range_services          = var.create_vpc ? format("%s-gke-services", var.prefix) : var.ip_range_services
   private_service_connect_ip = "10.10.40.1"
-  service_account_email      = var.create_service_account ? module.service_accounts[0].service_account.email : var.service_account_email
   create_ingress             = var.ingress != null
   pre_shared_cert_name       = var.ingress != null ? (var.upload_pre_shared_cert != null ? google_compute_ssl_certificate.pre_shared_cert[0].name : var.pre_shared_cert_name) : null
   tabnine_static_ip          = "34.123.33.186"

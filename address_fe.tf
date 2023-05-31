@@ -3,7 +3,7 @@ module "address_fe" {
   version      = "~> 3.1"
   project_id   = var.project_id
   region       = var.region
-  subnetwork   = var.ingress.internal ? local.subnetwork : null
+  subnetwork   = var.ingress.internal ? module.vpc.subnets[0].subnet_name : null
   purpose      = "GCE_ENDPOINT"
   address_type = var.ingress.internal ? "INTERNAL" : "EXTERNAL"
 
@@ -12,8 +12,4 @@ module "address_fe" {
   ]
 
   global = !var.ingress.internal
-
-  depends_on = [
-    module.vpc
-  ]
 }

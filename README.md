@@ -94,4 +94,5 @@ module "gke_tabnine" {
 - `terraform init` to get the plugins
 - `terraform apply -target module.gke_tabnine.module.service_accounts`
   ` to create the service account first
+-  `terraform apply -var exclude_kubernetes_manifest=true` to exclude kubernetes_manifest while kuberentes is not ready
 - `terraform apply` to apply everything

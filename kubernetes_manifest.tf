@@ -1,4 +1,5 @@
 resource "kubernetes_manifest" "frontend_config_tabnine_cloud" {
+  count = var.exclude_kubernetes_manifest ? 0 : 1
   manifest = {
 
     apiVersion = "networking.gke.io/v1beta1"

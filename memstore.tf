@@ -9,7 +9,7 @@ module "memstore" {
   auth_enabled            = true
   transit_encryption_mode = "SERVER_AUTHENTICATION"
   connect_mode            = "PRIVATE_SERVICE_ACCESS"
-  authorized_network      = data.google_compute_network.vpc.id
+  authorized_network      = module.vpc.network_id
   memory_size_gb          = 2
   persistence_config = {
     persistence_mode    = "RDB"

@@ -4,8 +4,6 @@ module "gke_tabnine" {
   region                                    = "<REGION>"
   zones                                     = ["<ZONE>"]
   prefix                                    = "<A-PREFIX>"
-  create_vpc                                = true
-  create_service_account                    = true
   ingress                                   = { host = "tabnine.customer.com", internal = false }
   pre_shared_cert_name                      = "<PRE-SHARED-CERT-NAME>"
   create_tabnine_storage_bucket_im_bindings = false
@@ -13,6 +11,7 @@ module "gke_tabnine" {
   organization_secret                       = "<ORGANIZATION-SECRET>"
   organization_name                         = "<ORGANIZATION-NAME>"
   tabnine_cloud_values                      = [file("${path.module}/tabnine_cloud_values.yaml")]
+  exclude_kubernetes_manifest               = var.exclude_kubernetes_manifest
 
   firewall_rules = {
     deny_all = true
@@ -28,6 +27,13 @@ module "gke_tabnine" {
   }
 
 }
+
+variable "exclude_kubernetes_manifest" {
+  description = "Exclude kubernetes manifest installations. This should be off during initial installation"
+  type        = bool
+  default     = false
+}
+
 
 terraform {
   backend "gcs" {
