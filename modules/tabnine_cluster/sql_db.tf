@@ -42,14 +42,6 @@ module "sql_db" {
 
   user_name = "tabnine"
 
-  # additional_users = [
-  #   {
-  #     name            = "tftest3"
-  #     password        = "abcdefg"
-  #     host            = "localhost"
-  #     random_password = false
-  #   },
-  # ]
   depends_on = [
     module.private_service_access.peering_completed
   ]

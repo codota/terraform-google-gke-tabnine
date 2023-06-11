@@ -25,6 +25,12 @@ module "gke" {
   enable_intranode_visibility = true # on existing cluster, this need to be commented first
   disable_default_snat        = true
   database_encryption         = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
+  master_authorized_networks = [
+    {
+      cidr_block   = "0.0.0.0/0"
+      display_name = "all"
+    }
+  ]
 
   node_pools = [
     {

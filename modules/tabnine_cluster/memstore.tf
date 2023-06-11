@@ -1,10 +1,7 @@
 module "memstore" {
-  source = "terraform-google-modules/memorystore/google"
-
-  name = format("%s-redis", var.prefix)
-
+  source                  = "terraform-google-modules/memorystore/google"
   project                 = var.project_id
-  region                  = var.region
+  name                    = format("%s-redis", var.prefix)
   enable_apis             = true
   auth_enabled            = true
   transit_encryption_mode = "SERVER_AUTHENTICATION"

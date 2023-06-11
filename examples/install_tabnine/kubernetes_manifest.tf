@@ -16,9 +16,5 @@ resource "kubernetes_manifest" "frontend_config_tabnine_cloud" {
       }
     }
   }
-
-  depends_on = [
-    module.gke
-  ]
 }
 
