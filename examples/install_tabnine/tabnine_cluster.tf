@@ -1,3 +1,4 @@
+// Tabnine cluster module
 module "tabnine_cluster" {
   source                                    = "../../modules/tabnine_cluster/"
   project_id                                = var.project_id
@@ -19,5 +20,4 @@ module "tabnine_cluster" {
         ]
     }]
   }
-
 }

@@ -1,3 +1,4 @@
+// Tabnine's helm chart. This is the main resource.
 resource "helm_release" "tabnine_cloud" {
   name       = "tabnine-cloud"
   repository = "tabnine"
@@ -34,6 +35,7 @@ resource "helm_release" "tabnine_cloud" {
   ]
 }
 
+// Prometheus helm chart. This is needed if telemetry enabled.
 resource "helm_release" "prometheus" {
   name             = "prometheus"
   repository       = "https://prometheus-community.github.io/helm-charts"
