@@ -20,7 +20,7 @@ Prometheus helm chart. This is needed if telemetry enabled.
 * `resource.helm_release.tabnine_cloud` ([helm_release.tf#L2](helm_release.tf#L2))\
 Tabnine's helm chart. This is the main resource.
 * `resource.kubernetes_manifest.frontend_config_tabnine_cloud` ([kubernetes_manifest.tf#L4](kubernetes_manifest.tf#L4))\
-Frontend config to attach to Tabnine ingress. It binds SSL policy and forces HTTPS. kubernetes_manifest requires having a cluster in plan time. This is why it needs to be excluded in initial apply
+Frontend config to attach to Tabnine ingress. It binds SSL policy and forces HTTPS. `kubernetes_manifest` requires having a cluster in plan time. This is why it needs to be excluded in initial apply.
 * `data source.google_client_config.default` ([providers.tf#L1](providers.tf#L1))\
 
 * `data source.google_project.project` ([providers.tf#L3](providers.tf#L3))\
