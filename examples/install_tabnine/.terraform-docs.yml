@@ -2,14 +2,14 @@ formatter: "markdown"
 
 sections:
   hide: []
-  show: 
+  show:
     - inputs
     - outputs
 
 content: |-
   ## Resource
   {{ range .Module.Resources }}
-  * `{{ .GetMode }}.{{ .Spec }}` ({{ .Position.Filename }}#{{ .Position.Line }})\
+  * `{{ .GetMode }}.{{ .Spec }}` [{{ .Position.Filename }}#L{{ .Position.Line }}]({{ .Position.Filename }}#L{{ .Position.Line }})  
   {{ .Description }}
   {{- end }}
 
