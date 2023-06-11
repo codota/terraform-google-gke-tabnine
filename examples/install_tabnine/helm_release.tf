@@ -3,11 +3,12 @@ resource "helm_release" "tabnine_cloud" {
   repository = "tabnine"
   chart      = "tabnine-cloud"
   wait       = false
-  version    = "3.16.0"
+  version    = "3.17.0"
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tftpl", {
-      global_static_ip     = google_compute_global_address.ingress.address
+      default_email        = var.default_email
+      global_static_ip     = google_compute_global_address.ingress.name
       ssl_policy_name      = google_compute_ssl_policy.min_tls_v_1_2.name,
       organization_id      = var.organization_id
       organization_name    = var.organization_name
@@ -27,5 +28,27 @@ resource "helm_release" "tabnine_cloud" {
     }),
     ]
   )
+
+  depends_on = [
+    helm_release.prometheus
+  ]
 }
 
+resource "helm_release" "prometheus" {
+  name             = "prometheus"
+  repository       = "https://prometheus-community.github.io/helm-charts"
+  chart            = "kube-prometheus-stack"
+  namespace        = "prometheus"
+  wait             = false
+  version          = "44.3.0"
+  create_namespace = true
+  cleanup_on_fail  = true
+
+  values = [
+    templatefile("${path.module}/prometheus_values.yaml.tftpl", {
+      organization_id     = var.organization_id,
+      organization_secret = var.organization_secret,
+      organization_name   = var.organization_name
+    })
+  ]
+}

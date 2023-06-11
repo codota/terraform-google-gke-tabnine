@@ -1,7 +1,7 @@
 module "private_service_access" {
   source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
   vpc_network = module.vpc.network_name
-  project_id = var.project_id
+  project_id  = var.project_id
 
   address = "10.18.0.0"
 

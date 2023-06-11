@@ -35,6 +35,10 @@ variable "zones" {
   type        = list(string)
 }
 
+variable "default_email" {
+  type = string
+}
+
 variable "exclude_kubernetes_manifest" {
   description = "Exclude kubernetes manifest installations. This should be off during initial installation"
   type        = bool

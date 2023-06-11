@@ -8,7 +8,7 @@ module "tabnine_cluster" {
   exclude_kubernetes_manifest               = var.exclude_kubernetes_manifest
 
   firewall_rules = {
-    deny_all = true
+    deny_all = false
 
     allow = [
       {

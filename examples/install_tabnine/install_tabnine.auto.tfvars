@@ -12,6 +12,5 @@ region = "us-central1"
 
 zones = ["us-central1-a"]
 
-tfstate_gcs_bucket = "tabnine-tf-state"
+default_email = "assaf@tabnine.com"
 
-tfstate_gcs_prefix = "assaf-self-hosted-0"
