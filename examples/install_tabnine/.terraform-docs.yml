@@ -15,7 +15,7 @@ content: |-
 
   ## Modules
   {{ range .Module.ModuleCalls }}
-  - ([{{ .Position.Filename }}#{{ .Position.Line }}]({{ .Position.Filename }}#{{ .Position.Line }})) {{ .Description }}
+  - `module.{{ .Name }}` ([{{ .Position.Filename }}#{{ .Position.Line }}]({{ .Position.Filename }}#{{ .Position.Line }})) {{ .Description }}
   {{- end }}
 
 output:
