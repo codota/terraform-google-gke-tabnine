@@ -7,7 +7,7 @@ sections:
     - outputs
 
 content: |-
-  ## Resource
+  ## Resources
   {{ range .Module.Resources }}
   * `{{ .GetMode }}.{{ .Spec }}` ([{{ .Position.Filename }}#L{{ .Position.Line }}]({{ .Position.Filename }}#L{{ .Position.Line }}))\  
   {{ .Description }}
@@ -15,7 +15,7 @@ content: |-
 
   ## Modules
   {{ range .Module.ModuleCalls }}
-  - ({{ .Position.Filename }}#{{ .Position.Line }}) {{ .Description }}
+  - [({{ .Position.Filename }}#{{ .Position.Line }})]({{ .Position.Filename }}#{{ .Position.Line }}) {{ .Description }}
   {{- end }}
 
 output:

@@ -7,7 +7,7 @@ This is an example of managing Tabnine infra, as well as application in Terrafor
 `tabnine init -module=terreaform-google-gke-tabnine/examples/install_tabnine`
 
 <!-- BEGIN_TF_DOCS -->
-## Resource
+## Resources
 
 * `resource.google_compute_global_address.ingress` ([google_compute_global_address.tf#L2](google_compute_global_address.tf#L2))\
 Global static IP to attach to Tabnine ingress
@@ -28,5 +28,5 @@ Frontend config to attach to Tabnine ingress. It binds SSL policy and forces HTT
 
 ## Modules
 
-- (tabnine_cluster.tf#2) Tabnine cluster module
+- [(tabnine_cluster.tf#2)](tabnine_cluster.tf#2) Tabnine cluster module
 <!-- END_TF_DOCS -->

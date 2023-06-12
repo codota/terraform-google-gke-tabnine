@@ -52,41 +52,11 @@ module "gke_tabnine" {
 <!-- BEGIN_TF_DOCS -->
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_create_managed_cert"></a> [create\_managed\_cert](#input\_create\_managed\_cert) | Create google managed certificate | `bool` | `false` | no |
-| <a name="input_create_service_account"></a> [create\_service\_account](#input\_create\_service\_account) | Should create a service\_account, or used the one provided by `service_account_email` | `bool` | `false` | no |
-| <a name="input_create_tabnine_storage_bucket_im_bindings"></a> [create\_tabnine\_storage\_bucket\_im\_bindings](#input\_create\_tabnine\_storage\_bucket\_im\_bindings) | Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team | `bool` | `false` | no |
-| <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | Should create a VPC, or used the one provided by `network_name` | `bool` | `false` | no |
-| <a name="input_db_master_zone"></a> [db\_master\_zone](#input\_db\_master\_zone) | Database master zone. If not set, will default to first zone | `string` | `null` | no |
-| <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | Egress firewall rules configuration | <pre>object({<br>    deny_all = bool<br>    allow = list(object({<br>      name   = string<br>      ranges = list(string)<br>      ports = list(object({<br>        number   = list(string)<br>        protocol = string<br>      }))<br>    }))<br>  })</pre> | <pre>{<br>  "allow": [],<br>  "deny_all": true<br>}</pre> | no |
-| <a name="input_ingress"></a> [ingress](#input\_ingress) | Configuration of inference engine | <pre>object({<br>    host     = string<br>    internal = bool<br>  })</pre> | `null` | no |
-| <a name="input_ip_range_pods"></a> [ip\_range\_pods](#input\_ip\_range\_pods) | Pods ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
-| <a name="input_ip_range_services"></a> [ip\_range\_services](#input\_ip\_range\_services) | Services ip range, used when `create_vpc` is set to `false` | `string` | `""` | no |
-| <a name="input_min_gpu_machines"></a> [min\_gpu\_machines](#input\_min\_gpu\_machines) | Minimum number of GPU instances | `number` | `1` | no |
-| <a name="input_network_name"></a> [network\_name](#input\_network\_name) | VPC name, used when `create_vpc` is set to `false` | `string` | `""` | no |
-| <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | organization ID | `string` | n/a | yes |
-| <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | Organization Name | `string` | n/a | yes |
-| <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | Organization Secret | `string` | n/a | yes |
-| <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | Use this if you already uploaded a pre-shared cert | `string` | `null` | no |
-| <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
-| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
-| <a name="input_rudder_write_key"></a> [rudder\_write\_key](#input\_rudder\_write\_key) | Pass analytics pipeline key | `string` | `null` | no |
-| <a name="input_service_account_email"></a> [service\_account\_email](#input\_service\_account\_email) | Service account email, used when `create_service_account` is set to `false` | `string` | `""` | no |
-| <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | VPC subnetwork name, used when `create_vpc` is set to `false` | `string` | `""` | no |
-| <a name="input_subnetwork_proxy_only"></a> [subnetwork\_proxy\_only](#input\_subnetwork\_proxy\_only) | VPC subnetwork proxy only name, used when `create_vpc` is set to `false` | `string` | `""` | no |
-| <a name="input_tabnine_cloud_values"></a> [tabnine\_cloud\_values](#input\_tabnine\_cloud\_values) | Tabnine cloud helm charts values, see https://github.com/codota/helm-charts/blob/master/charts/tabnine-cloud/values.yaml | `list(string)` | `[]` | no |
-| <a name="input_upload_pre_shared_cert"></a> [upload\_pre\_shared\_cert](#input\_upload\_pre\_shared\_cert) | Use this to upload pre-shared cert | <pre>object({<br>    path_to_private_key = string<br>    path_to_certificate = string<br>  })</pre> | `null` | no |
-| <a name="input_use_nvidia_mig"></a> [use\_nvidia\_mig](#input\_use\_nvidia\_mig) | Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning) | `bool` | `false` | no |
-| <a name="input_use_spot_instances"></a> [use\_spot\_instances](#input\_use\_spot\_instances) | Should use spot instances | `bool` | `false` | no |
-| <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
+No inputs.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_ingress_ip"></a> [ingress\_ip](#output\_ingress\_ip) | Static IP of inference engine ingress |
+No outputs.
 <!-- END_TF_DOCS -->
 
 ## On first use
