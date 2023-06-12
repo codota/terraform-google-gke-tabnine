@@ -28,5 +28,6 @@ Frontend config to attach to Tabnine ingress. It binds SSL policy and forces HTT
 
 ## Modules
 
-- `module.tabnine_cluster` ([tabnine_cluster.tf#2](tabnine_cluster.tf#2)) Tabnine cluster module
+* `module.tabnine_cluster` ([tabnine_cluster.tf#2](tabnine_cluster.tf#2))\
+Tabnine cluster module
 <!-- END_TF_DOCS -->
