@@ -50,13 +50,11 @@ module "gke_tabnine" {
 ```
 
 <!-- BEGIN_TF_DOCS -->
-## Inputs
+## Resources
 
-No inputs.
 
-## Outputs
+## Modules
 
-No outputs.
 <!-- END_TF_DOCS -->
 
 ## On first use
