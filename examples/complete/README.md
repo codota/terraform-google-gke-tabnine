@@ -1,6 +1,6 @@
-# Tabnine Cluster Example
+# Tabnine Complete Example
 
-This is an example of managing Tabnine cluster
+This is an example of managing Tabnine cluster with Tabnine installation
 
 ## Use
 
