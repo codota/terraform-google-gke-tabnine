@@ -5,7 +5,7 @@ This module is used to create Tabnine Cluster.
 ## Use
 
 ```hcl
-module "tabnine_cluster" {
+module "gke_cluster_tabnine" {
   source                                    = "terraform-google-gke-tabnine//modules/cluster/"
   project_id                                = "<PROJECT-ID>"
   region                                    = "<REGION>"
