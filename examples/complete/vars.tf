@@ -44,3 +44,4 @@ variable "exclude_kubernetes_manifest" {
   type        = bool
   default     = false
 }
+

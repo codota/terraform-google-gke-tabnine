@@ -1,6 +1,6 @@
 // Tabnine cluster module
-module "tabnine_cluster" {
-  source                                    = "../../modules/tabnine_cluster/"
+module "gke_cluster_tabnine" {
+  source                                    = "../../modules/cluster/"
   project_id                                = var.project_id
   region                                    = var.region
   zones                                     = var.zones

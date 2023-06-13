@@ -1,0 +1,22 @@
+module "gke_cluster_tabnine_install" {
+  source                      = "../../modules/install/"
+  project_id                  = var.project_id
+  region                      = var.region
+  zones                       = var.zones
+  prefix                      = var.prefix
+  cluster_endpoint            = module.gke_cluster_tabnine.endpoint
+  cluster_ca_certificate      = module.gke_cluster_tabnine.ca_certificate
+  db_url                      = module.gke_cluster_tabnine.db_url
+  db_ca                       = module.gke_cluster_tabnine.db_ca
+  db_cert                     = module.gke_cluster_tabnine.db_cert
+  db_private_key              = module.gke_cluster_tabnine.db_private_key
+  redis_url                   = module.gke_cluster_tabnine.redis_url
+  redis_ca                    = module.gke_cluster_tabnine.redis_ca
+  organization_id             = var.organization_id
+  organization_secret         = var.organization_secret
+  organization_name           = var.organization_name
+  default_email               = var.default_email
+  domain                      = var.domain
+  exclude_kubernetes_manifest = var.exclude_kubernetes_manifest
+  pre_shared_cert_name        = google_compute_managed_ssl_certificate.tabnine_cloud.name
+}
