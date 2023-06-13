@@ -1,33 +1,60 @@
-# Install Tabnine Example
+# Tabnine Install Module
 
-This is an example of managing Tabnine infra, as well as application in Terraform.
+This module is used to install Tabnine on top of existing GKE cluster.
 
 ## Use
 
-`tabnine init -module=terreaform-google-gke-tabnine/examples/install_tabnine`
+```hcl
+module "gke_cluster_tabnine_install" {
+  source                      = "terraform-google-gke-tabnine//modules/install/"
+  project_id                  = "<PROJECT-ID>"
+  region                      = "<REGION>"
+  zones                       = "<ZONES>"
+  prefix                      = "<PREFIX>"
+  cluster_endpoint            = "<CLUSTER-ENDPOINT>"
+  cluster_ca_certificate      = "<CLUSTER-CA-CERTIFICATE>"
+  db_url                      = "<DB-URL>"
+  db_ca                       = "<DB-CA>"
+  db_cert                     = "<DB-CERT>"
+  db_private_key              = "<DB-PRIVATE-KEY>"
+  redis_url                   = "<REDIS-URL>"
+  redis_ca                    = "<REDIS-CA>"
+  organization_id             = "<ORGANIZATION-ID>"
+  organization_secret         = "<ORGANIZATION-SECRET>"
+  organization_name           = "<ORGANIZATION-NAME>"
+  default_email               = "<DEFAULT-EMAIL>"
+  domain                      = "<DOMAIN>"
+  exclude_kubernetes_manifest = true/false
+  pre_shared_cert_name        = "<GCP-PRE-SHARED-CERT-NAME>"
+}
+```
 
 <!-- BEGIN_TF_DOCS -->
-## Resources
+## Inputs
 
-* `resource.google_compute_global_address.ingress` ([google_compute_global_address.tf#L2](google_compute_global_address.tf#L2))\
-Global static IP to attach to Tabnine ingress
-* `resource.google_compute_managed_ssl_certificate.tabnine_cloud` ([google_compute_managed_ssl_certificate.tf#L2](google_compute_managed_ssl_certificate.tf#L2))\
-SSL certificate to attach to Tabnine ingress
-* `resource.google_compute_ssl_policy.min_tls_v_1_2` ([google_compute_ssl_policy.tf#L2](google_compute_ssl_policy.tf#L2))\
-SSL policy to attach to Tabnine ingress. This forces tls 1.2+
-* `resource.helm_release.prometheus` ([helm_release.tf#L39](helm_release.tf#L39))\
-Prometheus helm chart. This is needed if telemetry enabled.
-* `resource.helm_release.tabnine_cloud` ([helm_release.tf#L2](helm_release.tf#L2))\
-Tabnine's helm chart. This is the main resource.
-* `resource.kubernetes_manifest.frontend_config_tabnine_cloud` ([kubernetes_manifest.tf#L4](kubernetes_manifest.tf#L4))\
-Frontend config to attach to Tabnine ingress. It binds SSL policy and forces HTTPS. `kubernetes_manifest` requires having a cluster in plan time. This is why it needs to be excluded in initial apply.
-* `data source.google_client_config.default` ([providers.tf#L1](providers.tf#L1))\
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#input\_cluster\_ca\_certificate) | n/a | `string` | n/a | yes |
+| <a name="input_cluster_endpoint"></a> [cluster\_endpoint](#input\_cluster\_endpoint) | n/a | `string` | n/a | yes |
+| <a name="input_db_ca"></a> [db\_ca](#input\_db\_ca) | n/a | `string` | n/a | yes |
+| <a name="input_db_cert"></a> [db\_cert](#input\_db\_cert) | n/a | `string` | n/a | yes |
+| <a name="input_db_private_key"></a> [db\_private\_key](#input\_db\_private\_key) | n/a | `string` | n/a | yes |
+| <a name="input_db_url"></a> [db\_url](#input\_db\_url) | n/a | `string` | n/a | yes |
+| <a name="input_default_email"></a> [default\_email](#input\_default\_email) | n/a | `string` | n/a | yes |
+| <a name="input_domain"></a> [domain](#input\_domain) | n/a | `string` | n/a | yes |
+| <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
+| <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | n/a | `string` | n/a | yes |
+| <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | n/a | `string` | n/a | yes |
+| <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | n/a | `string` | n/a | yes |
+| <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | n/a | `string` | n/a | yes |
+| <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
+| <a name="input_redis_ca"></a> [redis\_ca](#input\_redis\_ca) | n/a | `string` | n/a | yes |
+| <a name="input_redis_url"></a> [redis\_url](#input\_redis\_url) | n/a | `string` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
+| <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
 
-* `data source.google_project.project` ([providers.tf#L3](providers.tf#L3))\
+## Outputs
 
-
-## Modules
-
-* `module.tabnine_cluster` ([tabnine_cluster.tf#2](tabnine_cluster.tf#2))\
-Tabnine cluster module
+No outputs.
 <!-- END_TF_DOCS -->

@@ -1,39 +1,49 @@
+# Tabnine Cluster Module
+
+This module is used to create Tabnine Cluster.
+
+## Use
+
+```hcl
+module "tabnine_cluster" {
+  source                                    = "terraform-google-gke-tabnine//modules/cluster/"
+  project_id                                = "<PROJECT-ID>"
+  region                                    = "<REGION>"
+  zones                                     = "<ZONES>"
+  prefix                                    = "<PREFIX>"
+}
+```
+
 <!-- BEGIN_TF_DOCS -->
-## Resources
 
-* `resource.google_sql_ssl_cert.sql_db` ([modules/tabnine_cluster/sql_db.tf#L50](modules/tabnine_cluster/sql_db.tf#L50))\
+## Inputs
 
-* `resource.kubernetes_daemonset.nvidia_gpu_device_plugin` ([modules/tabnine_cluster/daemonset_kube_system_nvidia_driver_installer.tf#L2](modules/tabnine_cluster/daemonset_kube_system_nvidia_driver_installer.tf#L2))\
-https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/cmd/nvidia_gpu/device-plugin.yaml
-* `resource.random_string.forwarding_rule_name` ([modules/tabnine_cluster/private_service_connect.tf#L13](modules/tabnine_cluster/private_service_connect.tf#L13))\
+| Name                                                                                                                                                         | Description                                                                                            | Type                                                                                                                                                                                                           | Default                                                 | Required |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | :------: |
+| <a name="input_create_tabnine_storage_bucket_im_bindings"></a> [create_tabnine_storage_bucket_im_bindings](#input_create_tabnine_storage_bucket_im_bindings) | Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team         | `bool`                                                                                                                                                                                                         | `false`                                                 |    no    |
+| <a name="input_db_master_zone"></a> [db_master_zone](#input_db_master_zone)                                                                                  | Database master zone. If not set, will default to first zone                                           | `string`                                                                                                                                                                                                       | `null`                                                  |    no    |
+| <a name="input_exclude_kubernetes_manifest"></a> [exclude_kubernetes_manifest](#input_exclude_kubernetes_manifest)                                           | Exclude kubernetes manifest installations. This should be off during initial installation              | `bool`                                                                                                                                                                                                         | `false`                                                 |    no    |
+| <a name="input_firewall_rules"></a> [firewall_rules](#input_firewall_rules)                                                                                  | Egress firewall rules configuration                                                                    | <pre>object({<br> deny_all = bool<br> allow = list(object({<br> name = string<br> ranges = list(string)<br> ports = list(object({<br> number = list(string)<br> protocol = string<br> }))<br> }))<br> })</pre> | <pre>{<br> "allow": [],<br> "deny_all": true<br>}</pre> |    no    |
+| <a name="input_min_gpu_machines"></a> [min_gpu_machines](#input_min_gpu_machines)                                                                            | Minimum number of GPU instances                                                                        | `number`                                                                                                                                                                                                       | `1`                                                     |    no    |
+| <a name="input_pre_shared_cert_name"></a> [pre_shared_cert_name](#input_pre_shared_cert_name)                                                                | Use this if you already uploaded a pre-shared cert                                                     | `string`                                                                                                                                                                                                       | `null`                                                  |    no    |
+| <a name="input_prefix"></a> [prefix](#input_prefix)                                                                                                          | Prefix all resources names                                                                             | `string`                                                                                                                                                                                                       | `"tabnine-self-hosted"`                                 |    no    |
+| <a name="input_project_id"></a> [project_id](#input_project_id)                                                                                              | GCP project ID                                                                                         | `string`                                                                                                                                                                                                       | n/a                                                     |   yes    |
+| <a name="input_region"></a> [region](#input_region)                                                                                                          | GCP region                                                                                             | `string`                                                                                                                                                                                                       | n/a                                                     |   yes    |
+| <a name="input_use_nvidia_mig"></a> [use_nvidia_mig](#input_use_nvidia_mig)                                                                                  | Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning) | `bool`                                                                                                                                                                                                         | `false`                                                 |    no    |
+| <a name="input_use_spot_instances"></a> [use_spot_instances](#input_use_spot_instances)                                                                      | Should use spot instances                                                                              | `bool`                                                                                                                                                                                                         | `false`                                                 |    no    |
+| <a name="input_zones"></a> [zones](#input_zones)                                                                                                             | GCP zones                                                                                              | `list(string)`                                                                                                                                                                                                 | n/a                                                     |   yes    |
 
-* `data source.google_client_config.default` ([modules/tabnine_cluster/providers.tf#L1](modules/tabnine_cluster/providers.tf#L1))\
+## Outputs
 
-* `data source.google_compute_zones.available` ([modules/tabnine_cluster/data_google_compute_zones.tf#L1](modules/tabnine_cluster/data_google_compute_zones.tf#L1))\
-
-* `data source.google_project.project` ([modules/tabnine_cluster/providers.tf#L3](modules/tabnine_cluster/providers.tf#L3))\
-
-
-## Modules
-
-* `module.cloud_router` ([modules/tabnine_cluster/cloud_router.tf#1](modules/tabnine_cluster/cloud_router.tf#1))\
-
-* `module.gke` ([modules/tabnine_cluster/gke.tf#1](modules/tabnine_cluster/gke.tf#1))\
-
-* `module.kms` ([modules/tabnine_cluster/kms.tf#1](modules/tabnine_cluster/kms.tf#1))\
-
-* `module.memstore` ([modules/tabnine_cluster/memstore.tf#1](modules/tabnine_cluster/memstore.tf#1))\
-
-* `module.private_service_access` ([modules/tabnine_cluster/private_service_access.tf#1](modules/tabnine_cluster/private_service_access.tf#1))\
-
-* `module.private_service_connect` ([modules/tabnine_cluster/private_service_connect.tf#1](modules/tabnine_cluster/private_service_connect.tf#1))\
-
-* `module.service_accounts` ([modules/tabnine_cluster/service_account.tf#1](modules/tabnine_cluster/service_account.tf#1))\
-
-* `module.sql_db` ([modules/tabnine_cluster/sql_db.tf#1](modules/tabnine_cluster/sql_db.tf#1))\
-
-* `module.storage_buckets_iam_bindings` ([modules/tabnine_cluster/storage_buckets_iam_bindings.tf#1](modules/tabnine_cluster/storage_buckets_iam_bindings.tf#1))\
-
-* `module.vpc` ([modules/tabnine_cluster/vpc.tf#1](modules/tabnine_cluster/vpc.tf#1))\
+| Name                                                                          | Description                             |
+| ----------------------------------------------------------------------------- | --------------------------------------- |
+| <a name="output_ca_certificate"></a> [ca_certificate](#output_ca_certificate) | Cluster ca certificate (base64 encoded) |
+| <a name="output_db_ca"></a> [db_ca](#output_db_ca)                            | n/a                                     |
+| <a name="output_db_cert"></a> [db_cert](#output_db_cert)                      | n/a                                     |
+| <a name="output_db_private_key"></a> [db_private_key](#output_db_private_key) | n/a                                     |
+| <a name="output_db_url"></a> [db_url](#output_db_url)                         | n/a                                     |
+| <a name="output_endpoint"></a> [endpoint](#output_endpoint)                   | Cluster endpoint                        |
+| <a name="output_redis_ca"></a> [redis_ca](#output_redis_ca)                   | n/a                                     |
+| <a name="output_redis_url"></a> [redis_url](#output_redis_url)                | n/a                                     |
 
 <!-- END_TF_DOCS -->

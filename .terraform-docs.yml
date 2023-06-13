@@ -6,18 +6,7 @@ sections:
     - inputs
     - outputs
 
-content: |-
-  ## Resources
-  {{ range .Module.Resources }}
-  * `{{ .GetMode }}.{{ .Spec }}` ([{{ .Position.Filename }}#L{{ .Position.Line }}]({{ .Position.Filename }}#L{{ .Position.Line }}))\  
-  {{ .Description }}
-  {{- end }}
-
-  ## Modules
-  {{ range .Module.ModuleCalls }}
-  * `module.{{ .Name }}` ([{{ .Position.Filename }}#{{ .Position.Line }}]({{ .Position.Filename }}#{{ .Position.Line }}))\ 
-    {{ .Description }}
-  {{- end }}
+content: ""
 
 output:
   file: "README.md"
