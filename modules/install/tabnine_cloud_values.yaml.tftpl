@@ -9,6 +9,10 @@ global:
       ingress.gcp.kubernetes.io/pre-shared-cert: ${pre_shared_cert_name}
       networking.gke.io/v1beta1.FrontendConfig: ${frontend_config_name}
       kubernetes.io/ingress.global-static-ip-name: ${global_static_ip}
+  image:
+    imagePullSecrets:
+     - name: ${tabnine_registry_credentials}
+
 
   tabnine:
     organizationId: ${organization_id}

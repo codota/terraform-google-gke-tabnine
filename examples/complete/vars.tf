@@ -1,3 +1,11 @@
+variable "tabnine_registry_username" {
+  type = string
+}
+
+variable "tabnine_registry_password" {
+  type = string
+}
+
 variable "domain" {
   type = string
 }

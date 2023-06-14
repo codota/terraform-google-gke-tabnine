@@ -1,24 +1,25 @@
 // Tabnine's helm chart. This is the main resource.
 resource "helm_release" "tabnine_cloud" {
-  name       = "tabnine-cloud"
-  repository = "tabnine"
-  chart      = "tabnine-cloud"
-  wait       = false
-  version    = "3.17.0"
+  name      = "tabnine-cloud"
+  chart     = "oci://registry.tabnine.com/self-hosted/tabnine-cloud"
+  wait      = false
+  version   = "4.0.3"
+  namespace = kubernetes_namespace.tabnine.metadata[0].name
 
   values = concat([
     templatefile("${path.module}/tabnine_cloud_values.yaml.tftpl", {
-      default_email        = var.default_email
-      global_static_ip     = google_compute_global_address.ingress.name
-      ssl_policy_name      = google_compute_ssl_policy.min_tls_v_1_2.name,
-      organization_id      = var.organization_id
-      organization_name    = var.organization_name
-      domain               = var.domain,
-      pre_shared_cert_name = var.pre_shared_cert_name
-      frontend_config_name = "tabnine-cloud",
-      db_ca_base64         = base64encode(var.db_ca),
-      db_cert_base64       = base64encode(var.db_cert)
-      redis_ca_base64      = base64encode(var.redis_ca)
+      tabnine_registry_credentials = kubernetes_secret_v1.tabnine_registry_credentials.metadata[0].name
+      default_email                = var.default_email
+      global_static_ip             = google_compute_global_address.ingress.name
+      ssl_policy_name              = google_compute_ssl_policy.min_tls_v_1_2.name,
+      organization_id              = var.organization_id
+      organization_name            = var.organization_name
+      domain                       = var.domain,
+      pre_shared_cert_name         = var.pre_shared_cert_name
+      frontend_config_name         = "tabnine-cloud",
+      db_ca_base64                 = base64encode(var.db_ca),
+      db_cert_base64               = base64encode(var.db_cert)
+      redis_ca_base64              = base64encode(var.redis_ca)
     }),
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tftpl", {
@@ -27,11 +28,12 @@ resource "helm_release" "tabnine_cloud" {
       redis_url                  = var.redis_url
       organization_secret        = var.organization_secret
     }),
+    var.tabnine_cloud_values,
     ]
   )
 
   depends_on = [
-    helm_release.prometheus
+    # helm_release.prometheus
   ]
 }
 
@@ -40,7 +42,7 @@ resource "helm_release" "prometheus" {
   name             = "prometheus"
   repository       = "https://prometheus-community.github.io/helm-charts"
   chart            = "kube-prometheus-stack"
-  namespace        = "prometheus"
+  namespace        = "monitoring"
   wait             = false
   version          = "44.3.0"
   create_namespace = true

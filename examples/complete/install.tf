@@ -19,4 +19,6 @@ module "gke_cluster_tabnine_install" {
   domain                      = var.domain
   exclude_kubernetes_manifest = var.exclude_kubernetes_manifest
   pre_shared_cert_name        = google_compute_managed_ssl_certificate.tabnine_cloud.name
+  tabnine_registry_username   = var.tabnine_registry_username
+  tabnine_registry_password   = var.tabnine_registry_password
 }

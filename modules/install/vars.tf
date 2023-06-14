@@ -1,3 +1,12 @@
+variable "tabnine_registry_username" {
+  type = string
+}
+
+variable "tabnine_registry_password" {
+  type = string
+  sensitive = true
+}
+
 variable "redis_url" {
   type = string
 }
