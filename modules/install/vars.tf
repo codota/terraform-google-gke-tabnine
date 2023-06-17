@@ -1,9 +1,40 @@
+variable "create_managed_cert" {
+  type    = bool
+  default = null
+}
+
+variable "tls_cert" {
+  type = string
+  default = null
+}
+
+variable "tls_key" {
+  type = string
+  default = null
+}
+
+variable "email_from_field" {
+  type = string
+}
+
+variable "smtp_host" {
+  type = string
+}
+
+variable "smtp_pass" {
+  type = string
+}
+
+variable "smtp_user" {
+  type = string
+}
+
 variable "tabnine_registry_username" {
   type = string
 }
 
 variable "tabnine_registry_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 
@@ -84,8 +115,4 @@ variable "exclude_kubernetes_manifest" {
   description = "Exclude kubernetes manifest installations. This should be off during initial installation"
   type        = bool
   default     = false
-}
-
-variable "pre_shared_cert_name" {
-  type = string
 }

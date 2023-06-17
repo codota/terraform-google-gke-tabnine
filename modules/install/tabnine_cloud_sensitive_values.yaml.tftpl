@@ -6,3 +6,14 @@ global:
     redis:
       url: ${redis_url}
     organizationSecret: ${organization_secret}
+  %{ if tls_secret_name != null }
+  ingress:
+    tls:
+      hosts:
+       - ${domain}
+      secretName: ${tls_secret_name}
+  %{ endif }
+
+auth:
+ smtp: 
+    pass: ${smtp_pass}

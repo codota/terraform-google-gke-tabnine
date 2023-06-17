@@ -1,3 +1,35 @@
+variable "create_managed_cert" {
+  type    = bool
+  default = false
+}
+
+variable "tls_cert_path" {
+  type    = string
+  default = null
+}
+
+variable "tls_key_path" {
+  type    = string
+  default = null
+}
+
+
+variable "email_from_field" {
+  type = string
+}
+
+variable "smtp_host" {
+  type = string
+}
+
+variable "smtp_pass" {
+  type = string
+}
+
+variable "smtp_user" {
+  type = string
+}
+
 variable "tabnine_registry_username" {
   type = string
 }
