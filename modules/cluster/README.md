@@ -2,6 +2,27 @@
 
 This module is used to create Tabnine Cluster.
 
+## Prerequistes
+
+- This module uses Nvidia A100 GPU make sure to select a [zone/region](https://cloud.google.com/compute/docs/gpus/gpu-regions-zones) where A100 is available.
+- Terraform 1.2.3+
+- Install [helm](https://helm.sh/)
+- Configure `gcloud` to use the right project:
+
+  ```bash
+  gcloud config set project <PROJECT ID>
+  ```
+
+- Enable the following google apis for the `<PROJECT ID>`:
+
+  ```bash
+  gcloud services enable container.googleapis.com
+  gcloud services enable servicedirectory.googleapis.com
+  gcloud services enable dns.googleapis.com
+  ```
+
+- Log in with a user that has `Editor` & `Project IAM Admin` roles.
+
 ## Use
 
 ```hcl

@@ -2,6 +2,13 @@
 
 This module is used to install Tabnine on top of existing GKE cluster.
 
+## Prerequistes
+
+- Terraform 1.2.3+
+- [helm](https://helm.sh/)
+- GKE cluster running
+
+
 ## Use
 
 ```hcl

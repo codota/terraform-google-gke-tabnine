@@ -1,15 +1,16 @@
 variable "create_managed_cert" {
-  type    = bool
-  default = null
+  type        = bool
+  default     = null
+  description = "Wheather to create managed cert, otherwise you `tls_cert` and `tls_key`"
 }
 
 variable "tls_cert" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "tls_key" {
-  type = string
+  type    = string
   default = null
 }
 
