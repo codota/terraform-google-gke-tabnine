@@ -1,0 +1,19 @@
+global:
+  tabnine:
+    db:
+      url: ${db_url}
+      certPrivateKeyBase64: ${db_cert_private_key_base64}
+    redis:
+      url: ${redis_url}
+    organizationSecret: ${organization_secret}
+  %{ if tls_secret_name != null }
+  ingress:
+    tls:
+      hosts:
+       - ${domain}
+      secretName: ${tls_secret_name}
+  %{ endif }
+
+auth:
+ smtp: 
+    pass: ${smtp_pass}
