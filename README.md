@@ -1,6 +1,6 @@
 # terraform-google-gke-tabnine
 
-This module creates a reslient and fault tolerant Tabnine installation using Google
+This module creates a resilient and fault-tolerant Tabnine installation using Google
 Kubernetes Engine (GKE) as the computing environment.
 
 For further information - please refer to https://docs.tabnine.com/enterprise/
