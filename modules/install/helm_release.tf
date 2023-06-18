@@ -15,7 +15,7 @@ resource "helm_release" "tabnine_cloud" {
       organization_id              = var.organization_id
       organization_name            = var.organization_name
       domain                       = var.domain,
-      pre_shared_cert_name         = length(google_compute_managed_ssl_certificate.tabnine_cloud) > 0  ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : null
+      pre_shared_cert_name         = length(google_compute_managed_ssl_certificate.tabnine_cloud) > 0 ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : null
       frontend_config_name         = "tabnine-cloud",
       db_ca_base64                 = base64encode(var.db_ca),
       db_cert_base64               = base64encode(var.db_cert)
@@ -32,7 +32,7 @@ resource "helm_release" "tabnine_cloud" {
       redis_url                  = var.redis_url
       organization_secret        = var.organization_secret
       smtp_pass                  = var.smtp_pass
-      tls_secret_name            = length(kubernetes_secret_v1.tls_certificate)>0 ? kubernetes_secret_v1.tls_certificate[0].metadata[0].name : null
+      tls_secret_name            = length(kubernetes_secret_v1.tls_certificate) > 0 ? kubernetes_secret_v1.tls_certificate[0].metadata[0].name : null
     }),
     ]
   )

@@ -20,7 +20,7 @@ resource "kubernetes_secret_v1" "registry_credentials" {
 }
 
 resource "kubernetes_secret_v1" "tls_certificate" {
-  count = var.tls_cert !=null && var.tls_key !=null ? 1 : 0
+  count = var.tls_cert != null && var.tls_key != null ? 1 : 0
   metadata {
     name      = "tabnine-ssl-certificate"
     namespace = kubernetes_namespace.tabnine.metadata[0].name
