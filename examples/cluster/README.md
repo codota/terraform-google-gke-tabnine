@@ -4,7 +4,7 @@ This is an example of managing Tabnine cluster
 
 ## Use
 
-`tabnine init -module=terreaform-google-gke-tabnine/examples/cluster`
+`terraform init -module=terreaform-google-gke-tabnine/examples/cluster`
 
 <!-- BEGIN_TF_DOCS -->
 ## Inputs
