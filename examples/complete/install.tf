@@ -1,5 +1,5 @@
 module "gke_cluster_tabnine_install" {
-  source                      = "../../modules/install/"
+  source                      = "codota/gke-tabnine/google//examples/install"
   project_id                  = var.project_id
   region                      = var.region
   zones                       = var.zones

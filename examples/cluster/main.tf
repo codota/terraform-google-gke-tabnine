@@ -1,11 +1,10 @@
 // Tabnine cluster module
 module "gke_cluster_tabnine" {
-  source                                    = "../../modules/cluster/"
+  source                                    = "codota/gke-tabnine/google//examples/cluster"
   project_id                                = var.project_id
   region                                    = var.region
   zones                                     = var.zones
   prefix                                    = var.prefix
-  create_tabnine_storage_bucket_im_bindings = false
   exclude_kubernetes_manifest               = var.exclude_kubernetes_manifest
 
   firewall_rules = {
