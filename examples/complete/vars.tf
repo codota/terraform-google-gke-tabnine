@@ -54,6 +54,10 @@ variable "organization_secret" {
   type = string
 }
 
+variable "organization_domain" {
+  type = string
+}
+
 variable "prefix" {
   description = "Prefix all resources names"
   type        = string
@@ -85,3 +89,6 @@ variable "exclude_kubernetes_manifest" {
   default     = false
 }
 
+variable "license_key" {
+  type = string
+}

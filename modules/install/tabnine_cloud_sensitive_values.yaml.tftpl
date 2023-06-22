@@ -6,6 +6,7 @@ global:
     redis:
       url: ${redis_url}
     organizationSecret: ${organization_secret}
+    licenseKey: ${license_key}
   %{ if tls_secret_name != null }
   ingress:
     tls:

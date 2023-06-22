@@ -87,6 +87,11 @@ variable "organization_secret" {
   type = string
 }
 
+variable "organization_domain" {
+  type = string
+}
+
+
 variable "prefix" {
   description = "Prefix all resources names"
   type        = string
@@ -116,4 +121,43 @@ variable "exclude_kubernetes_manifest" {
   description = "Exclude kubernetes manifest installations. This should be off during initial installation"
   type        = bool
   default     = false
+}
+
+variable "saml_enabled" {
+  type    = bool
+  default = false
+}
+
+variable "saml_audience" {
+  type    = string
+  default = null
+}
+
+variable "saml_issuer" {
+  type    = string
+  default = null
+}
+
+variable "saml_cert" {
+  type    = string
+  default = null
+}
+
+variable "saml_wants_assertion_signed" {
+  type    = bool
+  default = true
+}
+
+variable "saml_wants_response_authn_signed" {
+  type    = bool
+  default = true
+}
+
+variable "saml_entrypoint" {
+  type    = string
+  default = null
+}
+
+variable "license_key" {
+  type = string
 }

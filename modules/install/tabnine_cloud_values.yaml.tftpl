@@ -19,6 +19,7 @@ global:
   tabnine:
     organizationId: ${organization_id}
     organizationName: ${organization_name}
+    organizationDomain: ${organization_domain}
     db:
       caBase64: ${db_ca_base64}
       certBase64: ${db_cert_base64}
@@ -61,3 +62,16 @@ auth:
   smtp: 
     user: ${smtp_user}
     host: ${smtp_host}
+  %{ if saml_enabled }
+  saml:
+    enabled: true
+    issuer: ${saml_issuer}
+    audience: ${saml_audience}
+    cert: ${saml_cert}
+    wantsResponseAuthSigned: ${saml_wants_response_authn_signed}
+    wantsAssertionSigned: ${saml_wants_assertion_signed}
+    entrypoint: ${saml_entrypoint}
+  %{ endif }
+
+  
+

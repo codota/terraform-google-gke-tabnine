@@ -4,6 +4,8 @@ organization_secret = "<ORGANIZATION-SECRET>"
 
 organization_name = "<ORGANIZATION-NAME>"
 
+organization_domain = "<ORGANIZATION-DOMAIN>"
+
 domain = "<DOMAIN>"
 
 project_id = "<PROJECT-ID>"
