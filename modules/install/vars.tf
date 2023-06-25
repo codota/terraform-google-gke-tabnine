@@ -71,8 +71,9 @@ variable "cluster_ca_certificate" {
   type = string
 }
 
-variable "domain" {
-  type = string
+variable "tabnine_address_name" {
+  description = "Name of the address to use for Tabnine ingress"
+  type        = string
 }
 
 variable "organization_id" {

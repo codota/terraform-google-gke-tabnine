@@ -4,7 +4,7 @@ global:
     sslPolicyName: ${ssl_policy_name}
   ingress:
     enabled: true
-    host: ${domain}
+    host: ${tabnine_address_name}
     annotations:
       %{ if pre_shared_cert_name != null }
       ingress.gcp.kubernetes.io/pre-shared-cert: ${pre_shared_cert_name}

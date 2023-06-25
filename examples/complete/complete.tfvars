@@ -6,7 +6,7 @@ organization_name = "<ORGANIZATION-NAME>"
 
 organization_domain = "<ORGANIZATION-DOMAIN>"
 
-domain = "<DOMAIN>"
+tabnine_address_name = "<TABNINE-ADDRESS-NAME>"
 
 project_id = "<PROJECT-ID>"
 

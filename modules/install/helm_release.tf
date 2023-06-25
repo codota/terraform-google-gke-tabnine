@@ -15,7 +15,7 @@ resource "helm_release" "tabnine_cloud" {
       organization_id                  = var.organization_id
       organization_name                = var.organization_name
       organization_domain              = var.organization_domain
-      domain                           = var.domain,
+      tabnine_address_name             = var.tabnine_address_name,
       pre_shared_cert_name             = length(google_compute_managed_ssl_certificate.tabnine_cloud) > 0 ? google_compute_managed_ssl_certificate.tabnine_cloud[0].name : null
       frontend_config_name             = "tabnine-cloud",
       db_ca_base64                     = base64encode(var.db_ca),
@@ -34,7 +34,7 @@ resource "helm_release" "tabnine_cloud" {
     }),
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tftpl", {
-      domain                     = var.domain,
+      tabnine_address_name       = var.tabnine_address_name,
       db_url                     = var.db_url,
       db_cert_private_key_base64 = base64encode(var.db_private_key)
       redis_url                  = var.redis_url

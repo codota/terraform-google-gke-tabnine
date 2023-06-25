@@ -11,7 +11,7 @@ global:
   ingress:
     tls:
       hosts:
-       - ${domain}
+       - ${tabnine_address_name}
       secretName: ${tls_secret_name}
   %{ endif }
 

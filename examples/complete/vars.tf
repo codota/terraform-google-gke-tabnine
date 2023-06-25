@@ -38,7 +38,7 @@ variable "tabnine_registry_password" {
   type = string
 }
 
-variable "domain" {
+variable "tabnine_address_name" {
   type = string
 }
 
