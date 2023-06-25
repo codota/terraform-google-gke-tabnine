@@ -49,7 +49,7 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_db_private_key"></a> [db\_private\_key](#input\_db\_private\_key) | n/a | `string` | n/a | yes |
 | <a name="input_db_url"></a> [db\_url](#input\_db\_url) | n/a | `string` | n/a | yes |
 | <a name="input_default_email"></a> [default\_email](#input\_default\_email) | n/a | `string` | n/a | yes |
-| <a name="input_email_from_field"></a> [email\_from\_field](#input\_email\_from\_field) | n/a | `string` | n/a | yes |
+| <a name="input_email_from_field"></a> [email\_from\_field](#input\_email\_from\_field) | email to be used in from `field` for emails sent from Tabnine | `string` | n/a | yes |
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
 | <a name="input_license_key"></a> [license\_key](#input\_license\_key) | n/a | `string` | n/a | yes |
 | <a name="input_organization_domain"></a> [organization\_domain](#input\_organization\_domain) | n/a | `string` | n/a | yes |
@@ -74,8 +74,8 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_tabnine_address_name"></a> [tabnine\_address\_name](#input\_tabnine\_address\_name) | Name of the address to use for Tabnine ingress | `string` | n/a | yes |
 | <a name="input_tabnine_registry_password"></a> [tabnine\_registry\_password](#input\_tabnine\_registry\_password) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_registry_username"></a> [tabnine\_registry\_username](#input\_tabnine\_registry\_username) | n/a | `string` | n/a | yes |
-| <a name="input_tls_cert"></a> [tls\_cert](#input\_tls\_cert) | n/a | `string` | `null` | no |
-| <a name="input_tls_key"></a> [tls\_key](#input\_tls\_key) | n/a | `string` | `null` | no |
+| <a name="input_tls_cert"></a> [tls\_cert](#input\_tls\_cert) | tls cert to attach to ingress | `string` | `null` | no |
+| <a name="input_tls_key"></a> [tls\_key](#input\_tls\_key) | key used to create the tls cert | `string` | `null` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
 
 ## Outputs
