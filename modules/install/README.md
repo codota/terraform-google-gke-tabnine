@@ -43,22 +43,39 @@ module "gke_cluster_tabnine_install" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#input\_cluster\_ca\_certificate) | n/a | `string` | n/a | yes |
 | <a name="input_cluster_endpoint"></a> [cluster\_endpoint](#input\_cluster\_endpoint) | n/a | `string` | n/a | yes |
+| <a name="input_create_managed_cert"></a> [create\_managed\_cert](#input\_create\_managed\_cert) | Wheather to create managed cert, otherwise you `tls_cert` and `tls_key` | `bool` | `null` | no |
 | <a name="input_db_ca"></a> [db\_ca](#input\_db\_ca) | n/a | `string` | n/a | yes |
 | <a name="input_db_cert"></a> [db\_cert](#input\_db\_cert) | n/a | `string` | n/a | yes |
 | <a name="input_db_private_key"></a> [db\_private\_key](#input\_db\_private\_key) | n/a | `string` | n/a | yes |
 | <a name="input_db_url"></a> [db\_url](#input\_db\_url) | n/a | `string` | n/a | yes |
 | <a name="input_default_email"></a> [default\_email](#input\_default\_email) | n/a | `string` | n/a | yes |
-| <a name="input_domain"></a> [domain](#input\_domain) | n/a | `string` | n/a | yes |
+| <a name="input_email_from_field"></a> [email\_from\_field](#input\_email\_from\_field) | n/a | `string` | n/a | yes |
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
+| <a name="input_license_key"></a> [license\_key](#input\_license\_key) | n/a | `string` | n/a | yes |
+| <a name="input_organization_domain"></a> [organization\_domain](#input\_organization\_domain) | n/a | `string` | n/a | yes |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | n/a | `string` | n/a | yes |
 | <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | n/a | `string` | n/a | yes |
 | <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | n/a | `string` | n/a | yes |
-| <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | n/a | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_redis_ca"></a> [redis\_ca](#input\_redis\_ca) | n/a | `string` | n/a | yes |
 | <a name="input_redis_url"></a> [redis\_url](#input\_redis\_url) | n/a | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
+| <a name="input_saml_audience"></a> [saml\_audience](#input\_saml\_audience) | n/a | `string` | `null` | no |
+| <a name="input_saml_cert"></a> [saml\_cert](#input\_saml\_cert) | n/a | `string` | `null` | no |
+| <a name="input_saml_enabled"></a> [saml\_enabled](#input\_saml\_enabled) | n/a | `bool` | `false` | no |
+| <a name="input_saml_entrypoint"></a> [saml\_entrypoint](#input\_saml\_entrypoint) | n/a | `string` | `null` | no |
+| <a name="input_saml_issuer"></a> [saml\_issuer](#input\_saml\_issuer) | n/a | `string` | `null` | no |
+| <a name="input_saml_wants_assertion_signed"></a> [saml\_wants\_assertion\_signed](#input\_saml\_wants\_assertion\_signed) | n/a | `bool` | `true` | no |
+| <a name="input_saml_wants_response_authn_signed"></a> [saml\_wants\_response\_authn\_signed](#input\_saml\_wants\_response\_authn\_signed) | n/a | `bool` | `true` | no |
+| <a name="input_smtp_host"></a> [smtp\_host](#input\_smtp\_host) | n/a | `string` | n/a | yes |
+| <a name="input_smtp_pass"></a> [smtp\_pass](#input\_smtp\_pass) | n/a | `string` | n/a | yes |
+| <a name="input_smtp_user"></a> [smtp\_user](#input\_smtp\_user) | n/a | `string` | n/a | yes |
+| <a name="input_tabnine_address_name"></a> [tabnine\_address\_name](#input\_tabnine\_address\_name) | Name of the address to use for Tabnine ingress | `string` | n/a | yes |
+| <a name="input_tabnine_registry_password"></a> [tabnine\_registry\_password](#input\_tabnine\_registry\_password) | n/a | `string` | n/a | yes |
+| <a name="input_tabnine_registry_username"></a> [tabnine\_registry\_username](#input\_tabnine\_registry\_username) | n/a | `string` | n/a | yes |
+| <a name="input_tls_cert"></a> [tls\_cert](#input\_tls\_cert) | n/a | `string` | `null` | no |
+| <a name="input_tls_key"></a> [tls\_key](#input\_tls\_key) | n/a | `string` | `null` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
 
 ## Outputs
