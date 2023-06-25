@@ -6,11 +6,12 @@ global:
     redis:
       url: ${redis_url}
     organizationSecret: ${organization_secret}
+    licenseKey: ${license_key}
   %{ if tls_secret_name != null }
   ingress:
     tls:
       hosts:
-       - ${domain}
+       - ${tabnine_address_name}
       secretName: ${tls_secret_name}
   %{ endif }
 

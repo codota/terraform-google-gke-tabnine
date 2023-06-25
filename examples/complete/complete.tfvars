@@ -4,7 +4,9 @@ organization_secret = "<ORGANIZATION-SECRET>"
 
 organization_name = "<ORGANIZATION-NAME>"
 
-domain = "<DOMAIN>"
+organization_domain = "<ORGANIZATION-DOMAIN>"
+
+tabnine_address_name = "<TABNINE-ADDRESS-NAME>"
 
 project_id = "<PROJECT-ID>"
 
