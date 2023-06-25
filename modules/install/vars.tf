@@ -5,17 +5,20 @@ variable "create_managed_cert" {
 }
 
 variable "tls_cert" {
-  type    = string
-  default = null
+  type        = string
+  default     = null
+  description = "tls cert to attach to ingress"
 }
 
 variable "tls_key" {
-  type    = string
-  default = null
+  type        = string
+  default     = null
+  description = "key used to create the tls cert"
 }
 
 variable "email_from_field" {
-  type = string
+  type        = string
+  description = "email to be used in from `field` for emails sent from Tabnine"
 }
 
 variable "smtp_host" {
