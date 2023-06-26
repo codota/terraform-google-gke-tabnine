@@ -38,7 +38,7 @@ variable "tabnine_registry_password" {
   type = string
 }
 
-variable "domain" {
+variable "tabnine_address_name" {
   type = string
 }
 
@@ -51,6 +51,10 @@ variable "organization_name" {
 }
 
 variable "organization_secret" {
+  type = string
+}
+
+variable "organization_domain" {
   type = string
 }
 
@@ -85,3 +89,6 @@ variable "exclude_kubernetes_manifest" {
   default     = false
 }
 
+variable "license_key" {
+  type = string
+}

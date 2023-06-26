@@ -4,6 +4,6 @@ resource "google_compute_managed_ssl_certificate" "tabnine_cloud" {
   name  = format("%s-tabnine-cloud", var.prefix)
 
   managed {
-    domains = [var.domain]
+    domains = [var.tabnine_address_name]
   }
 }

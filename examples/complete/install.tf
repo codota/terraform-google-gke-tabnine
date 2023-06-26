@@ -16,7 +16,7 @@ module "gke_cluster_tabnine_install" {
   organization_secret         = var.organization_secret
   organization_name           = var.organization_name
   default_email               = var.default_email
-  domain                      = var.domain
+  tabnine_address_name        = var.tabnine_address_name
   exclude_kubernetes_manifest = var.exclude_kubernetes_manifest
   tabnine_registry_username   = var.tabnine_registry_username
   tabnine_registry_password   = var.tabnine_registry_password

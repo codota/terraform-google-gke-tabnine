@@ -4,7 +4,7 @@ global:
     sslPolicyName: ${ssl_policy_name}
   ingress:
     enabled: true
-    host: ${domain}
+    host: ${tabnine_address_name}
     annotations:
       %{ if pre_shared_cert_name != null }
       ingress.gcp.kubernetes.io/pre-shared-cert: ${pre_shared_cert_name}
@@ -19,6 +19,7 @@ global:
   tabnine:
     organizationId: ${organization_id}
     organizationName: ${organization_name}
+    organizationDomain: ${organization_domain}
     db:
       caBase64: ${db_ca_base64}
       certBase64: ${db_cert_base64}
@@ -61,3 +62,16 @@ auth:
   smtp: 
     user: ${smtp_user}
     host: ${smtp_host}
+  %{ if saml_enabled }
+  saml:
+    enabled: true
+    issuer: ${saml_issuer}
+    audience: ${saml_audience}
+    cert: ${saml_cert}
+    wantsResponseAuthSigned: ${saml_wants_response_authn_signed}
+    wantsAssertionSigned: ${saml_wants_assertion_signed}
+    entrypoint: ${saml_entrypoint}
+  %{ endif }
+
+  
+

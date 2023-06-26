@@ -5,17 +5,20 @@ variable "create_managed_cert" {
 }
 
 variable "tls_cert" {
-  type    = string
-  default = null
+  type        = string
+  default     = null
+  description = "tls cert to attach to ingress"
 }
 
 variable "tls_key" {
-  type    = string
-  default = null
+  type        = string
+  default     = null
+  description = "key used to create the tls cert"
 }
 
 variable "email_from_field" {
-  type = string
+  type        = string
+  description = "email to be used in from `field` for emails sent from Tabnine"
 }
 
 variable "smtp_host" {
@@ -71,8 +74,9 @@ variable "cluster_ca_certificate" {
   type = string
 }
 
-variable "domain" {
-  type = string
+variable "tabnine_address_name" {
+  description = "Name of the address to use for Tabnine ingress"
+  type        = string
 }
 
 variable "organization_id" {
@@ -86,6 +90,11 @@ variable "organization_name" {
 variable "organization_secret" {
   type = string
 }
+
+variable "organization_domain" {
+  type = string
+}
+
 
 variable "prefix" {
   description = "Prefix all resources names"
@@ -116,4 +125,43 @@ variable "exclude_kubernetes_manifest" {
   description = "Exclude kubernetes manifest installations. This should be off during initial installation"
   type        = bool
   default     = false
+}
+
+variable "saml_enabled" {
+  type    = bool
+  default = false
+}
+
+variable "saml_audience" {
+  type    = string
+  default = null
+}
+
+variable "saml_issuer" {
+  type    = string
+  default = null
+}
+
+variable "saml_cert" {
+  type    = string
+  default = null
+}
+
+variable "saml_wants_assertion_signed" {
+  type    = bool
+  default = true
+}
+
+variable "saml_wants_response_authn_signed" {
+  type    = bool
+  default = true
+}
+
+variable "saml_entrypoint" {
+  type    = string
+  default = null
+}
+
+variable "license_key" {
+  type = string
 }

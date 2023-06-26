@@ -1,8 +1,8 @@
-name: 'CI'
+name: "CI"
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
   workflow_dispatch:
 
@@ -11,23 +11,21 @@ permissions:
 
 jobs:
   ci:
-    name: 'CI'
+    name: "CI"
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Setup
-      uses: hashicorp/setup-terraform@v1
+      - name: Setup
+        uses: hashicorp/setup-terraform@v1
 
-    - name: Format
-      run: terraform fmt -check -recursive
+      - name: Format
+        run: terraform fmt -check -recursive
 
-    - name: Validate example
-      run: |
-        cd examples/single-gpu
-        terraform init -backend=false
-        terraform validate
-      
-
+      - name: Validate example
+        run: |
+          cd examples/cluster
+          terraform init -backend=false
+          terraform validate
