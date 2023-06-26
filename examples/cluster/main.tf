@@ -23,39 +23,40 @@ module "gke_cluster_tabnine" {
 
 output "endpoint" {
   description = "Cluster endpoint"
-  value       = module.gke_cluster_tabnine.gke.endpoint
+  value       = module.gke_cluster_tabnine.endpoint
 }
 
 output "ca_certificate" {
   description = "Cluster ca certificate (base64 encoded)"
-  value       = module.gke_cluster_tabnine.gke.ca_certificate
+  value       = module.gke_cluster_tabnine.ca_certificate
 }
 
 output "redis_url" {
-  value     = "rediss://:${module.gke_cluster_tabnine.memstore.auth_string}@${module.gke_cluster_tabnine.memstore.host}:${module.gke_cluster_tabnine.memstore.port}"
+  value     = module.gke_cluster_tabnine.redis_url
   sensitive = true
 }
 
 output "redis_ca_base64" {
-  value = base64encode(module.gke_cluster_tabnine.memstore.server_ca_certs[0].cert)
+  value = base64encode(module.gke_cluster_tabnine.redis_ca)
 }
 
 output "db_url" {
-  value     = "postgres://tabnine:${urlencode(module.gke_cluster_tabnine.sql_db.generated_user_password)}@${module.gke_cluster_tabnine.sql_db.private_ip_address}:5432/tabnine"
+  value     = module.gke_cluster_tabnine.db_url
   sensitive = true
 }
 
 output "db_ca_base64" {
   description = "Database ca certificate (base64 encoded)"
-  value       = base64encode(module.gke_cluster_tabnine.google_sql_ssl_cert.sql_db.server_ca_cert)
+  value       = base64encode(module.gke_cluster_tabnine.db_ca)
 }
 
 output "db_cert_base64" {
-  description = "Database server cert certificate (base64 encoded)"
-  value       = base64encode(module.gke_cluster_tabnine.google_sql_ssl_cert.sql_db.cert)
+  description = "Database server certificate (base64 encoded)"
+  value       = base64encode(module.gke_cluster_tabnine.db_cert)
 }
 
 output "db_private_key_base64" {
   description = "Database client private key (base64 encoded)"
-  value       = base64encode(module.gke_cluster_tabnine.google_sql_ssl_cert.sql_db.private_key)
+  value       = base64encode(module.gke_cluster_tabnine.db_private_key)
+  sensitive   = true
 }
