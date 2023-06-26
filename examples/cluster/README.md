@@ -23,7 +23,7 @@ This is an example of managing Tabnine cluster
 |------|-------------|
 | <a name="output_ca_certificate"></a> [ca\_certificate](#output\_ca\_certificate) | Cluster ca certificate (base64 encoded) |
 | <a name="output_db_ca_base64"></a> [db\_ca\_base64](#output\_db\_ca\_base64) | Database ca certificate (base64 encoded) |
-| <a name="output_db_cert_base64"></a> [db\_cert\_base64](#output\_db\_cert\_base64) | Database server cert certificate (base64 encoded) |
+| <a name="output_db_cert_base64"></a> [db\_cert\_base64](#output\_db\_cert\_base64) | Database server certificate (base64 encoded) |
 | <a name="output_db_private_key_base64"></a> [db\_private\_key\_base64](#output\_db\_private\_key\_base64) | Database client private key (base64 encoded) |
 | <a name="output_db_url"></a> [db\_url](#output\_db\_url) | n/a |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | Cluster endpoint |
