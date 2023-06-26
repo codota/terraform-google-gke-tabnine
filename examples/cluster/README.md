@@ -7,24 +7,6 @@ This is an example of managing Tabnine cluster
 `terraform init -from-module=codota/gke-tabnine/google//examples/cluster`
 
 <!-- BEGIN_TF_DOCS -->
-## Requirements
-
-No requirements.
-
-## Providers
-
-No providers.
-
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_gke_cluster_tabnine"></a> [gke\_cluster\_tabnine](#module\_gke\_cluster\_tabnine) | codota/gke-tabnine/google//modules/cluster | n/a |
-
-## Resources
-
-No resources.
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
