@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   name      = "tabnine-cloud"
   chart     = "oci://registry.tabnine.com/self-hosted/tabnine-cloud"
   wait      = false
-  version   = "4.5.0"
+  version   = "4.5.1"
   namespace = kubernetes_namespace.tabnine.metadata[0].name
 
   values = concat([
