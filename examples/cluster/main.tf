@@ -24,11 +24,13 @@ module "gke_cluster_tabnine" {
 output "endpoint" {
   description = "Cluster endpoint"
   value       = module.gke_cluster_tabnine.endpoint
+  sensitive   = true
 }
 
 output "ca_certificate" {
   description = "Cluster ca certificate (base64 encoded)"
   value       = module.gke_cluster_tabnine.ca_certificate
+  sensitive   = true
 }
 
 output "redis_url" {
