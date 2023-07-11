@@ -132,16 +132,6 @@ variable "saml_enabled" {
   default = false
 }
 
-variable "saml_audience" {
-  type    = string
-  default = null
-}
-
-variable "saml_issuer" {
-  type    = string
-  default = null
-}
-
 variable "saml_cert" {
   type    = string
   default = null

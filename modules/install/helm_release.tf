@@ -25,8 +25,6 @@ resource "helm_release" "tabnine_cloud" {
       smtp_host                        = var.smtp_host
       email_from_field                 = var.email_from_field
       saml_enabled                     = var.saml_enabled
-      saml_audience                    = var.saml_audience
-      saml_issuer                      = var.saml_issuer
       saml_cert                        = var.saml_cert
       saml_wants_assertion_signed      = var.saml_wants_assertion_signed
       saml_wants_response_authn_signed = var.saml_wants_response_authn_signed

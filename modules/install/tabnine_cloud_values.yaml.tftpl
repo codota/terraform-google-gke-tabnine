@@ -65,8 +65,6 @@ auth:
   %{ if saml_enabled }
   saml:
     enabled: true
-    issuer: ${saml_issuer}
-    audience: ${saml_audience}
     cert: ${saml_cert}
     wantsResponseAuthSigned: ${saml_wants_response_authn_signed}
     wantsAssertionSigned: ${saml_wants_assertion_signed}
