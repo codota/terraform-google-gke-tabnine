@@ -61,11 +61,9 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_redis_ca"></a> [redis\_ca](#input\_redis\_ca) | n/a | `string` | n/a | yes |
 | <a name="input_redis_url"></a> [redis\_url](#input\_redis\_url) | n/a | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
-| <a name="input_saml_audience"></a> [saml\_audience](#input\_saml\_audience) | n/a | `string` | `null` | no |
 | <a name="input_saml_cert"></a> [saml\_cert](#input\_saml\_cert) | n/a | `string` | `null` | no |
 | <a name="input_saml_enabled"></a> [saml\_enabled](#input\_saml\_enabled) | n/a | `bool` | `false` | no |
 | <a name="input_saml_entrypoint"></a> [saml\_entrypoint](#input\_saml\_entrypoint) | n/a | `string` | `null` | no |
-| <a name="input_saml_issuer"></a> [saml\_issuer](#input\_saml\_issuer) | n/a | `string` | `null` | no |
 | <a name="input_saml_wants_assertion_signed"></a> [saml\_wants\_assertion\_signed](#input\_saml\_wants\_assertion\_signed) | n/a | `bool` | `true` | no |
 | <a name="input_saml_wants_response_authn_signed"></a> [saml\_wants\_response\_authn\_signed](#input\_saml\_wants\_response\_authn\_signed) | n/a | `bool` | `true` | no |
 | <a name="input_smtp_host"></a> [smtp\_host](#input\_smtp\_host) | n/a | `string` | n/a | yes |
