@@ -1,7 +1,7 @@
 module "gke" {
   source                      = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
   project_id                  = var.project_id
-  kubernetes_version          = "1.25.8-gke.500"
+  kubernetes_version          = "1.25.10-gke.2100"
   name                        = format("%s-gke", var.prefix)
   region                      = var.region
   zones                       = var.zones
