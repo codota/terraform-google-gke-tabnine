@@ -46,6 +46,7 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_create_managed_cert"></a> [create\_managed\_cert](#input\_create\_managed\_cert) | Wheather to create managed cert, otherwise you `tls_cert` and `tls_key` | `bool` | `null` | no |
 | <a name="input_db_ca"></a> [db\_ca](#input\_db\_ca) | n/a | `string` | n/a | yes |
 | <a name="input_db_cert"></a> [db\_cert](#input\_db\_cert) | n/a | `string` | n/a | yes |
+| <a name="input_db_ip"></a> [db\_ip](#input\_db\_ip) | n/a | `string` | n/a | yes |
 | <a name="input_db_private_key"></a> [db\_private\_key](#input\_db\_private\_key) | n/a | `string` | n/a | yes |
 | <a name="input_db_url"></a> [db\_url](#input\_db\_url) | n/a | `string` | n/a | yes |
 | <a name="input_default_email"></a> [default\_email](#input\_default\_email) | n/a | `string` | n/a | yes |
@@ -59,6 +60,7 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_redis_ca"></a> [redis\_ca](#input\_redis\_ca) | n/a | `string` | n/a | yes |
+| <a name="input_redis_ip"></a> [redis\_ip](#input\_redis\_ip) | n/a | `string` | n/a | yes |
 | <a name="input_redis_url"></a> [redis\_url](#input\_redis\_url) | n/a | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
 | <a name="input_saml_cert"></a> [saml\_cert](#input\_saml\_cert) | n/a | `string` | `null` | no |
@@ -72,6 +74,7 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_tabnine_address_name"></a> [tabnine\_address\_name](#input\_tabnine\_address\_name) | Name of the address to use for Tabnine ingress | `string` | n/a | yes |
 | <a name="input_tabnine_registry_password"></a> [tabnine\_registry\_password](#input\_tabnine\_registry\_password) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_registry_username"></a> [tabnine\_registry\_username](#input\_tabnine\_registry\_username) | n/a | `string` | n/a | yes |
+| <a name="input_telemetry_enabled"></a> [telemetry\_enabled](#input\_telemetry\_enabled) | n/a | `bool` | `false` | no |
 | <a name="input_tls_cert"></a> [tls\_cert](#input\_tls\_cert) | tls cert to attach to ingress | `string` | `null` | no |
 | <a name="input_tls_key"></a> [tls\_key](#input\_tls\_key) | key used to create the tls cert | `string` | `null` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
