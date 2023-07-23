@@ -10,8 +10,10 @@ module "gke_cluster_tabnine_install" {
   db_ca                       = module.gke_cluster_tabnine.db_ca
   db_cert                     = module.gke_cluster_tabnine.db_cert
   db_private_key              = module.gke_cluster_tabnine.db_private_key
+  db_ip                       = module.gke_cluster_tabnine.db_ip
   redis_url                   = module.gke_cluster_tabnine.redis_url
   redis_ca                    = module.gke_cluster_tabnine.redis_ca
+  redis_ip                    = module.gke_cluster_tabnine.redis_ip
   organization_id             = var.organization_id
   organization_secret         = var.organization_secret
   organization_name           = var.organization_name

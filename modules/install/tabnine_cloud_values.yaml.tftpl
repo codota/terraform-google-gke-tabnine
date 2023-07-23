@@ -1,4 +1,6 @@
 global:
+  monitoring:
+    enabled: true
   frontendConfig:
     enabled: true
     sslPolicyName: ${ssl_policy_name}
@@ -14,17 +16,19 @@ global:
   image:
     imagePullSecrets:
      - name: ${tabnine_registry_credentials}
-
-
   tabnine:
     organizationId: ${organization_id}
     organizationName: ${organization_name}
     organizationDomain: ${organization_domain}
+    telemetry:
+      enabled: ${telemetry_enabled}
     db:
       caBase64: ${db_ca_base64}
       certBase64: ${db_cert_base64}
+      ip: ${db_ip}
     redis:
       caBase64: ${redis_ca_base64}
+      ip: ${redis_ip}
 
 frontend:
   service:
@@ -71,5 +75,14 @@ auth:
     entrypoint: ${saml_entrypoint}
   %{ endif }
 
-  
+chat:
+  enabled: true 
+  service:
+    type: NodePort
+    port: 8086
+    
+postgresql:
+  enabled: false
 
+redis:
+  enabled: false

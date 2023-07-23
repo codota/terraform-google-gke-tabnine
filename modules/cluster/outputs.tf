@@ -13,6 +13,10 @@ output "redis_url" {
   sensitive = true
 }
 
+output "redis_ip" {
+  value = module.memstore.host
+}
+
 output "redis_ca" {
   value = module.memstore.server_ca_certs[0].cert
 }
@@ -20,6 +24,10 @@ output "redis_ca" {
 output "db_url" {
   value     = "postgres://tabnine:${urlencode(module.sql_db.generated_user_password)}@${module.sql_db.private_ip_address}:5432/tabnine"
   sensitive = true
+}
+
+output "db_ip" {
+  value = module.sql_db.private_ip_address
 }
 
 output "db_ca" {
