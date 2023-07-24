@@ -63,6 +63,7 @@ module "gke_cluster_tabnine" {
 | <a name="output_db_private_key"></a> [db\_private\_key](#output\_db\_private\_key) | n/a |
 | <a name="output_db_url"></a> [db\_url](#output\_db\_url) | n/a |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | Cluster endpoint |
+| <a name="output_network_name"></a> [network\_name](#output\_network\_name) | Name of the created network |
 | <a name="output_redis_ca"></a> [redis\_ca](#output\_redis\_ca) | n/a |
 | <a name="output_redis_ip"></a> [redis\_ip](#output\_redis\_ip) | n/a |
 | <a name="output_redis_url"></a> [redis\_url](#output\_redis\_url) | n/a |

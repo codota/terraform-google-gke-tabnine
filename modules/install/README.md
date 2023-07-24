@@ -53,6 +53,7 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_email_from_field"></a> [email\_from\_field](#input\_email\_from\_field) | email to be used in from `field` for emails sent from Tabnine | `string` | n/a | yes |
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
 | <a name="input_license_key"></a> [license\_key](#input\_license\_key) | n/a | `string` | n/a | yes |
+| <a name="input_network_name"></a> [network\_name](#input\_network\_name) | n/a | `string` | n/a | yes |
 | <a name="input_organization_domain"></a> [organization\_domain](#input\_organization\_domain) | n/a | `string` | n/a | yes |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | n/a | `string` | n/a | yes |
 | <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | n/a | `string` | n/a | yes |
@@ -69,6 +70,7 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_saml_wants_assertion_signed"></a> [saml\_wants\_assertion\_signed](#input\_saml\_wants\_assertion\_signed) | n/a | `bool` | `true` | no |
 | <a name="input_saml_wants_response_authn_signed"></a> [saml\_wants\_response\_authn\_signed](#input\_saml\_wants\_response\_authn\_signed) | n/a | `bool` | `true` | no |
 | <a name="input_smtp_host"></a> [smtp\_host](#input\_smtp\_host) | n/a | `string` | n/a | yes |
+| <a name="input_smtp_ip"></a> [smtp\_ip](#input\_smtp\_ip) | n/a | `string` | n/a | yes |
 | <a name="input_smtp_pass"></a> [smtp\_pass](#input\_smtp\_pass) | n/a | `string` | n/a | yes |
 | <a name="input_smtp_user"></a> [smtp\_user](#input\_smtp\_user) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_address_name"></a> [tabnine\_address\_name](#input\_tabnine\_address\_name) | Name of the address to use for Tabnine ingress | `string` | n/a | yes |
