@@ -25,26 +25,6 @@ variable "zones" {
   type        = list(string)
 }
 
-variable "firewall_rules" {
-  description = "Egress firewall rules configuration"
-  type = object({
-    deny_all = bool
-    allow = list(object({
-      name   = string
-      ranges = list(string)
-      ports = list(object({
-        number   = list(string)
-        protocol = string
-      }))
-    }))
-  })
-  default = {
-    deny_all = true
-    allow    = []
-  }
-}
-
-
 variable "pre_shared_cert_name" {
   description = "Use this if you already uploaded a pre-shared cert"
   type        = string
@@ -85,7 +65,7 @@ variable "exclude_kubernetes_manifest" {
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   private_service_connect_ip = "10.10.40.1"
-  tabnine_static_ip          = "34.123.33.186"
+  tabnine_registry_ip        = "34.72.243.185"
   gke_master_ipv4_cidr_block = "10.0.0.0/28"
   gke_metadata_server_ip     = "169.254.169.254"
   gpu_partition_size         = var.use_nvidia_mig ? "3g.20gb" : null
