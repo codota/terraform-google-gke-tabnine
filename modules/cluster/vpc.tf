@@ -35,7 +35,7 @@ module "vpc" {
     (format("%s-gke-proxy-only", var.prefix)) = []
   }
 
-  firewall_rules = [{
+  firewall_rules = [for _, firewall_rule in [{
     name      = format("%s-allow-http-tabnine", var.prefix)
     direction = "EGRESS"
     ranges    = ["${local.tabnine_registry_ip}/32"]
@@ -99,6 +99,6 @@ module "vpc" {
         ports    = []
       }]
     }
-  ]
+  ] : firewall_rule if var.deny_all_egress]
 
 }

@@ -61,6 +61,11 @@ variable "exclude_kubernetes_manifest" {
   default     = false
 }
 
+variable "deny_all_egress" {
+  description = "Deny all egress traffic"
+  type        = bool
+  default     = true
+}
 
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
