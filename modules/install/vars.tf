@@ -21,6 +21,10 @@ variable "email_from_field" {
   description = "email to be used in from `field` for emails sent from Tabnine"
 }
 
+variable "smtp_ip" {
+  type = string
+}
+
 variable "smtp_host" {
   type = string
 }
@@ -167,4 +171,8 @@ variable "license_key" {
 variable "telemetry_enabled" {
   type    = bool
   default = false
+}
+
+variable "network_name" {
+  type = string
 }

@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   name      = "tabnine-cloud"
   chart     = "oci://registry.tabnine.com/self-hosted/tabnine-cloud"
   wait      = false
-  version   = "4.7.0"
+  version   = "4.7.1"
   namespace = kubernetes_namespace.tabnine.metadata[0].name
 
   values = concat([
@@ -25,6 +25,7 @@ resource "helm_release" "tabnine_cloud" {
       redis_ip                         = var.redis_ip
       smtp_user                        = var.smtp_user
       smtp_host                        = var.smtp_host
+      smtp_ip                          = var.smtp_ip
       email_from_field                 = var.email_from_field
       saml_enabled                     = var.saml_enabled
       saml_cert                        = var.saml_cert

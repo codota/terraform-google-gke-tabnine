@@ -1,3 +1,9 @@
+output "network_name" {
+  description = "Name of the created network"
+  value       = module.vpc.network_name
+}
+
+
 output "endpoint" {
   description = "Cluster endpoint"
   value       = module.gke.endpoint
