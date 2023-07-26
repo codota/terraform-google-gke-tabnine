@@ -6,17 +6,4 @@ module "gke_cluster_tabnine" {
   zones                       = var.zones
   prefix                      = var.prefix
   exclude_kubernetes_manifest = var.exclude_kubernetes_manifest
-
-  firewall_rules = {
-    deny_all = false
-
-    allow = [
-      {
-        ranges = ["111.111.111.111/32"]
-        name   = "allow-smtp"
-        ports = [
-          { number = ["587"], protocol = "TCP" }
-        ]
-    }]
-  }
 }

@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   name      = "tabnine-cloud"
   chart     = "oci://registry.tabnine.com/self-hosted/tabnine-cloud"
   wait      = false
-  version   = "4.6.3"
+  version   = "4.7.1"
   namespace = kubernetes_namespace.tabnine.metadata[0].name
 
   values = concat([
@@ -20,15 +20,19 @@ resource "helm_release" "tabnine_cloud" {
       frontend_config_name             = "tabnine-cloud",
       db_ca_base64                     = base64encode(var.db_ca),
       db_cert_base64                   = base64encode(var.db_cert)
+      db_ip                            = var.db_ip
       redis_ca_base64                  = base64encode(var.redis_ca)
+      redis_ip                         = var.redis_ip
       smtp_user                        = var.smtp_user
       smtp_host                        = var.smtp_host
+      smtp_ip                          = var.smtp_ip
       email_from_field                 = var.email_from_field
       saml_enabled                     = var.saml_enabled
       saml_cert                        = var.saml_cert
       saml_wants_assertion_signed      = var.saml_wants_assertion_signed
       saml_wants_response_authn_signed = var.saml_wants_response_authn_signed
       saml_entrypoint                  = var.saml_entrypoint
+      telemetry_enabled                = var.telemetry_enabled
     }),
 
     templatefile("${path.module}/tabnine_cloud_sensitive_values.yaml.tftpl", {
@@ -45,26 +49,17 @@ resource "helm_release" "tabnine_cloud" {
   )
 
   depends_on = [
-    # helm_release.prometheus
+    helm_release.prometheus
   ]
 }
 
 // Prometheus helm chart. This is needed if telemetry enabled.
 resource "helm_release" "prometheus" {
   name             = "prometheus"
-  repository       = "https://prometheus-community.github.io/helm-charts"
-  chart            = "kube-prometheus-stack"
+  chart            = "oci://registry.tabnine.com/self-hosted/kube-prometheus-stack"
   namespace        = "monitoring"
   wait             = false
-  version          = "44.3.0"
+  version          = "45.24.0"
   create_namespace = true
   cleanup_on_fail  = true
-
-  values = [
-    templatefile("${path.module}/prometheus_values.yaml.tftpl", {
-      organization_id     = var.organization_id,
-      organization_secret = var.organization_secret,
-      organization_name   = var.organization_name
-    })
-  ]
 }

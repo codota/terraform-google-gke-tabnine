@@ -21,6 +21,10 @@ variable "email_from_field" {
   description = "email to be used in from `field` for emails sent from Tabnine"
 }
 
+variable "smtp_ip" {
+  type = string
+}
+
 variable "smtp_host" {
   type = string
 }
@@ -46,6 +50,10 @@ variable "redis_url" {
   type = string
 }
 
+variable "redis_ip" {
+  type = string
+}
+
 variable "redis_ca" {
   type = string
 }
@@ -55,6 +63,10 @@ variable "db_url" {
 }
 
 variable "db_ca" {
+  type = string
+}
+
+variable "db_ip" {
   type = string
 }
 
@@ -153,5 +165,14 @@ variable "saml_entrypoint" {
 }
 
 variable "license_key" {
+  type = string
+}
+
+variable "telemetry_enabled" {
+  type    = bool
+  default = false
+}
+
+variable "network_name" {
   type = string
 }

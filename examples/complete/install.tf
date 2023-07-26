@@ -10,8 +10,11 @@ module "gke_cluster_tabnine_install" {
   db_ca                       = module.gke_cluster_tabnine.db_ca
   db_cert                     = module.gke_cluster_tabnine.db_cert
   db_private_key              = module.gke_cluster_tabnine.db_private_key
+  db_ip                       = module.gke_cluster_tabnine.db_ip
   redis_url                   = module.gke_cluster_tabnine.redis_url
   redis_ca                    = module.gke_cluster_tabnine.redis_ca
+  redis_ip                    = module.gke_cluster_tabnine.redis_ip
+  network_name                = module.gke_cluster_tabnine.network_name
   organization_id             = var.organization_id
   organization_secret         = var.organization_secret
   organization_name           = var.organization_name
@@ -23,6 +26,7 @@ module "gke_cluster_tabnine_install" {
   smtp_pass                   = var.smtp_pass
   smtp_user                   = var.smtp_user
   smtp_host                   = var.smtp_host
+  smtp_ip                     = var.smtp_ip
   email_from_field            = var.email_from_field
   create_managed_cert         = var.create_managed_cert
 }

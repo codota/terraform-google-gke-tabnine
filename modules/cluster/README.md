@@ -42,8 +42,8 @@ module "gke_cluster_tabnine" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_tabnine_storage_bucket_im_bindings"></a> [create\_tabnine\_storage\_bucket\_im\_bindings](#input\_create\_tabnine\_storage\_bucket\_im\_bindings) | Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team | `bool` | `false` | no |
 | <a name="input_db_master_zone"></a> [db\_master\_zone](#input\_db\_master\_zone) | Database master zone. If not set, will default to first zone | `string` | `null` | no |
+| <a name="input_deny_all_egress"></a> [deny\_all\_egress](#input\_deny\_all\_egress) | Deny all egress traffic | `bool` | `true` | no |
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
-| <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | Egress firewall rules configuration | <pre>object({<br>    deny_all = bool<br>    allow = list(object({<br>      name   = string<br>      ranges = list(string)<br>      ports = list(object({<br>        number   = list(string)<br>        protocol = string<br>      }))<br>    }))<br>  })</pre> | <pre>{<br>  "allow": [],<br>  "deny_all": true<br>}</pre> | no |
 | <a name="input_min_gpu_machines"></a> [min\_gpu\_machines](#input\_min\_gpu\_machines) | Minimum number of GPU instances | `number` | `1` | no |
 | <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | Use this if you already uploaded a pre-shared cert | `string` | `null` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
@@ -60,9 +60,12 @@ module "gke_cluster_tabnine" {
 | <a name="output_ca_certificate"></a> [ca\_certificate](#output\_ca\_certificate) | Cluster ca certificate (base64 encoded) |
 | <a name="output_db_ca"></a> [db\_ca](#output\_db\_ca) | n/a |
 | <a name="output_db_cert"></a> [db\_cert](#output\_db\_cert) | n/a |
+| <a name="output_db_ip"></a> [db\_ip](#output\_db\_ip) | n/a |
 | <a name="output_db_private_key"></a> [db\_private\_key](#output\_db\_private\_key) | n/a |
 | <a name="output_db_url"></a> [db\_url](#output\_db\_url) | n/a |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | Cluster endpoint |
+| <a name="output_network_name"></a> [network\_name](#output\_network\_name) | Name of the created network |
 | <a name="output_redis_ca"></a> [redis\_ca](#output\_redis\_ca) | n/a |
+| <a name="output_redis_ip"></a> [redis\_ip](#output\_redis\_ip) | n/a |
 | <a name="output_redis_url"></a> [redis\_url](#output\_redis\_url) | n/a |
 <!-- END_TF_DOCS -->

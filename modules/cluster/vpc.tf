@@ -35,25 +35,15 @@ module "vpc" {
     (format("%s-gke-proxy-only", var.prefix)) = []
   }
 
-  firewall_rules = concat([for _, allow_rule in var.firewall_rules.allow : {
-    name      = format("%s-%s", var.prefix, allow_rule.name)
+  firewall_rules = [for _, firewall_rule in [{
+    name      = format("%s-allow-http-tabnine", var.prefix)
     direction = "EGRESS"
-    ranges    = allow_rule.ranges
+    ranges    = ["${local.tabnine_registry_ip}/32"]
     priority  = 1000
-    allow = [for _, port in allow_rule.ports : {
-      protocol = port.protocol
-      ports    = port.number
+    allow = [{
+      protocol = "tcp"
+      ports    = ["80", "443"]
     }]
-    }], [for _, firewall_rule in [
-    {
-      name      = format("%s-allow-http-tabnine", var.prefix)
-      direction = "EGRESS"
-      ranges    = ["${local.tabnine_static_ip}/32"]
-      priority  = 1000
-      allow = [{
-        protocol = "tcp"
-        ports    = ["80", "443"]
-      }]
     },
     {
       name      = format("%s-allow-google-healthcheck", var.prefix)
@@ -74,17 +64,6 @@ module "vpc" {
       allow = [{
         protocol = "all"
         ports    = []
-        }
-      ]
-    },
-    {
-      name      = format("%s-allow-gke-metadata", var.prefix)
-      direction = "EGRESS"
-      ranges    = ["${local.gke_metadata_server_ip}/32"]
-      priority  = 1000
-      allow = [{
-        protocol = "tcp"
-        ports    = ["80", "443"]
         }
       ]
     },
@@ -120,6 +99,6 @@ module "vpc" {
         ports    = []
       }]
     }
-  ] : firewall_rule if var.firewall_rules.deny_all == true])
+  ] : firewall_rule if var.deny_all_egress]
 
 }
