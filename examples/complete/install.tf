@@ -29,4 +29,9 @@ module "gke_cluster_tabnine_install" {
   smtp_ip                     = var.smtp_ip
   email_from_field            = var.email_from_field
   create_managed_cert         = var.create_managed_cert
+
+  depends_on = [
+    module.gke_cluster_tabnine
+  ]
+
 }
