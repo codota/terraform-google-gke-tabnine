@@ -24,3 +24,10 @@ variable "exclude_kubernetes_manifest" {
   type        = bool
   default     = false
 }
+
+variable "gke_master_authorized_networks" {
+  type = list(object({
+    cidr_block   = string,
+    display_name = string
+  }))
+}

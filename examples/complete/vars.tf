@@ -94,3 +94,10 @@ variable "exclude_kubernetes_manifest" {
 variable "license_key" {
   type = string
 }
+
+variable "gke_master_authorized_networks" {
+  type = list(object({
+    cidr_block   = string,
+    display_name = string
+  }))
+}

@@ -10,3 +10,6 @@ zones = ["<ZONE-1>", "<ZONE-2>"]
 # Prefix for all created resource names
 prefix = "<PREFIX>"
 
+# Allow access from the following networks
+gke_master_authorized_networks = [{ cidr_block = "<CIDR_BLOCK>", display_name = "<DISPLAY_NAME>" }]
+
