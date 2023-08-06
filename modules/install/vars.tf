@@ -29,12 +29,14 @@ variable "smtp_host" {
   type = string
 }
 
-variable "smtp_pass" {
-  type = string
+variable "smtp_auth_pass" {
+  type    = string
+  default = null
 }
 
-variable "smtp_user" {
-  type = string
+variable "smtp_auth_user" {
+  type    = string
+  default = null
 }
 
 variable "tabnine_registry_username" {

@@ -23,8 +23,8 @@ module "gke_cluster_tabnine_install" {
   exclude_kubernetes_manifest = var.exclude_kubernetes_manifest
   tabnine_registry_username   = var.tabnine_registry_username
   tabnine_registry_password   = var.tabnine_registry_password
-  smtp_pass                   = var.smtp_pass
-  smtp_user                   = var.smtp_user
+  smtp_auth_pass              = var.smtp_auth_pass
+  smtp_auth_user              = var.smtp_auth_user
   smtp_host                   = var.smtp_host
   smtp_ip                     = var.smtp_ip
   email_from_field            = var.email_from_field

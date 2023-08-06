@@ -15,6 +15,10 @@ global:
       secretName: ${tls_secret_name}
   %{ endif }
 
+%{ if smtp_auth_user !=null && smtp_auth_pass !=null }
 auth:
  smtp: 
-    pass: ${smtp_pass}
+    auth:
+      user: ${smtp_auth_user}
+      pass: ${smtp_auth_pass}
+%{ endif }
