@@ -41,8 +41,6 @@ module "gke_cluster_tabnine_install" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cluster_ca_certificate"></a> [cluster\_ca\_certificate](#input\_cluster\_ca\_certificate) | n/a | `string` | n/a | yes |
-| <a name="input_cluster_endpoint"></a> [cluster\_endpoint](#input\_cluster\_endpoint) | n/a | `string` | n/a | yes |
 | <a name="input_create_managed_cert"></a> [create\_managed\_cert](#input\_create\_managed\_cert) | Wheather to create managed cert, otherwise you `tls_cert` and `tls_key` | `bool` | `null` | no |
 | <a name="input_db_ca"></a> [db\_ca](#input\_db\_ca) | n/a | `string` | n/a | yes |
 | <a name="input_db_cert"></a> [db\_cert](#input\_db\_cert) | n/a | `string` | n/a | yes |
