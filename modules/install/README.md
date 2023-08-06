@@ -69,10 +69,10 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_saml_entrypoint"></a> [saml\_entrypoint](#input\_saml\_entrypoint) | n/a | `string` | `null` | no |
 | <a name="input_saml_wants_assertion_signed"></a> [saml\_wants\_assertion\_signed](#input\_saml\_wants\_assertion\_signed) | n/a | `bool` | `true` | no |
 | <a name="input_saml_wants_response_authn_signed"></a> [saml\_wants\_response\_authn\_signed](#input\_saml\_wants\_response\_authn\_signed) | n/a | `bool` | `true` | no |
+| <a name="input_smtp_auth_pass"></a> [smtp\_auth\_pass](#input\_smtp\_auth\_pass) | n/a | `string` | `null` | no |
+| <a name="input_smtp_auth_user"></a> [smtp\_auth\_user](#input\_smtp\_auth\_user) | n/a | `string` | `null` | no |
 | <a name="input_smtp_host"></a> [smtp\_host](#input\_smtp\_host) | n/a | `string` | n/a | yes |
 | <a name="input_smtp_ip"></a> [smtp\_ip](#input\_smtp\_ip) | n/a | `string` | n/a | yes |
-| <a name="input_smtp_pass"></a> [smtp\_pass](#input\_smtp\_pass) | n/a | `string` | n/a | yes |
-| <a name="input_smtp_user"></a> [smtp\_user](#input\_smtp\_user) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_address_name"></a> [tabnine\_address\_name](#input\_tabnine\_address\_name) | Name of the address to use for Tabnine ingress | `string` | n/a | yes |
 | <a name="input_tabnine_registry_password"></a> [tabnine\_registry\_password](#input\_tabnine\_registry\_password) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_registry_username"></a> [tabnine\_registry\_username](#input\_tabnine\_registry\_username) | n/a | `string` | n/a | yes |

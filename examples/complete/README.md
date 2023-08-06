@@ -23,9 +23,9 @@ This is an example of managing Tabnine cluster with Tabnine installation
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
+| <a name="input_smtp_auth_pass"></a> [smtp\_auth\_pass](#input\_smtp\_auth\_pass) | n/a | `string` | `null` | no |
+| <a name="input_smtp_auth_user"></a> [smtp\_auth\_user](#input\_smtp\_auth\_user) | n/a | `string` | `null` | no |
 | <a name="input_smtp_host"></a> [smtp\_host](#input\_smtp\_host) | n/a | `string` | n/a | yes |
-| <a name="input_smtp_pass"></a> [smtp\_pass](#input\_smtp\_pass) | n/a | `string` | n/a | yes |
-| <a name="input_smtp_user"></a> [smtp\_user](#input\_smtp\_user) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_address_name"></a> [tabnine\_address\_name](#input\_tabnine\_address\_name) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_registry_password"></a> [tabnine\_registry\_password](#input\_tabnine\_registry\_password) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_registry_username"></a> [tabnine\_registry\_username](#input\_tabnine\_registry\_username) | n/a | `string` | n/a | yes |
