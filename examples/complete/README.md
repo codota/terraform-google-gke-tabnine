@@ -15,6 +15,7 @@ This is an example of managing Tabnine cluster with Tabnine installation
 | <a name="input_default_email"></a> [default\_email](#input\_default\_email) | n/a | `string` | n/a | yes |
 | <a name="input_email_from_field"></a> [email\_from\_field](#input\_email\_from\_field) | n/a | `string` | n/a | yes |
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
+| <a name="input_gke_master_authorized_networks"></a> [gke\_master\_authorized\_networks](#input\_gke\_master\_authorized\_networks) | n/a | <pre>list(object({<br>    cidr_block   = string,<br>    display_name = string<br>  }))</pre> | n/a | yes |
 | <a name="input_license_key"></a> [license\_key](#input\_license\_key) | n/a | `string` | n/a | yes |
 | <a name="input_organization_domain"></a> [organization\_domain](#input\_organization\_domain) | n/a | `string` | n/a | yes |
 | <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | n/a | `string` | n/a | yes |
