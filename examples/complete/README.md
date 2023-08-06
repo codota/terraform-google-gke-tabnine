@@ -27,6 +27,8 @@ This is an example of managing Tabnine cluster with Tabnine installation
 | <a name="input_smtp_auth_pass"></a> [smtp\_auth\_pass](#input\_smtp\_auth\_pass) | n/a | `string` | `null` | no |
 | <a name="input_smtp_auth_user"></a> [smtp\_auth\_user](#input\_smtp\_auth\_user) | n/a | `string` | `null` | no |
 | <a name="input_smtp_host"></a> [smtp\_host](#input\_smtp\_host) | n/a | `string` | n/a | yes |
+| <a name="input_smtp_ip"></a> [smtp\_ip](#input\_smtp\_ip) | n/a | `string` | n/a | yes |
+| <a name="input_smtp_port"></a> [smtp\_port](#input\_smtp\_port) | n/a | `string` | `"25"` | no |
 | <a name="input_tabnine_address_name"></a> [tabnine\_address\_name](#input\_tabnine\_address\_name) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_registry_password"></a> [tabnine\_registry\_password](#input\_tabnine\_registry\_password) | n/a | `string` | n/a | yes |
 | <a name="input_tabnine_registry_username"></a> [tabnine\_registry\_username](#input\_tabnine\_registry\_username) | n/a | `string` | n/a | yes |
