@@ -25,6 +25,7 @@ resource "helm_release" "tabnine_cloud" {
       redis_ip                         = var.redis_ip
       smtp_host                        = var.smtp_host
       smtp_ip                          = var.smtp_ip
+      smtp_port                        = var.smtp_port
       email_from_field                 = var.email_from_field
       saml_enabled                     = var.saml_enabled
       saml_cert                        = var.saml_cert

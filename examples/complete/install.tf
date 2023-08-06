@@ -4,8 +4,6 @@ module "gke_cluster_tabnine_install" {
   region                      = var.region
   zones                       = var.zones
   prefix                      = var.prefix
-  cluster_endpoint            = module.gke_cluster_tabnine.endpoint
-  cluster_ca_certificate      = module.gke_cluster_tabnine.ca_certificate
   db_url                      = module.gke_cluster_tabnine.db_url
   db_ca                       = module.gke_cluster_tabnine.db_ca
   db_cert                     = module.gke_cluster_tabnine.db_cert
@@ -18,6 +16,8 @@ module "gke_cluster_tabnine_install" {
   organization_id             = var.organization_id
   organization_secret         = var.organization_secret
   organization_name           = var.organization_name
+  organization_domain         = var.organization_domain
+  license_key                 = var.license_key
   default_email               = var.default_email
   tabnine_address_name        = var.tabnine_address_name
   exclude_kubernetes_manifest = var.exclude_kubernetes_manifest
@@ -27,6 +27,7 @@ module "gke_cluster_tabnine_install" {
   smtp_auth_user              = var.smtp_auth_user
   smtp_host                   = var.smtp_host
   smtp_ip                     = var.smtp_ip
+  smtp_port                   = var.smtp_port
   email_from_field            = var.email_from_field
   create_managed_cert         = var.create_managed_cert
 

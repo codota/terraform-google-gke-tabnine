@@ -22,6 +22,17 @@ variable "smtp_host" {
   type = string
 }
 
+variable "smtp_ip" {
+  type = string
+}
+
+
+variable "smtp_port" {
+  type    = string
+  default = "25"
+}
+
+
 variable "smtp_auth_pass" {
   type    = string
   default = null

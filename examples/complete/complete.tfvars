@@ -22,7 +22,11 @@ tabnine_registry_username = "<TABNINE-REGISTRY-USERNAME>"
 
 smtp_host = "<SMTP-HOST>"
 
-smtp_user = "<SMTP-USER>"
+smtp_port = "<SMTP-PORT>"
+
+smtp_auth_user = "<SMTP-USER>"
+
+smtp_auth_pass = "<SMTP-PASS>"
 
 email_from_field = "<EMAIL-FROM-FIELD>"
 
