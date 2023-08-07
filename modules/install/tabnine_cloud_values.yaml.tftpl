@@ -64,9 +64,9 @@ auth:
   defaultEmail: ${default_email}
   emailFromField: ${email_from_field}
   smtp: 
-    user: ${smtp_user}
-    host: ${smtp_host}
     ip: ${smtp_ip}
+    host: ${smtp_host}
+    port: ${smtp_port}
   %{ if saml_enabled }
   saml:
     enabled: true

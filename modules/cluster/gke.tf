@@ -1,7 +1,7 @@
 module "gke" {
   source                      = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
   project_id                  = var.project_id
-  kubernetes_version          = "1.25.10-gke.2100"
+  kubernetes_version          = "1.27.3-gke.100"
   name                        = format("%s-gke", var.prefix)
   region                      = var.region
   zones                       = var.zones
@@ -25,12 +25,7 @@ module "gke" {
   enable_intranode_visibility = true # on existing cluster, this need to be commented first
   disable_default_snat        = true
   database_encryption         = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
-  master_authorized_networks = [
-    {
-      cidr_block   = "0.0.0.0/0"
-      display_name = "all"
-    }
-  ]
+  master_authorized_networks  = var.gke_master_authorized_networks
 
   node_pools = [
     {

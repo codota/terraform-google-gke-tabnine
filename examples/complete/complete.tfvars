@@ -14,13 +14,19 @@ region = "<REGION>"
 
 zones = ["<ZONE-1>", "<ZONE-2>"]
 
+gke_master_authorized_networks = [{ cidr_block = "<CIDR_BLOCK>", display_name = "<DISPLAY_NAME>" }]
+
 default_email = "<DEFAULT-EMAIL>"
 
 tabnine_registry_username = "<TABNINE-REGISTRY-USERNAME>"
 
 smtp_host = "<SMTP-HOST>"
 
-smtp_user = "<SMTP-USER>"
+smtp_port = "<SMTP-PORT>"
+
+smtp_auth_user = "<SMTP-USER>"
+
+smtp_auth_pass = "<SMTP-PASS>"
 
 email_from_field = "<EMAIL-FROM-FIELD>"
 

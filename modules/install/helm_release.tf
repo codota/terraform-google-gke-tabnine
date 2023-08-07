@@ -3,7 +3,7 @@ resource "helm_release" "tabnine_cloud" {
   name      = "tabnine-cloud"
   chart     = "oci://registry.tabnine.com/self-hosted/tabnine-cloud"
   wait      = false
-  version   = "4.7.1"
+  version   = "4.7.3"
   namespace = kubernetes_namespace.tabnine.metadata[0].name
 
   values = concat([
@@ -23,9 +23,9 @@ resource "helm_release" "tabnine_cloud" {
       db_ip                            = var.db_ip
       redis_ca_base64                  = base64encode(var.redis_ca)
       redis_ip                         = var.redis_ip
-      smtp_user                        = var.smtp_user
       smtp_host                        = var.smtp_host
       smtp_ip                          = var.smtp_ip
+      smtp_port                        = var.smtp_port
       email_from_field                 = var.email_from_field
       saml_enabled                     = var.saml_enabled
       saml_cert                        = var.saml_cert
@@ -41,7 +41,8 @@ resource "helm_release" "tabnine_cloud" {
       db_cert_private_key_base64 = base64encode(var.db_private_key)
       redis_url                  = var.redis_url
       organization_secret        = var.organization_secret
-      smtp_pass                  = var.smtp_pass
+      smtp_auth_user             = var.smtp_auth_user
+      smtp_auth_pass             = var.smtp_auth_pass
       tls_secret_name            = length(kubernetes_secret_v1.tls_certificate) > 0 ? kubernetes_secret_v1.tls_certificate[0].metadata[0].name : null
       license_key                = var.license_key
     }),
