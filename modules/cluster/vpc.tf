@@ -57,6 +57,17 @@ module "vpc" {
       ]
     },
     {
+      name      = format("%s-allow-google-private-service-access", var.prefix)
+      direction = "EGRESS"
+      ranges    = ["10.18.0.0/16"]
+      priority  = 1000
+      allow = [{
+        protocol = "all"
+        ports    = []
+        }
+      ]
+    },
+    {
       name      = format("%s-allow-google-private-service-connect", var.prefix)
       direction = "EGRESS"
       ranges    = ["${local.private_service_connect_ip}/32"]
