@@ -18,7 +18,7 @@ module "sql_db" {
   deletion_protection = false
 
   ip_configuration = {
-    ipv4_enabled       = true
+    ipv4_enabled       = false
     require_ssl        = true
     private_network    = module.vpc.network_self_link
     allocated_ip_range = module.private_service_access.google_compute_global_address_name
