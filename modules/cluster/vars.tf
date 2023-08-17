@@ -74,6 +74,11 @@ variable "gke_master_authorized_networks" {
   }))
 }
 
+variable "nat_ips" {
+  type        = list(number)
+  default     = []
+  description = "nat_ips (list(number), optional): Self-links of NAT IPs."
+}
 locals {
   db_master_zone             = var.db_master_zone != null ? var.db_master_zone : data.google_compute_zones.available.names[0]
   private_service_connect_ip = "10.10.40.1"

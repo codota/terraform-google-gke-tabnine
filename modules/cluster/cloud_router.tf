@@ -6,7 +6,10 @@ module "cloud_router" {
   project = var.project_id
   region  = var.region
 
-  nats = [{
-    name = format("%s-nat-gateway", var.prefix)
-  }]
+  nats = [
+    {
+      name    = format("%s-nat-gateway", var.prefix)
+      nat_ips = var.nat_ips
+    }
+  ]
 }
