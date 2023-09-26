@@ -1,12 +1,8 @@
 # https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/cmd/nvidia_gpu/device-plugin.yaml
-resource "kubernetes_daemonset" "nvidia_gpu_device_plugin" {
+resource "kubernetes_daemonset" "nvidia_driver_installer" {
   metadata {
     name      = "nvidia-driver-installer"
     namespace = "kube-system"
-
-    labels = {
-      k8s-app = "nvidia-driver-installer"
-    }
   }
 
   spec {
@@ -76,7 +72,22 @@ resource "kubernetes_daemonset" "nvidia_gpu_device_plugin" {
 
         init_container {
           name  = "nvidia-driver-installer"
-          image = "cos-nvidia-installer:fixed"
+          image = "gcr.io/cos-cloud/cos-gpu-installer:v20230117"
+
+          env {
+            name  = "NVIDIA_DRIVER_VERSION"
+            value = "525.85.12"
+          }
+
+          env {
+            name  = "DRIVER_VERSION"
+            value = "525.85.12"
+          }
+
+          env {
+            name  = "CACHE_BUILD_ID"
+            value = "525.85.12"
+          }
 
           env {
             name  = "NVIDIA_INSTALL_DIR_HOST"
@@ -144,7 +155,9 @@ resource "kubernetes_daemonset" "nvidia_gpu_device_plugin" {
             mount_path = "/build/cos-tools"
           }
 
-          image_pull_policy = "Never"
+          termination_message_path   = "/dev/termination-log"
+          termination_message_policy = "File"
+          image_pull_policy          = "IfNotPresent"
 
           security_context {
             privileged = true
@@ -181,18 +194,28 @@ resource "kubernetes_daemonset" "nvidia_gpu_device_plugin" {
             mount_path = "/etc/nvidia"
           }
 
+          termination_message_path   = "/dev/termination-log"
+          termination_message_policy = "File"
+          image_pull_policy          = "IfNotPresent"
+
           security_context {
             privileged = true
           }
         }
 
         container {
-          name  = "pause"
-          image = "gcr.io/google-containers/pause:2.0"
+          name                       = "pause"
+          image                      = "gcr.io/google-containers/pause:2.0"
+          termination_message_path   = "/dev/termination-log"
+          termination_message_policy = "File"
+          image_pull_policy          = "IfNotPresent"
         }
 
-        host_network = true
-        host_pid     = true
+        restart_policy                   = "Always"
+        termination_grace_period_seconds = 30
+        dns_policy                       = "ClusterFirst"
+        host_network                     = true
+        host_pid                         = true
 
         affinity {
           node_affinity {
@@ -222,6 +245,12 @@ resource "kubernetes_daemonset" "nvidia_gpu_device_plugin" {
 
     strategy {
       type = "RollingUpdate"
+
+      rolling_update {
+        max_unavailable = "1"
+      }
     }
+
+    revision_history_limit = 10
   }
 }
