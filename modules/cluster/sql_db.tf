@@ -1,5 +1,5 @@
 locals {
-  db_region = var.db_region ? var.db_region : var.region
+  db_region = var.db_region != "" ? var.db_region : var.region
 }
 module "sql_db" {
   source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
