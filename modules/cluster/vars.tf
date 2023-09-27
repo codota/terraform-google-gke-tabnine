@@ -58,7 +58,7 @@ variable "db_master_zone" {
 variable "db_region" {
   description = "GCP DB region"
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "exclude_kubernetes_manifest" {
