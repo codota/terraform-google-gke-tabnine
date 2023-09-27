@@ -55,6 +55,12 @@ variable "db_master_zone" {
   default     = null
 }
 
+variable "db_region" {
+  description = "GCP DB region"
+  type        = string
+  default     = null
+}
+
 variable "exclude_kubernetes_manifest" {
   description = "Exclude kubernetes manifest installations. This should be off during initial installation"
   type        = bool

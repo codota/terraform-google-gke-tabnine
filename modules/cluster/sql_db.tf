@@ -1,3 +1,6 @@
+locals {
+  db_region = var.db_region ? var.db_region : var.region
+}
 module "sql_db" {
   source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
   version              = "15.0.0"
@@ -5,7 +8,7 @@ module "sql_db" {
   random_instance_name = true
   project_id           = var.project_id
   database_version     = "POSTGRES_12"
-  region               = var.region
+  region               = local.db_region
 
   // Master configurations
   tier                            = "db-custom-2-7680"
