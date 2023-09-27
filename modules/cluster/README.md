@@ -42,6 +42,7 @@ module "gke_cluster_tabnine" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_tabnine_storage_bucket_im_bindings"></a> [create\_tabnine\_storage\_bucket\_im\_bindings](#input\_create\_tabnine\_storage\_bucket\_im\_bindings) | Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team | `bool` | `false` | no |
 | <a name="input_db_master_zone"></a> [db\_master\_zone](#input\_db\_master\_zone) | Database master zone. If not set, will default to first zone | `string` | `null` | no |
+| <a name="input_db_region"></a> [db\_region](#input\_db\_region) | GCP DB region | `string` | `null` | no |
 | <a name="input_deny_all_egress"></a> [deny\_all\_egress](#input\_deny\_all\_egress) | Deny all egress traffic | `bool` | `true` | no |
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
 | <a name="input_gke_master_authorized_networks"></a> [gke\_master\_authorized\_networks](#input\_gke\_master\_authorized\_networks) | n/a | <pre>list(object({<br>    cidr_block   = string,<br>    display_name = string<br>  }))</pre> | n/a | yes |
