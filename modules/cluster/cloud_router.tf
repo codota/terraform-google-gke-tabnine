@@ -1,6 +1,6 @@
 module "cloud_router" {
   source  = "terraform-google-modules/cloud-router/google"
-  version = "~> 5.0.1"
+  version = "6.0.2"
   name    = format("%s-router", var.prefix)
   network = module.vpc.network_name
   project = var.project_id

@@ -1,6 +1,6 @@
 module "kms" {
   source             = "terraform-google-modules/kms/google"
-  version            = "~> 2.2"
+  version            = "2.3.0"
   project_id         = var.project_id
   location           = var.region
   keyring            = format("%s-keyring", var.prefix)

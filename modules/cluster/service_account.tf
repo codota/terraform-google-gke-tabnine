@@ -1,6 +1,6 @@
 module "service_accounts" {
   source     = "terraform-google-modules/service-accounts/google"
-  version    = "~> 4.0"
+  version    = "4.2.3"
   project_id = var.project_id
   prefix     = ""
   names      = [format("%s-gke", var.prefix)]
