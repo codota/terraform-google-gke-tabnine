@@ -3,7 +3,7 @@ locals {
 }
 module "sql_db" {
   source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
-  version              = "15.0.0"
+  version              = "21.0.0"
   name                 = format("%s-db", var.prefix)
   random_instance_name = true
   project_id           = var.project_id
