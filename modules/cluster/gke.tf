@@ -1,6 +1,6 @@
 module "gke" {
-  source     = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  project_id = var.project_id
+  source                      = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
+  project_id                  = var.project_id
   kubernetes_version          = "1.29.6-gke.125400"
   name                        = format("%s-gke", var.prefix)
   region                      = var.region
