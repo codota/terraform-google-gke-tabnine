@@ -18,7 +18,9 @@ This module is used to create Tabnine Cluster.
   ```bash
   gcloud services enable container.googleapis.com
   gcloud services enable servicedirectory.googleapis.com
+  gcloud services enable servicenetworking.googleapis.com
   gcloud services enable dns.googleapis.com
+  gcloud services enable cloudkms.googleapis.com
   ```
 
 - Log in with a user that has `Editor` & `Project IAM Admin` roles.
