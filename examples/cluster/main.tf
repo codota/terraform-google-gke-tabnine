@@ -9,7 +9,6 @@ module "gke_cluster_tabnine" {
   gke_master_authorized_networks = var.gke_master_authorized_networks
 }
 
-
 output "redis_url" {
   value     = module.gke_cluster_tabnine.redis_url
   sensitive = true
