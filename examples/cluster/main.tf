@@ -39,3 +39,9 @@ output "db_private_key_base64" {
   value       = base64encode(module.gke_cluster_tabnine.db_private_key)
   sensitive   = true
 }
+
+output "ingress_ip" {
+  description = "IP address of the Ingress controller"
+  value       = module.gke_cluster_tabnine.ingress_ip
+  sensitive   = false
+}
