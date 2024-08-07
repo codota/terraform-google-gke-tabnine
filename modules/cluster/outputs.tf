@@ -47,3 +47,8 @@ output "db_cert" {
 output "db_private_key" {
   value = google_sql_ssl_cert.sql_db.private_key
 }
+
+
+output "ingress_ip" {
+  value = google_compute_global_address.ingress.address
+}
