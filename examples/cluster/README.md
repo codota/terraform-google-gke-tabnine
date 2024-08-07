@@ -26,6 +26,7 @@ This is an example of managing Tabnine cluster
 | <a name="output_db_cert_base64"></a> [db\_cert\_base64](#output\_db\_cert\_base64) | Database server certificate (base64 encoded) |
 | <a name="output_db_private_key_base64"></a> [db\_private\_key\_base64](#output\_db\_private\_key\_base64) | Database client private key (base64 encoded) |
 | <a name="output_db_url"></a> [db\_url](#output\_db\_url) | n/a |
+| <a name="output_ingress_ip"></a> [ingress\_ip](#output\_ingress\_ip) | IP address of the Ingress controller |
 | <a name="output_redis_ca_base64"></a> [redis\_ca\_base64](#output\_redis\_ca\_base64) | n/a |
 | <a name="output_redis_url"></a> [redis\_url](#output\_redis\_url) | n/a |
 <!-- END_TF_DOCS -->
