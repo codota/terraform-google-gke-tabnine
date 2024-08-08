@@ -1,6 +1,7 @@
 // Tabnine cluster module
 module "gke_cluster_tabnine" {
-  source                         = "codota/gke-tabnine/google//modules/cluster"
+  # source                         = "codota/gke-tabnine/google//modules/cluster"
+  source                         = "../../modules/cluster"
   project_id                     = var.project_id
   region                         = var.region
   zones                          = var.zones
@@ -41,9 +42,8 @@ output "db_private_key_base64" {
   sensitive   = true
 }
 
-# output "ingress_ip" {
-#   description = "IP address of the Ingress controller"
-#   value       = module.gke_cluster_tabnine.ingress_ip
-#   sensitive   = false
-# }
-
+output "ingress_ip" {
+  description = "IP address of the Ingress controller"
+  value       = module.gke_cluster_tabnine.ingress_ip
+  sensitive   = false
+}
