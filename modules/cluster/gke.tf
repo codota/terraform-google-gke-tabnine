@@ -66,6 +66,7 @@ module "gke" {
       auto_upgrade       = true
       preemptible        = false
       initial_node_count = 1
+      gpu_driver_version = "LATEST"
     },
   ]
 

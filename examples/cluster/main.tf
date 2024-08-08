@@ -9,7 +9,6 @@ module "gke_cluster_tabnine" {
   gke_master_authorized_networks = var.gke_master_authorized_networks
 }
 
-
 output "redis_url" {
   value     = module.gke_cluster_tabnine.redis_url
   sensitive = true
@@ -27,11 +26,13 @@ output "db_url" {
 output "db_ca_base64" {
   description = "Database ca certificate (base64 encoded)"
   value       = base64encode(module.gke_cluster_tabnine.db_ca)
+  sensitive   = true
 }
 
 output "db_cert_base64" {
   description = "Database server certificate (base64 encoded)"
   value       = base64encode(module.gke_cluster_tabnine.db_cert)
+  sensitive   = true
 }
 
 output "db_private_key_base64" {
@@ -39,3 +40,10 @@ output "db_private_key_base64" {
   value       = base64encode(module.gke_cluster_tabnine.db_private_key)
   sensitive   = true
 }
+
+# output "ingress_ip" {
+#   description = "IP address of the Ingress controller"
+#   value       = module.gke_cluster_tabnine.ingress_ip
+#   sensitive   = false
+# }
+
