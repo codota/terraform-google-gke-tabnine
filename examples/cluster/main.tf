@@ -1,7 +1,7 @@
 // Tabnine cluster module
 module "gke_cluster_tabnine" {
   # source                         = "codota/gke-tabnine/google//modules/cluster"
-  source                         = "../../terraform-google-gke-tabnine/modules/cluster"
+  source                         = "../../modules/cluster"
   project_id                     = var.project_id
   region                         = var.region
   zones                          = var.zones
