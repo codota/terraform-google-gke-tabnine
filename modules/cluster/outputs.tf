@@ -50,5 +50,5 @@ output "db_private_key" {
 
 
 output "ingress_ip" {
-  value = google_compute_global_address.ingress.address
+  value = google_compute_address.ingress.address
 }
