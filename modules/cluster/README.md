@@ -55,7 +55,7 @@ module "gke_cluster_tabnine" {
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
-| <a name="input_use_nvidia_mig"></a> [use\_nvidia\_mig](#input\_use\_nvidia\_mig) | Should use MIG for the GPU (see https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning) | `bool` | `false` | no |
+| <a name="input_use_nvidia_mig"></a> [use\_nvidia\_mig](#input\_use\_nvidia\_mig) | Should use MIG for the GPU (see <https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning>) | `bool` | `false` | no |
 | <a name="input_use_spot_instances"></a> [use\_spot\_instances](#input\_use\_spot\_instances) | Should use spot instances | `bool` | `false` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | GCP zones | `list(string)` | n/a | yes |
 
