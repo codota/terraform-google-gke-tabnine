@@ -8,6 +8,7 @@ module "gke_cluster_tabnine" {
   prefix                         = var.prefix
   exclude_kubernetes_manifest    = var.exclude_kubernetes_manifest
   gke_master_authorized_networks = var.gke_master_authorized_networks
+  deny_all_egress                = false
 }
 
 output "redis_url" {
