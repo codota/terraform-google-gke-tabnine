@@ -1,3 +1,7 @@
+variable "kubernetes_version" {
+  default = "1.30.3-gke.1451000"
+}
+
 variable "create_tabnine_storage_bucket_im_bindings" {
   description = "Create Tabnine storage bucket im bindings. Should be set to true only when run by Tabnine team"
   type        = bool
