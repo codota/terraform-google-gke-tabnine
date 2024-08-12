@@ -1,5 +1,7 @@
 variable "kubernetes_version" {
-  default = "1.30.3-gke.1451000"
+  description = "Kubernetes version"
+  type        = string
+  default     = "1.30.3-gke.1451000"
 }
 
 variable "create_tabnine_storage_bucket_im_bindings" {
