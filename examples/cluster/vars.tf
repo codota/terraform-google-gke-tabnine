@@ -1,9 +1,3 @@
-variable "kubernetes_version" {
-  description = "Kubernetes version"
-  type        = string
-  default     = "1.30.3-gke.1451000"
-}
-
 variable "prefix" {
   description = "Prefix all resources names"
   type        = string
