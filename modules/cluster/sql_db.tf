@@ -7,7 +7,7 @@ module "sql_db" {
   name                 = format("%s-db", var.prefix)
   random_instance_name = true
   project_id           = var.project_id
-  database_version     = "POSTGRES_12"
+  database_version     = "POSTGRES_16"
   region               = local.db_region
 
   // Master configurations
