@@ -1,7 +1,7 @@
 module "gke" {
   source                      = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
   project_id                  = var.project_id
-  kubernetes_version          = "1.29.6-gke.1254000"
+  kubernetes_version          = "1.30.3-gke.1451000"
   name                        = format("%s-gke", var.prefix)
   region                      = var.region
   zones                       = var.zones
@@ -28,24 +28,6 @@ module "gke" {
   master_authorized_networks  = var.gke_master_authorized_networks
 
   node_pools = [
-    {
-      name               = format("%s-default", var.prefix)
-      machine_type       = "e2-standard-4"
-      node_locations     = join(",", var.zones)
-      min_count          = 1
-      max_count          = 4
-      local_ssd_count    = 0
-      spot               = false
-      disk_size_gb       = 200
-      disk_type          = "pd-standard"
-      image_type         = "COS_CONTAINERD"
-      enable_gcfs        = false
-      enable_gvnic       = false
-      auto_repair        = true
-      auto_upgrade       = true
-      preemptible        = false
-      initial_node_count = 1
-    },
     {
       accelerator_type   = "nvidia-tesla-a100"
       accelerator_count  = 1
