@@ -29,6 +29,7 @@ module "gke" {
   master_authorized_networks    = var.gke_master_authorized_networks
   disable_default_snat          = false
   security_posture_mode         = "BASIC"
+  datapath_provider             = "ADVANCED_DATAPATH"
   # maintenance_recurrence      = "FREQ=WEEKLY;BYDAY=SA,SU"
 
   node_pools = [
