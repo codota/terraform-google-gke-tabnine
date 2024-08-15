@@ -1,31 +1,35 @@
 module "gke" {
-  source                      = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  project_id                  = var.project_id
-  kubernetes_version          = "1.30.3-gke.1451000"
-  name                        = format("%s-gke", var.prefix)
-  region                      = var.region
-  zones                       = var.zones
-  network                     = module.vpc.network.network_name
-  subnetwork                  = module.vpc.subnets_names[0]
-  ip_range_pods               = module.vpc.subnets_secondary_ranges[0][0].range_name
-  ip_range_services           = module.vpc.subnets_secondary_ranges[0][1].range_name
-  http_load_balancing         = true
-  network_policy              = true
-  horizontal_pod_autoscaling  = true
-  filestore_csi_driver        = false
-  service_account             = module.service_accounts.service_account.email
-  identity_namespace          = "${var.project_id}.svc.id.goog" # enables default workload identity
-  node_metadata               = "UNSPECIFIED"
-  logging_service             = "logging.googleapis.com/kubernetes"
-  logging_enabled_components  = ["SYSTEM_COMPONENTS", "WORKLOADS"]
-  create_service_account      = false
-  enable_private_nodes        = true
-  master_ipv4_cidr_block      = local.gke_master_ipv4_cidr_block
-  remove_default_node_pool    = true
-  enable_intranode_visibility = true # on existing cluster, this need to be commented first
-  disable_default_snat        = true
-  database_encryption         = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
-  master_authorized_networks  = var.gke_master_authorized_networks
+  source                        = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
+  project_id                    = var.project_id
+  kubernetes_version            = "1.30.3-gke.1451000"
+  name                          = format("%s-gke", var.prefix)
+  region                        = var.region
+  zones                         = var.zones
+  network                       = module.vpc.network.network_name
+  subnetwork                    = module.vpc.subnets_names[0]
+  ip_range_pods                 = module.vpc.subnets_secondary_ranges[0][0].range_name
+  ip_range_services             = module.vpc.subnets_secondary_ranges[0][1].range_name
+  http_load_balancing           = true
+  network_policy                = true
+  horizontal_pod_autoscaling    = true
+  filestore_csi_driver          = false
+  service_account               = module.service_accounts.service_account.email
+  identity_namespace            = "enabled" # enables default workload identity
+  node_metadata                 = "UNSPECIFIED"
+  logging_service               = "logging.googleapis.com/kubernetes"
+  logging_enabled_components    = ["SYSTEM_COMPONENTS", "WORKLOADS"]
+  monitoring_service            = "monitoring.googleapis.com/kubernetes"
+  monitoring_enabled_components = ["SYSTEM_COMPONENTS"]
+  create_service_account        = false
+  enable_private_nodes          = true
+  master_ipv4_cidr_block        = local.gke_master_ipv4_cidr_block
+  remove_default_node_pool      = true
+  enable_intranode_visibility   = true # on existing cluster, this need to be commented first
+  database_encryption           = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
+  master_authorized_networks    = var.gke_master_authorized_networks
+  disable_default_snat          = false
+  security_posture_mode         = "BASIC"
+  # maintenance_recurrence      = "FREQ=WEEKLY;BYDAY=SA,SU"
 
   node_pools = [
     {
