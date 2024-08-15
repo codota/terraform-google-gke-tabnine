@@ -10,7 +10,6 @@ module "gke" {
   ip_range_pods                 = module.vpc.subnets_secondary_ranges[0][0].range_name
   ip_range_services             = module.vpc.subnets_secondary_ranges[0][1].range_name
   http_load_balancing           = true
-  network_policy                = true
   horizontal_pod_autoscaling    = true
   filestore_csi_driver          = false
   service_account               = module.service_accounts.service_account.email
@@ -30,7 +29,6 @@ module "gke" {
   disable_default_snat          = false
   security_posture_mode         = "BASIC"
   datapath_provider             = "ADVANCED_DATAPATH"
-  # maintenance_recurrence      = "FREQ=WEEKLY;BYDAY=SA,SU"
 
   node_pools = [
     {
