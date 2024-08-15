@@ -4,7 +4,6 @@ module "gke" {
   kubernetes_version            = "1.30.3-gke.1451000"
   name                          = format("%s-gke", var.prefix)
   region                        = var.region
-  zones                         = var.zones
   network                       = module.vpc.network.network_name
   subnetwork                    = module.vpc.subnets_names[0]
   ip_range_pods                 = module.vpc.subnets_secondary_ranges[0][0].range_name
