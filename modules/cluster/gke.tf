@@ -14,7 +14,7 @@ module "gke" {
   horizontal_pod_autoscaling  = true
   filestore_csi_driver        = false
   service_account             = module.service_accounts.service_account.email
-  identity_namespace          = "null"
+  identity_namespace          = "${var.project_id}.svc.id.goog" # enables default workload identity
   node_metadata               = "UNSPECIFIED"
   logging_service             = "logging.googleapis.com/kubernetes"
   logging_enabled_components  = ["SYSTEM_COMPONENTS", "WORKLOADS"]
