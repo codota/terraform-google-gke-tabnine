@@ -12,7 +12,6 @@ module "gke" {
   horizontal_pod_autoscaling    = true
   filestore_csi_driver          = false
   service_account               = module.service_accounts.service_account.email
-  identity_namespace            = "enabled" # enables default workload identity
   node_metadata                 = "UNSPECIFIED"
   logging_service               = "logging.googleapis.com/kubernetes"
   logging_enabled_components    = ["SYSTEM_COMPONENTS", "WORKLOADS"]
@@ -27,7 +26,11 @@ module "gke" {
   master_authorized_networks    = var.gke_master_authorized_networks
   disable_default_snat          = false
   security_posture_mode         = "BASIC"
-  datapath_provider             = "ADVANCED_DATAPATH"
+  datapath_provider             = "ADVANCED_DATAPATH" # this enable Datapath V2 -> Immutable once cluster is deployed!
+  identity_namespace            = "enabled"           # enables default workload identity
+  dns_cache                     = true                # enables NodeLocal DNSCache	
+  enable_cost_allocation        = true                # enables Cost Allocation Feature
+  enable_gcfs                   = true                # enables image streaming on cluster level
 
   node_pools = [
     {
