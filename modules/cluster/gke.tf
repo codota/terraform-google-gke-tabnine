@@ -27,14 +27,14 @@ module "gke" {
   release_channel               = "UNSPECIFIED"
   disable_default_snat          = false
   security_posture_mode         = "BASIC"
-  datapath_provider             = "ADVANCED_DATAPATH" # this enable Datapath V2 -> Immutable once cluster is deployed!
-  identity_namespace            = "enabled"           # enables default workload identity
-  dns_cache                     = true                # enables NodeLocal DNSCache	
-  enable_cost_allocation        = true                # enables Cost Allocation Feature
-  enable_gcfs                   = true                # enables image streaming on cluster level
-  maintenance_start_time        = "2024-01-07T06:00:00Z"
-  maintenance_end_time          = "2024-01-07T18:00:00Z"
-  maintenance_recurrence        = "FREQ=WEEKLY;BYDAY=SU"
+  datapath_provider             = "ADVANCED_DATAPATH"    # this enable Datapath V2 -> Immutable once cluster is deployed!
+  identity_namespace            = "enabled"              # enables default workload identity
+  dns_cache                     = true                   # enables NodeLocal DNSCache	
+  enable_cost_allocation        = true                   # enables Cost Allocation Feature
+  enable_gcfs                   = true                   # enables image streaming on cluster level
+  maintenance_start_time        = "2024-01-01T06:00:00Z" # need to specify both start and end, only the TIME window matters
+  maintenance_end_time          = "2024-01-01T18:00:00Z" # need to specify both start and end, only the TIME window matters
+  maintenance_recurrence        = "FREQ=WEEKLY;BYDAY=SU" # weekly recurrence on sunday
 
   node_pools = [
     {
