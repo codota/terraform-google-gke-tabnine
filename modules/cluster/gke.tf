@@ -12,7 +12,6 @@ module "gke" {
   horizontal_pod_autoscaling    = true
   filestore_csi_driver          = false
   service_account               = module.service_accounts.service_account.email
-  node_metadata                 = "UNSPECIFIED"
   logging_service               = "logging.googleapis.com/kubernetes"
   logging_enabled_components    = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   monitoring_service            = "monitoring.googleapis.com/kubernetes"
@@ -24,6 +23,8 @@ module "gke" {
   enable_intranode_visibility   = true # on existing cluster, this need to be commented first
   database_encryption           = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
   master_authorized_networks    = var.gke_master_authorized_networks
+  node_metadata                 = "GKE_METADATA_SERVER"
+  release_channel               = "UNSPECIFIED"
   disable_default_snat          = false
   security_posture_mode         = "BASIC"
   datapath_provider             = "ADVANCED_DATAPATH" # this enable Datapath V2 -> Immutable once cluster is deployed!
@@ -31,6 +32,9 @@ module "gke" {
   dns_cache                     = true                # enables NodeLocal DNSCache	
   enable_cost_allocation        = true                # enables Cost Allocation Feature
   enable_gcfs                   = true                # enables image streaming on cluster level
+  maintenance_start_time        = "2024-01-07T06:00:00Z"
+  maintenance_end_time          = "2024-01-07T18:00:00Z"
+  maintenance_recurrence        = "FREQ=WEEKLY;BYDAY=SU"
 
   node_pools = [
     {
