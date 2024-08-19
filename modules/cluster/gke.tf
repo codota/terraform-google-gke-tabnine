@@ -51,10 +51,9 @@ module "gke" {
       disk_size_gb       = 200
       disk_type          = "pd-standard"
       image_type         = "COS_CONTAINERD"
-      enable_gcfs        = false
       enable_gvnic       = false
       auto_repair        = true
-      auto_upgrade       = true
+      auto_upgrade       = false
       preemptible        = false
       initial_node_count = 1
       gpu_driver_version = "LATEST"
