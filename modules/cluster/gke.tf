@@ -1,31 +1,40 @@
 module "gke" {
-  source                      = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  project_id                  = var.project_id
-  kubernetes_version          = "1.30.3-gke.1451000"
-  name                        = format("%s-gke", var.prefix)
-  region                      = var.region
-  zones                       = var.zones
-  network                     = module.vpc.network.network_name
-  subnetwork                  = module.vpc.subnets_names[0]
-  ip_range_pods               = module.vpc.subnets_secondary_ranges[0][0].range_name
-  ip_range_services           = module.vpc.subnets_secondary_ranges[0][1].range_name
-  http_load_balancing         = true
-  network_policy              = true
-  horizontal_pod_autoscaling  = true
-  filestore_csi_driver        = false
-  service_account             = module.service_accounts.service_account.email
-  identity_namespace          = "null"
-  node_metadata               = "UNSPECIFIED"
-  logging_service             = "logging.googleapis.com/kubernetes"
-  logging_enabled_components  = ["SYSTEM_COMPONENTS", "WORKLOADS"]
-  create_service_account      = false
-  enable_private_nodes        = true
-  master_ipv4_cidr_block      = local.gke_master_ipv4_cidr_block
-  remove_default_node_pool    = true
-  enable_intranode_visibility = true # on existing cluster, this need to be commented first
-  disable_default_snat        = true
-  database_encryption         = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
-  master_authorized_networks  = var.gke_master_authorized_networks
+  source                        = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
+  project_id                    = var.project_id
+  kubernetes_version            = "1.30.3-gke.1451000"
+  name                          = format("%s-gke", var.prefix)
+  region                        = var.region
+  network                       = module.vpc.network.network_name
+  subnetwork                    = module.vpc.subnets_names[0]
+  ip_range_pods                 = module.vpc.subnets_secondary_ranges[0][0].range_name
+  ip_range_services             = module.vpc.subnets_secondary_ranges[0][1].range_name
+  http_load_balancing           = true
+  horizontal_pod_autoscaling    = true
+  filestore_csi_driver          = false
+  service_account               = module.service_accounts.service_account.email
+  logging_service               = "logging.googleapis.com/kubernetes"
+  logging_enabled_components    = ["SYSTEM_COMPONENTS", "WORKLOADS"]
+  monitoring_service            = "monitoring.googleapis.com/kubernetes"
+  monitoring_enabled_components = ["SYSTEM_COMPONENTS"]
+  create_service_account        = false
+  enable_private_nodes          = true
+  master_ipv4_cidr_block        = local.gke_master_ipv4_cidr_block
+  remove_default_node_pool      = true
+  enable_intranode_visibility   = true # on existing cluster, this need to be commented first
+  database_encryption           = [{ state = "ENCRYPTED", key_name = module.kms.keys["gke"] }]
+  master_authorized_networks    = var.gke_master_authorized_networks
+  node_metadata                 = "GKE_METADATA_SERVER"
+  release_channel               = "UNSPECIFIED"
+  disable_default_snat          = false
+  security_posture_mode         = "BASIC"
+  datapath_provider             = "ADVANCED_DATAPATH"    # this enable Datapath V2 -> Immutable once cluster is deployed!
+  identity_namespace            = "enabled"              # enables default workload identity
+  dns_cache                     = true                   # enables NodeLocal DNSCache	
+  enable_cost_allocation        = true                   # enables Cost Allocation Feature
+  enable_gcfs                   = true                   # enables image streaming on cluster level
+  maintenance_start_time        = "2024-01-01T06:00:00Z" # need to specify both start and end, only the TIME window matters
+  maintenance_end_time          = "2024-01-01T18:00:00Z" # need to specify both start and end, only the TIME window matters
+  maintenance_recurrence        = "FREQ=WEEKLY;BYDAY=SU" # weekly recurrence on sunday
 
   node_pools = [
     {
