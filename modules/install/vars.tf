@@ -111,7 +111,6 @@ variable "organization_domain" {
   default     = "tabnine.io"
 }
 
-
 variable "prefix" {
   description = "Prefix all resources names"
   type        = string
