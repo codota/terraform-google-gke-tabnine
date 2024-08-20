@@ -52,10 +52,10 @@ module "gke_cluster_tabnine_install" {
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
 | <a name="input_license_key"></a> [license\_key](#input\_license\_key) | n/a | `string` | n/a | yes |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | n/a | `string` | n/a | yes |
-| <a name="input_organization_domain"></a> [organization\_domain](#input\_organization\_domain) | n/a | `string` | n/a | yes |
-| <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | n/a | `string` | n/a | yes |
-| <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | n/a | `string` | n/a | yes |
-| <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | n/a | `string` | n/a | yes |
+| <a name="input_organization_domain"></a> [organization\_domain](#input\_organization\_domain) | Organization domain | `string` | `"tabnine.io"` | no |
+| <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | Organization ID | `string` | n/a | yes |
+| <a name="input_organization_name"></a> [organization\_name](#input\_organization\_name) | Organization name | `string` | n/a | yes |
+| <a name="input_organization_secret"></a> [organization\_secret](#input\_organization\_secret) | Organization secret | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_redis_ca"></a> [redis\_ca](#input\_redis\_ca) | n/a | `string` | n/a | yes |
