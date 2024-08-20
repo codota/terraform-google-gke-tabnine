@@ -91,19 +91,24 @@ variable "tabnine_address_name" {
 }
 
 variable "organization_id" {
-  type = string
+  description = "Organization ID"
+  type        = string
 }
 
 variable "organization_name" {
-  type = string
+  description = "Organization name"
+  type        = string
 }
 
 variable "organization_secret" {
-  type = string
+  description = "Organization secret"
+  type        = string
 }
 
 variable "organization_domain" {
-  type = string
+  description = "Organization domain"
+  type        = string
+  default     = "tabnine.io"
 }
 
 
