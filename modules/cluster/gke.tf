@@ -34,7 +34,7 @@ module "gke" {
   enable_gcfs                   = true                   # enables image streaming on cluster level
   maintenance_start_time        = "2024-01-01T06:00:00Z" # need to specify both start and end, only the TIME window matters
   maintenance_end_time          = "2024-01-01T18:00:00Z" # need to specify both start and end, only the TIME window matters
-  maintenance_recurrence        = "FREQ=WEEKLY;BYDAY=SU" # weekly recurrence on sunday
+  maintenance_recurrence        = "FREQ=WEEKLY;BYDAY=SA" # weekly recurrence on saturday
 
   node_pools = [
     {
