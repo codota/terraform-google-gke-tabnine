@@ -1,13 +1,13 @@
 variable "create_managed_cert" {
   type        = bool
   default     = null
-  description = "Wheather to create managed cert, otherwise you `tls_cert` and `tls_key`"
+  description = "Whether to create managed cert, otherwise use `tls_cert` and `tls_key`"
 }
 
 variable "tls_cert" {
   type        = string
   default     = null
-  description = "tls cert to attach to ingress"
+  description = "TLS cert to attach to ingress"
 }
 
 variable "tls_key" {
@@ -18,7 +18,7 @@ variable "tls_key" {
 
 variable "email_from_field" {
   type        = string
-  description = "email to be used in from `field` for emails sent from Tabnine"
+  description = "email to be used in the from `field` for emails sent from Tabnine"
 }
 
 variable "smtp_ip" {
@@ -91,21 +91,25 @@ variable "tabnine_address_name" {
 }
 
 variable "organization_id" {
-  type = string
+  description = "Organization ID"
+  type        = string
 }
 
 variable "organization_name" {
-  type = string
+  description = "Organization name"
+  type        = string
 }
 
 variable "organization_secret" {
-  type = string
+  description = "Organization secret"
+  type        = string
 }
 
 variable "organization_domain" {
-  type = string
+  description = "Organization domain"
+  type        = string
+  default     = "tabnine.io"
 }
-
 
 variable "prefix" {
   description = "Prefix all resources names"
