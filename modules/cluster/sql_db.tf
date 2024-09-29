@@ -31,11 +31,11 @@ module "sql_db" {
 
   backup_configuration = {
     enabled                        = true
-    start_time                     = "20:55"
+    start_time                     = "00:00"
     location                       = null
     point_in_time_recovery_enabled = false
     transaction_log_retention_days = null
-    retained_backups               = 365
+    retained_backups               = 14
     retention_unit                 = "COUNT"
   }
 
