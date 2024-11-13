@@ -25,6 +25,16 @@ variable "zones" {
   type        = list(string)
 }
 
+variable "kms_iam_service_account_name" {
+  description = "The name of the IAM service account for using kms"
+  type        = string
+}
+
+variable "kms_kubernetes_service_account_namespace" {
+  description = "The kubernetes namespace where the service account resides"
+  type        = string
+}
+
 variable "encryption_service_kms_keyrings" {
   description = "The keyrings encryption-service uses"
   type        = list(string)
