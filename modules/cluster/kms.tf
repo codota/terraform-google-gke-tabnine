@@ -16,15 +16,10 @@ module "kms" {
   ]
 }
 
-
 resource "google_kms_key_ring" "encryption_service_keyring" {
   for_each = toset(var.encryption_service_kms_keyrings)
 
   name     = "encryption-service-${each.key}"
   project  = var.project_id
-  location = var.region
-
-  lifecycle {
-    prevent_destroy = true
-  }
+  location = "global"
 }
