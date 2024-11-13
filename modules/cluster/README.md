@@ -46,8 +46,11 @@ module "gke_cluster_tabnine" {
 | <a name="input_db_master_zone"></a> [db\_master\_zone](#input\_db\_master\_zone) | Database master zone. If not set, will default to first zone | `string` | `null` | no |
 | <a name="input_db_region"></a> [db\_region](#input\_db\_region) | GCP DB region | `string` | `""` | no |
 | <a name="input_deny_all_egress"></a> [deny\_all\_egress](#input\_deny\_all\_egress) | Deny all egress traffic | `bool` | `true` | no |
+| <a name="input_encryption_service_kms_keyrings"></a> [encryption\_service\_kms\_keyrings](#input\_encryption\_service\_kms\_keyrings) | The keyrings encryption-service uses | `list(string)` | <pre>[<br>  "services",<br>  "teams",<br>  "users"<br>]</pre> | no |
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
 | <a name="input_gke_master_authorized_networks"></a> [gke\_master\_authorized\_networks](#input\_gke\_master\_authorized\_networks) | n/a | <pre>list(object({<br>    cidr_block   = string,<br>    display_name = string<br>  }))</pre> | n/a | yes |
+| <a name="input_kms_iam_service_account_name"></a> [kms\_iam\_service\_account\_name](#input\_kms\_iam\_service\_account\_name) | The name of the IAM service account for using kms | `string` | n/a | yes |
+| <a name="input_kms_kubernetes_service_account_namespace"></a> [kms\_kubernetes\_service\_account\_namespace](#input\_kms\_kubernetes\_service\_account\_namespace) | The kubernetes namespace where the service account resides | `string` | n/a | yes |
 | <a name="input_min_gpu_machines"></a> [min\_gpu\_machines](#input\_min\_gpu\_machines) | Minimum number of GPU instances | `number` | `1` | no |
 | <a name="input_nat_ips"></a> [nat\_ips](#input\_nat\_ips) | nat\_ips (list(string), optional): Self-links of NAT IPs. | `list(string)` | `[]` | no |
 | <a name="input_pre_shared_cert_name"></a> [pre\_shared\_cert\_name](#input\_pre\_shared\_cert\_name) | Use this if you already uploaded a pre-shared cert | `string` | `null` | no |
