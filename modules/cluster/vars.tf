@@ -25,6 +25,12 @@ variable "zones" {
   type        = list(string)
 }
 
+variable "encryption_service_kms_keyrings" {
+  description = "The keyrings encryption-service uses"
+  type        = list(string)
+  default     = ["services", "teams", "users"]
+}
+
 variable "pre_shared_cert_name" {
   description = "Use this if you already uploaded a pre-shared cert"
   type        = string
