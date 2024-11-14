@@ -31,7 +31,7 @@ variable "kms_iam_service_account_name" {
 }
 
 variable "kms_kubernetes_service_account_namespace" {
-  description = "The kubernetes namespace where the service account resides"
+  description = "The kubernetes namespace where the kms service account resides"
   type        = string
 }
 
