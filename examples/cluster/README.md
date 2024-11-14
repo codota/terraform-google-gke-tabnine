@@ -14,7 +14,7 @@ This is an example of managing Tabnine cluster
 | <a name="input_exclude_kubernetes_manifest"></a> [exclude\_kubernetes\_manifest](#input\_exclude\_kubernetes\_manifest) | Exclude kubernetes manifest installations. This should be off during initial installation | `bool` | `false` | no |
 | <a name="input_gke_master_authorized_networks"></a> [gke\_master\_authorized\_networks](#input\_gke\_master\_authorized\_networks) | n/a | <pre>list(object({<br>    cidr_block   = string,<br>    display_name = string<br>  }))</pre> | n/a | yes |
 | <a name="input_kms_iam_service_account_name"></a> [kms\_iam\_service\_account\_name](#input\_kms\_iam\_service\_account\_name) | The name of the IAM service account for using kms | `string` | n/a | yes |
-| <a name="input_kms_kubernetes_service_account_namespace"></a> [kms\_kubernetes\_service\_account\_namespace](#input\_kms\_kubernetes\_service\_account\_namespace) | The kubernetes namespace where the service account resides | `string` | n/a | yes |
+| <a name="input_kms_kubernetes_service_account_namespace"></a> [kms\_kubernetes\_service\_account\_namespace](#input\_kms\_kubernetes\_service\_account\_namespace) | The kubernetes namespace where the kms service account resides | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefix all resources names | `string` | `"tabnine-self-hosted"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP project ID | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | n/a | yes |
