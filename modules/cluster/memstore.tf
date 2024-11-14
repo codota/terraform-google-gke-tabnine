@@ -1,4 +1,5 @@
 module "memstore" {
+  version                 = "~> 12.0"
   source                  = "terraform-google-modules/memorystore/google"
   project_id              = var.project_id
   region                  = var.region

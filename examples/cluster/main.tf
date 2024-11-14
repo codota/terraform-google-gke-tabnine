@@ -1,13 +1,15 @@
 // Tabnine cluster module
 module "gke_cluster_tabnine" {
   # source                         = "codota/gke-tabnine/google//modules/cluster"
-  source                         = "../../modules/cluster"
-  project_id                     = var.project_id
-  region                         = var.region
-  zones                          = var.zones
-  prefix                         = var.prefix
-  exclude_kubernetes_manifest    = var.exclude_kubernetes_manifest
-  gke_master_authorized_networks = var.gke_master_authorized_networks
+  source                                   = "../../modules/cluster"
+  project_id                               = var.project_id
+  region                                   = var.region
+  zones                                    = var.zones
+  prefix                                   = var.prefix
+  exclude_kubernetes_manifest              = var.exclude_kubernetes_manifest
+  gke_master_authorized_networks           = var.gke_master_authorized_networks
+  kms_iam_service_account_name             = var.kms_iam_service_account_name
+  kms_kubernetes_service_account_namespace = var.kms_kubernetes_service_account_namespace
 }
 
 output "redis_url" {

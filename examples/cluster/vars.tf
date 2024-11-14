@@ -31,3 +31,13 @@ variable "gke_master_authorized_networks" {
     display_name = string
   }))
 }
+
+variable "kms_iam_service_account_name" {
+  description = "The name of the IAM service account for using kms"
+  type        = string
+}
+
+variable "kms_kubernetes_service_account_namespace" {
+  description = "The kubernetes namespace where the kms service account resides"
+  type        = string
+}
